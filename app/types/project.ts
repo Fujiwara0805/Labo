@@ -2,7 +2,7 @@ export interface Project {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;
+  imageUrls: string[];
   projectUrl: string;
   technologies: string[];
   category: string;
