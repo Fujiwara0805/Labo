@@ -23,6 +23,24 @@ export async function submitToGoogleSheets(formData: {
       throw new Error('Google Spreadsheet ID is not configured');
     }
 
+    // スプレッドシートの既存データを確認
+    const existingData = await sheets.spreadsheets.values.get({
+      spreadsheetId,
+      range: 'A:D',
+    });
+
+    // データが存在しない場合（新規の場合）のみヘッダーを追加
+    if (!existingData.data.values || existingData.data.values.length === 0) {
+      await sheets.spreadsheets.values.update({
+        spreadsheetId,
+        range: 'A1:D1',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [['送信日時', '名前', 'メールアドレス', 'メッセージ']],
+        },
+      });
+    }
+
     // 現在の日時を取得
     const timestamp = new Date().toLocaleString('ja-JP', {
       timeZone: 'Asia/Tokyo'
@@ -31,7 +49,7 @@ export async function submitToGoogleSheets(formData: {
     // スプレッドシートにデータを追加
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: 'A1:D1',
+      range: 'A:D',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [[timestamp, formData.name, formData.email, formData.message]],
