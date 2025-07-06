@@ -1,14 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Linkedin, Mail, Lightbulb, BriefcaseBusiness } from 'lucide-react';
+import { Linkedin, Mail, MapPin, Users } from 'lucide-react';
 
 export function Footer() {
   return (
     <footer className="bg-sub text-gray-200 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* ブランド情報 */}
+          {/* 会社情報 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -16,18 +16,15 @@ export function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <div className="flex items-center space-x-2">
-              <Lightbulb className="w-8 h-8 text-custom-accent" />
-              <span className="text-xl font-bold font-cinzel text-white">（貴社名） Solutions</span>
-            </div>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              私たちは、ビジネスに「ゲーム性」と「物語性」を融合させ、<br />
-              顧客体験を革新する<span className="font-semibold text-custom-accent">リアルRPGソリューション</span>を提供します。<br />
-              貴社の課題を解決し、新たな価値を創造するパートナーです。
+            <h3 className="text-xl font-semibold text-custom-accent font-cinzel">担当者</h3>
+            <span className="text-2xl font-bold font-cinzel text-white">藤原　泰樹</span>
+            <p className="text-gray-300 text-lg leading-relaxed">
+              地域課題の解決に向けた
+              <span className="font-semibold text-custom-accent">アプリ開発</span>や<span className="font-semibold text-custom-accent">AIの活用に向けた研修</span>など、お気軽にご相談ください。共に地域の未来を創造しましょう。
             </p>
           </motion.div>
 
-          {/* 提供サービス */}
+          {/* 事業内容 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -35,13 +32,12 @@ export function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold text-custom-accent font-cinzel">提供サービス</h3>
-            <ul className="text-gray-300 text-sm space-y-2">
-              <li>Webシステム受託開発</li>
-              <li>モバイルアプリ開発</li>
-              <li>ゲーミフィケーション導入支援</li>
-              <li>UI/UXデザイン</li>
-              <li>コンサルティング</li>
+            <h3 className="text-xl font-semibold text-custom-accent font-cinzel">事業内容</h3>
+            <ul className="text-gray-300 text-lg space-y-2">
+              <li>地域課題解決型マッチングプラットフォーム</li>
+              <li>アプリケーション開発</li>
+              <li>AI活用に向けた研修</li>
+              <li>地域活性化イベント企画・運営</li>
             </ul>
           </motion.div>
 
@@ -53,32 +49,9 @@ export function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold text-custom-accent font-cinzel">お問い合わせ</h3>
-            <div className="flex space-x-4">
-              <motion.a
-                href="mailto:contact@example.com"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-custom-accent/20 transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Mail className="w-5 h-5 text-gray-200" />
-                <span className="sr-only">Email</span>
-              </motion.a>
-              <motion.a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-custom-accent/20 transition-colors duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Linkedin className="w-5 h-5 text-gray-200" />
-                <span className="sr-only">LinkedIn</span>
-              </motion.a>
-            </div>
-            <p className="text-gray-300 text-sm mt-4">
-              ご質問やご相談がございましたら、<br />
-              お気軽にご連絡ください。
+            <h3 className="text-xl font-semibold text-custom-accent font-cinzel">お問い合わせ</h3>
+            <p className="text-gray-300 text-base mt-4">
+              お問い合わせフォームよりご連絡ください
             </p>
           </motion.div>
         </div>
@@ -90,11 +63,11 @@ export function Footer() {
           viewport={{ once: true }}
           className="border-t border-white/20 mt-8 pt-8 text-center"
         >
-          <p className="text-gray-300 text-sm flex items-center justify-center">
-            Created with passion for <BriefcaseBusiness className="w-4 h-4 mx-1 text-custom-accent" /> business innovation
+          <p className="text-gray-300 text-base flex items-center justify-center">
+            Created with passion for <Users className="w-5 h-5 mx-1 text-custom-accent" /> regional innovation
           </p>
-          <p className="text-gray-400 text-xs mt-2">
-            © 2024 （貴社名） Solutions. All rights reserved.
+          <p className="text-gray-400 text-sm mt-2">
+            © 2025 チームNobody. All rights reserved.
           </p>
         </motion.div>
       </div>

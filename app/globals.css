@@ -7,37 +7,31 @@
   /* カスタムカラーパレット (HSL値) */
   --main-color: 15 23% 45%;      /* #906956 */
   --sub-color: 211 25% 43%;       /* #526F8A */
-  --accent-color: 29 45% 71%;    /* #CF9F7E */
+  --accent-color: 29 45% 71%;    /* #d7b494 - 元のアクセントカラーに戻す */
 
   /* ライトモード専用の設定 */
   --background: 0 0% 100%;       /* 白系の背景 */
   --foreground: 0 0% 20%;        /* 濃いグレー（視認性の高いテキスト色） */
   
   --primary: var(--main-color);
-  --primary-foreground: 0 0% 100%; /* primary (main-color) 上に乗る白いテキスト */
-
-  --secondary: var(--sub-color);
-  --secondary-foreground: 0 0% 100%; /* secondary (sub-color) 上に乗る白いテキスト */
-
-  --muted: 210 20% 98%;          /* 明るいグレー (例: カードの背景など) */
-  --muted-foreground: 0 0% 30%;   /* 濃いグレー（補足テキスト色） */
-
-  --accent: var(--accent-color);
-  --accent-foreground: 0 0% 20%; /* accent (accent-color) 上に乗る濃いテキスト */
+  --primary-foreground: 0 0% 98%;
   
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 20%; /* カード内のテキストを濃いグレーに */
- 
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 20%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 20% 98%;
-
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: var(--main-color); /* ring色をメインカラーに合わせる */
-
+  --secondary: 210 40% 98%;
+  --secondary-foreground: var(--main-color);
+  
+  --muted: 210 40% 96%;
+  --muted-foreground: 0 0% 45%;
+  
+  --accent: var(--accent-color);
+  --accent-foreground: 0 0% 20%;
+  
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: var(--main-color);
+  
   --radius: 0.5rem;
 
   /* 背景グラデーションの定義 */
@@ -75,8 +69,10 @@
   
   /* RPG風グラデーション */
   .hero-gradient {
-    /* サブカラーを透明度を上げて使用し、背景画像とのバランスを調整 */
-    background: linear-gradient(to top, hsl(var(--sub-color)) 0%, transparent 100%);
+    background: linear-gradient(135deg, 
+      hsl(var(--sub-color)) 0%, 
+      hsl(var(--sub-color) / 0.8) 50%, 
+      hsl(var(--main-color) / 0.6) 100%);
   }
   
   .section-gradient {
@@ -89,22 +85,21 @@
   } */
   
   .rpg-border {
-    border: 3px solid;
-    border-image: linear-gradient(45deg, var(--sub-color), var(--main-color)) 1;
+    border: 2px solid hsl(var(--accent-color));
+    border-radius: 8px;
     position: relative;
   }
   
   .rpg-border::before {
     content: '';
     position: absolute;
-    top: -6px;
-    left: -6px;
-    right: -6px;
-    bottom: -6px;
-    background: linear-gradient(45deg, var(--sub-color), var(--main-color));
-    border-radius: inherit;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid hsl(var(--accent-color) / 0.3);
+    border-radius: 10px;
     z-index: -1;
-    opacity: 0.3;
   }
   
   .rpg-button {
@@ -163,15 +158,57 @@
     mask-composite: exclude;
     z-index: -1;
   }
+
+  /* スクロールバーのスタイリング */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent-color));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--accent-color) / 0.8);
+  }
+
+  /* ボタンのホバーエフェクト */
+  .btn-primary-hover:hover {
+    background: hsl(var(--accent-color) / 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px hsl(var(--accent-color) / 0.3);
+  }
+
+  /* カードのシャドウエフェクト */
+  .card-shadow {
+    box-shadow: 0 10px 30px hsl(var(--sub-color) / 0.1);
+  }
+
+  .card-shadow:hover {
+    box-shadow: 0 20px 40px hsl(var(--sub-color) / 0.2);
+  }
+
+  /* テキストグラデーション */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--main-color)), hsl(var(--accent-color)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 /* RPG風アニメーション */
 @keyframes glow {
   0%, 100% { 
-    box-shadow: 0 0 5px rgba(225, 141, 59, 0.5);
+    box-shadow: 0 0 5px hsl(var(--accent-color) / 0.5);
   }
   50% { 
-    box-shadow: 0 0 20px rgba(225, 141, 59, 0.8);
+    box-shadow: 0 0 20px hsl(var(--accent-color) / 0.8);
   }
 }
 

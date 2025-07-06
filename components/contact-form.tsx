@@ -72,33 +72,22 @@ export function ContactForm() {
           className="max-w-2xl mx-auto"
         >
           <div className="text-center mb-12">
-            <motion.div
-              className="mb-6"
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <Mail className="w-16 h-16 mx-auto text-custom-accent" />
-            </motion.div>
-            
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-cinzel">
-              ビジネスのご相談はこちら
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-cinzel">
+              ご相談
             </h2>
-            <p className="text-white/90 text-lg md:text-xl text-balance">
-              貴社のビジネス課題解決に向けた<span className="text-custom-accent font-semibold">受託開発のご相談</span>、<br />
-              または<span className="text-custom-accent font-semibold">協業・投資</span>のご提案など、お気軽にお問い合わせください。<br />
-              新たな価値創造のパートナーとして、最適なソリューションをご提案いたします。
+            <p className="text-white/90 text-xl md:text-2xl text-balance">
+              地域の課題解決に向けた
+              <span className="text-custom-accent font-semibold">アプリ開発</span>や<span className="text-custom-accent font-semibold">AIの活用に向けた研修</span>など、お気軽にご相談ください。共に地域の未来を創造しましょう。
             </p>
           </div>
 
           <Card className="border-2 border-main/20 shadow-xl bg-main backdrop-blur-sm">
             <CardHeader className="text-center pb-6">
-              <CardTitle className="text-2xl font-semibold text-white font-cinzel">
+              <CardTitle className="text-3xl font-semibold text-white font-cinzel">
                 お問い合わせフォーム
               </CardTitle>
-              <p className="text-white/80 text-sm mt-2">
-                メッセージは厳重に管理されます。
+              <p className="text-white/80 text-base mt-2">
+                お客様の情報は厳重に管理されます。
               </p>
             </CardHeader>
             <CardContent className="p-8">
@@ -139,12 +128,13 @@ export function ContactForm() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium">お名前 *</FormLabel>
+                          <FormLabel className="text-white font-medium text-lg">お名前 *</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="山田太郎" 
                               {...field}
                               className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60"
+                              style={{ fontSize: '16px' }}
                             />
                           </FormControl>
                           <FormMessage className="text-white/80" />
@@ -157,13 +147,14 @@ export function ContactForm() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium">メールアドレス *</FormLabel>
+                          <FormLabel className="text-white font-medium text-lg">メールアドレス *</FormLabel>
                           <FormControl>
                             <Input 
                               type="email"
                               placeholder="example@domain.com" 
                               {...field}
                               className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60"
+                              style={{ fontSize: '16px' }}
                             />
                           </FormControl>
                           <FormMessage className="text-white/80" />
@@ -176,18 +167,45 @@ export function ContactForm() {
                       name="subject"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium">お問い合わせ件名 *</FormLabel>
+                          <FormLabel className="text-white font-medium text-lg">お問い合わせ件名 *</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white">
+                              <SelectTrigger 
+                                className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white"
+                                style={{ fontSize: '16px' }}
+                              >
                                 <SelectValue placeholder="件名を選択してください" className="text-white/60" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent className="bg-main text-white border-2 border-white/30">
-                              <SelectItem value="受託開発について">受託開発について</SelectItem>
-                              <SelectItem value="協業・提携について">協業・提携について</SelectItem>
-                              <SelectItem value="採用について">採用について</SelectItem>
-                              <SelectItem value="その他">その他</SelectItem>
+                              <SelectItem 
+                                value="プラットフォーム開発について" 
+                                className="text-white hover:bg-white/10"
+                                style={{ fontSize: '16px' }}
+                              >
+                                プラットフォーム開発について
+                              </SelectItem>
+                              <SelectItem 
+                                value="モバイルアプリ開発について" 
+                                className="text-white hover:bg-white/10"
+                                style={{ fontSize: '16px' }}
+                              >
+                                アプリ開発について
+                              </SelectItem>
+                              <SelectItem 
+                                value="AI・データ分析について" 
+                                className="text-white hover:bg-white/10"
+                                style={{ fontSize: '16px' }}
+                              >
+                                AIの活用に向けた研修について
+                              </SelectItem>
+                              <SelectItem 
+                                value="その他" 
+                                className="text-white hover:bg-white/10"
+                                style={{ fontSize: '16px' }}
+                              >
+                                その他
+                              </SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage className="text-white/80" />
@@ -200,13 +218,14 @@ export function ContactForm() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium">メッセージ *</FormLabel>
+                          <FormLabel className="text-white font-medium text-lg">メッセージ *</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="プロジェクトの詳細や、ご質問などをお聞かせください..."
                               rows={6}
                               {...field}
                               className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 resize-none bg-white/10 text-white placeholder:text-white/60"
+                              style={{ fontSize: '16px' }}
                             />
                           </FormControl>
                           <FormMessage className="text-white/80" />
@@ -222,7 +241,7 @@ export function ContactForm() {
                         type="submit"
                         disabled={isSubmitting}
                         className={cn(
-                          "w-full py-3 text-lg font-medium transition-all duration-300",
+                          "w-full py-4 text-xl font-medium transition-all duration-300",
                           "bg-custom-accent hover:bg-custom-accent/90 text-white shadow-lg hover:shadow-xl",
                           "disabled:opacity-50 disabled:cursor-not-allowed"
                         )}
@@ -233,12 +252,12 @@ export function ContactForm() {
                             animate={{ opacity: 1 }}
                             className="flex items-center justify-center"
                           >
-                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                            <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
                             送信中...
                           </motion.div>
                         ) : (
                           <>
-                            <Send className="w-5 h-5 mr-2" />
+                            <Send className="w-6 h-6 mr-2" />
                             送信する
                           </>
                         )}

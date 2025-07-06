@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ExternalLink, ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { ExternalLink, Play } from 'lucide-react';
 import { Project } from '../app/types/project';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
@@ -16,7 +16,6 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [imageError, setImageError] = useState<Set<number>>(new Set());
 
   // 画像URLの安全性チェック
@@ -26,18 +25,18 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   // フォールバック画像URL
   const fallbackImageUrl = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzk5YTNhZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPuODl+ODreOCuOOCp+OCr+ODiOeUu+WDjzwvdGV4dD48L3N2Zz4=';
 
-  // 5秒ごとに自動で画像を切り替える
+  // 2秒ごとに自動で画像を切り替える（手動操作は削除）
   useEffect(() => {
-    if (!hasImages || project.imageUrls.length <= 1 || isHovered) return;
+    if (!hasImages || project.imageUrls.length <= 1) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => 
         (prevIndex + 1) % project.imageUrls.length
       );
-    }, 5000);
+    }, 2000); // 5秒から2秒に変更
 
     return () => clearInterval(interval);
-  }, [project.imageUrls, hasImages, isHovered]);
+  }, [project.imageUrls, hasImages]); // isHoveredの依存関係を削除
 
   // インデックスが範囲外の場合は0にリセット
   useEffect(() => {
@@ -45,25 +44,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       setCurrentImageIndex(0);
     }
   }, [project.imageUrls, currentImageIndex, hasImages]);
-
-  const nextImage = () => {
-    if (!hasImages) return;
-    setCurrentImageIndex((prevIndex) => 
-      (prevIndex + 1) % project.imageUrls.length
-    );
-  };
-
-  const prevImage = () => {
-    if (!hasImages) return;
-    setCurrentImageIndex((prevIndex) => 
-      prevIndex === 0 ? project.imageUrls.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToImage = (index: number) => {
-    if (!hasImages) return;
-    setCurrentImageIndex(index);
-  };
 
   // 画像エラーハンドリング
   const handleImageError = () => {
@@ -93,8 +73,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -10, scale: 1.02 }}
       className="group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <Card className="overflow-hidden border-2 border-main/20 shadow-lg hover:shadow-2xl hover:border-main/40 transition-all duration-300 bg-white/95 backdrop-blur-sm">
         <div className="relative overflow-hidden h-60">
@@ -119,62 +97,13 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                   <div className="w-16 h-16 mx-auto mb-2 bg-main/20 rounded-full flex items-center justify-center">
                     <Play className="w-8 h-8 text-main" />
                   </div>
-                  <p className="text-sm">画像準備中</p>
+                  <p className="text-base">画像準備中</p>
                 </div>
               </div>
             )}
             
             {/* RPG風グラデーションオーバーレイ */}
             <div className="absolute inset-0 bg-gradient-to-t from-accent/60 via-transparent to-main/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            
-            {/* 複数画像がある場合のナビゲーション */}
-            {hasImages && project.imageUrls.length > 1 && (
-              <>
-                {/* 前/次ボタン（ホバー時のみ表示） */}
-                <div className="absolute inset-0 flex items-center justify-between p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/90 hover:bg-white rounded-full p-2 shadow-lg border-2 border-main/20"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      prevImage();
-                    }}
-                  >
-                    <ChevronLeft className="w-4 h-4 text-main" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                    className="bg-white/90 hover:bg-white rounded-full p-2 shadow-lg border-2 border-main/20"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      nextImage();
-                    }}
-                  >
-                    <ChevronRight className="w-4 h-4 text-main" />
-                  </Button>
-                </div>
-
-                {/* インジケーター */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-                  {project.imageUrls.map((_, imgIndex) => (
-                    <button
-                      key={imgIndex}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 border-2 ${
-                        imgIndex === currentImageIndex
-                          ? 'bg-sub border-white shadow-lg'
-                          : 'bg-white/50 border-white/70 hover:bg-white/75'
-                      }`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        goToImage(imgIndex);
-                      }}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
           </div>
           
           {/* プロジェクトアクションオーバーレイ */}
@@ -198,15 +127,15 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         <CardContent className="p-6">
           <div className="flex justify-between items-start mb-3">
             <h3 
-              className="text-xl font-bold text-main group-hover:text-custom-accent transition-colors duration-300 font-cinzel"
+              className="text-2xl font-bold text-main group-hover:text-custom-accent transition-colors duration-300 font-cinzel"
               dangerouslySetInnerHTML={{ __html: project.title }}
             />
-            <Badge variant="outline" className="border-main/30 text-main bg-main/5">
+            <Badge variant="outline" className="border-main/30 text-main bg-main/5 text-sm">
               {project.category}
             </Badge>
           </div>
           
-          <p className="text-gray-700 mb-4 text-sm leading-relaxed">
+          <p className="text-gray-700 mb-4 text-base leading-relaxed">
             {project.description}
           </p>
           
@@ -215,7 +144,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               <Badge 
                 key={techIndex} 
                 variant="secondary" 
-                className="text-xs bg-sub/10 text-sub hover:bg-sub/20 transition-colors duration-200"
+                className="text-sm bg-sub/10 text-sub hover:bg-sub/20 transition-colors duration-200"
               >
                 {tech}
               </Badge>
