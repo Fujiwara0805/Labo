@@ -210,9 +210,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         
         <CardContent className="p-6">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="text-xl font-bold text-primary group-hover:text-custom-accent transition-colors duration-300">
-              {project.title}
-            </h3>
+            <h3 
+              className="text-xl font-bold text-primary group-hover:text-custom-accent transition-colors duration-300"
+              dangerouslySetInnerHTML={{ __html: project.title }}
+            />
             <Badge variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
               {project.category}
             </Badge>

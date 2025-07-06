@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --main-color: #2E7031;      /* メインカラー: ヘッダー／ナビ、主要見出し、ロゴ */
-  --sub-color: #E18D3B;       /* サブカラー: 背景グラデーション、セクション区切り、カード背景 */
-  --accent-color: #1C1C1C;    /* アクセントカラー: 強調テキスト、CTAボタン、枠線 */
+  /* RPGカラーパレット */
+  --main-color: #2E7031;      /* 深緑 - 森の色 */
+  --sub-color: #E18D3B;       /* ゴールド - 宝物の色 */
+  --accent-color: #1C1C1C;    /* ダークグレー - 鋼鉄の色 */
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -28,12 +29,15 @@
     --card-foreground: 0 0% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 11%;
+    /* メインカラー #2E7031 (HSL: 122 41% 20%) */
     --primary: 122 41% 20%;
     --primary-foreground: 0 0% 98%;
+    /* サブカラー #E18D3B (HSL: 30 71% 56%) */
     --secondary: 30 71% 56%;
     --secondary-foreground: 0 0% 98%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
+    /* アクセントカラー #1C1C1C (HSL: 0 0% 11%) */
     --accent: 0 0% 11%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
@@ -46,7 +50,7 @@
     --chart-3: 0 0% 11%;
     --chart-4: 122 41% 35%;
     --chart-5: 30 71% 70%;
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -82,6 +86,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+  
+  .rpg-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
   }
 }
 
@@ -97,32 +107,133 @@
     background-size: cover;
   }
   
+  /* RPG風グラデーション */
   .hero-gradient {
-    background: linear-gradient(rgba(46, 112, 49, 0.7), rgba(225, 141, 59, 0.6));
+    background: linear-gradient(135deg, 
+      rgba(46, 112, 49, 0.9) 0%, 
+      rgba(225, 141, 59, 0.7) 50%, 
+      rgba(28, 28, 28, 0.8) 100%);
   }
   
   .section-gradient {
-    background: linear-gradient(135deg, rgba(225, 141, 59, 0.1) 0%, rgba(46, 112, 49, 0.05) 100%);
+    background: linear-gradient(135deg, 
+      rgba(225, 141, 59, 0.05) 0%, 
+      rgba(46, 112, 49, 0.03) 50%,
+      rgba(225, 141, 59, 0.08) 100%);
   }
   
   .card-gradient {
-    background: linear-gradient(145deg, rgba(225, 141, 59, 0.05) 0%, rgba(255, 255, 255, 0.9) 100%);
+    background: linear-gradient(145deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(225, 141, 59, 0.05) 50%,
+      rgba(255, 255, 255, 0.9) 100%);
+    border: 2px solid rgba(225, 141, 59, 0.2);
   }
   
-  .accent-gradient {
-    background: linear-gradient(135deg, var(--accent-color) 0%, rgba(28, 28, 28, 0.8) 100%);
+  .rpg-border {
+    border: 3px solid;
+    border-image: linear-gradient(45deg, var(--sub-color), var(--main-color)) 1;
+    position: relative;
+  }
+  
+  .rpg-border::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background: linear-gradient(45deg, var(--sub-color), var(--main-color));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0.3;
+  }
+  
+  .rpg-button {
+    background: linear-gradient(135deg, var(--sub-color) 0%, #d17a2b 100%);
+    border: 2px solid rgba(225, 141, 59, 0.8);
+    box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .rpg-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.4), 
+      transparent);
+    transition: left 0.5s;
+  }
+  
+  .rpg-button:hover::before {
+    left: 100%;
+  }
+  
+  .rpg-card {
+    background: linear-gradient(145deg, 
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(225, 141, 59, 0.05) 100%);
+    border: 2px solid rgba(225, 141, 59, 0.3);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 2px 8px rgba(225, 141, 59, 0.2);
+    position: relative;
+  }
+  
+  .rpg-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(45deg, 
+      rgba(225, 141, 59, 0.5), 
+      rgba(46, 112, 49, 0.3),
+      rgba(225, 141, 59, 0.5));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    z-index: -1;
   }
 }
 
-/* Custom animations */
+/* RPG風アニメーション */
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(225, 141, 59, 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(225, 141, 59, 0.8);
+  }
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes pulse-slow {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
 }
 
 .animate-float {
@@ -133,6 +244,10 @@
   animation: pulse-slow 3s ease-in-out infinite;
 }
 
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
 /* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
@@ -140,6 +255,6 @@ html {
 
 /* Focus styles for accessibility */
 .focus-visible:focus {
-  outline: 2px solid var(--accent-color);
+  outline: 2px solid var(--sub-color);
   outline-offset: 2px;
 }
