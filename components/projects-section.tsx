@@ -27,7 +27,7 @@ export function ProjectsSection() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-main mb-6 font-cinzel">
             私たちの導入事例
           </h2>
-          <p className="text-lg md:text-xl text-foreground max-w-4xl mx-auto text-balance">
+          <p className="text-lg md:text-xl text-gray-700 max-w-4xl mx-auto text-balance">
             私たちは、現実社会に<span className="text-main font-semibold">「ゲーム性」</span>と<span className="text-main font-semibold">「物語性」</span>を重ねることで、<br />
             ビジネス課題を解決し、顧客エンゲージメントを最大化する<br />
             革新的なデジタルソリューションを提供しています。
@@ -55,7 +55,7 @@ export function ProjectsSection() {
             <h3 className="text-2xl font-bold text-main mb-4 font-cinzel">
               ビジネスに「リアルRPG」の力を
             </h3>
-            <p className="text-foreground mb-6 text-balance">
+            <p className="text-gray-700 mb-6 text-balance">
               お客様のビジネス課題を深く理解し、最適な技術と「物語性」を融合させたソリューションを開発します。<br />
               ゲーミフィケーションを通じてユーザーの行動変容を促し、<br />
               ビジネスの成長と新たな顧客体験の創出を強力にサポートします。

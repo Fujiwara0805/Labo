@@ -1,7 +1,8 @@
 import type { Config } from 'tailwindcss';
 
 const config = {
-  darkMode: ['class'],
+  // ダークモードの設定を削除
+  // darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -24,7 +25,7 @@ const config = {
         'sub': 'hsl(var(--sub-color))',
         'custom-accent': 'hsl(var(--accent-color))',
         
-        // Shadcn/uiカラー
+        // Shadcn/uiカラー (ライトモード専用)
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
