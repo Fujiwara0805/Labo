@@ -4,79 +4,77 @@
 @tailwind utilities;
 
 :root {
-  /* RPGカラーパレット */
-  --main-color: #2E7031;      /* 深緑 - 森の色 */
-  --sub-color: #E18D3B;       /* ゴールド - 宝物の色 */
-  --accent-color: #1C1C1C;    /* ダークグレー - 鋼鉄の色 */
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* 新しいカスタムカラーパレット (HSL値) */
+  --main-color: 15 23% 45%;      /* #906956 */
+  --sub-color: 211 25% 43%;       /* #526F8A */
+  --accent-color: 29 45% 71%;    /* #CF9F7E */
+
+  /* shadcn/uiのデフォルト値をカスタムカラーと連携させる */
+  /* 背景とテキストのコントラストを改善 */
+  --background: 0 0% 100%;       /* 白系の背景 */
+  --foreground: 15 23% 20%;      /* メインカラーより濃い、視認性の高いテキスト色 */
+  
+  --primary: var(--main-color);
+  --primary-foreground: 0 0% 100%; /* primary (main-color) 上に乗る白いテキスト */
+
+  --secondary: var(--sub-color);
+  --secondary-foreground: 0 0% 100%; /* secondary (sub-color) 上に乗る白いテキスト */
+
+  --muted: 210 20% 98%;          /* 明るいグレー (例: カードの背景など) */
+  --muted-foreground: 15 23% 30%; /* 中程度の濃さで視認性の高い補足テキスト色 */
+
+  --accent: var(--accent-color);
+  --accent-foreground: 15 23% 20%; /* accent (accent-color) 上に乗る濃いテキスト */
+  
+  --card: 0 0% 100%;
+  --card-foreground: var(--foreground);
+ 
+  --popover: 0 0% 100%;
+  --popover-foreground: var(--foreground);
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: var(--main-color); /* ring色をメインカラーに合わせる */
+
+  --radius: 0.5rem;
+
+  /* 背景グラデーションの定義 */
+  --background-start-rgb: 240, 240, 240; /* 明るめの開始色 */
+  --background-end-rgb: 255, 255, 255;   /* 明るめの終了色 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+    --foreground: 210 20% 98%;          /* 明るいテキスト色 */
+    --background: 222.2 84% 4.9%;       /* 濃い背景色 */
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 11%;
-    /* メインカラー #2E7031 (HSL: 122 41% 20%) */
-    --primary: 122 41% 20%;
-    --primary-foreground: 0 0% 98%;
-    /* サブカラー #E18D3B (HSL: 30 71% 56%) */
-    --secondary: 30 71% 56%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    /* アクセントカラー #1C1C1C (HSL: 0 0% 11%) */
-    --accent: 0 0% 11%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 122 41% 20%;
-    --chart-1: 122 41% 20%;
-    --chart-2: 30 71% 56%;
-    --chart-3: 0 0% 11%;
-    --chart-4: 122 41% 35%;
-    --chart-5: 30 71% 70%;
-    --radius: 0.75rem;
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 122 41% 20%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 30 71% 56%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 11%;
-    --accent-foreground: 0 0% 98%;
+    --primary: var(--main-color);
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: var(--sub-color);
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: var(--accent-color);
+    --accent-foreground: 210 20% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 20% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 20% 98%;
+
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 122 41% 35%;
-    --chart-2: 30 71% 70%;
-    --chart-3: 0 0% 80%;
-    --chart-4: 122 41% 50%;
-    --chart-5: 30 71% 85%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: var(--main-color);
   }
 }
 
@@ -85,6 +83,7 @@
     @apply border-border;
   }
   body {
+    /* 背景とテキストのコントラストを高めるため、背景を明るく、テキストを濃く設定 */
     @apply bg-background text-foreground;
     font-family: 'Noto Sans JP', sans-serif;
   }
@@ -109,26 +108,18 @@
   
   /* RPG風グラデーション */
   .hero-gradient {
-    background: linear-gradient(135deg, 
-      rgba(46, 112, 49, 0.9) 0%, 
-      rgba(225, 141, 59, 0.7) 50%, 
-      rgba(28, 28, 28, 0.8) 100%);
+    /* サブカラーを透明度を上げて使用し、背景画像とのバランスを調整 */
+    background: linear-gradient(to top, hsl(var(--sub-color)) 0%, transparent 100%);
   }
   
   .section-gradient {
-    background: linear-gradient(135deg, 
-      rgba(225, 141, 59, 0.05) 0%, 
-      rgba(46, 112, 49, 0.03) 50%,
-      rgba(225, 141, 59, 0.08) 100%);
+    background: linear-gradient(to bottom right, hsl(var(--main-color)) 0%, hsl(var(--sub-color)) 100%);
   }
   
-  .card-gradient {
-    background: linear-gradient(145deg, 
-      rgba(255, 255, 255, 0.95) 0%, 
-      rgba(225, 141, 59, 0.05) 50%,
-      rgba(255, 255, 255, 0.9) 100%);
-    border: 2px solid rgba(225, 141, 59, 0.2);
-  }
+  /* お問い合わせフォームの背景グラデーションを削除 */
+  /* .card-gradient {
+    background: linear-gradient(to bottom right, hsl(var(--sub-color)) 0%, hsl(var(--main-color)) 100%);
+  } */
   
   .rpg-border {
     border: 3px solid;

@@ -10,13 +10,15 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { submitToGoogleSheets } from '@/app/actions/google-sheets';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'お名前は2文字以上で入力してください' }),
   email: z.string().email({ message: '有効なメールアドレスを入力してください' }),
+  subject: z.string().min(1, { message: '件名を選択してください' }),
   message: z.string().min(10, { message: 'メッセージは10文字以上で入力してください' }),
 });
 
@@ -32,6 +34,7 @@ export function ContactForm() {
     defaultValues: {
       name: '',
       email: '',
+      subject: '',
       message: '',
     },
   });
@@ -42,12 +45,12 @@ export function ContactForm() {
     
     try {
       const result = await submitToGoogleSheets(data);
-      
+    
       if (result.success) {
-        setIsSubmitted(true);
-        form.reset();
-        // Reset success state after 5 seconds
-        setTimeout(() => setIsSubmitted(false), 5000);
+    setIsSubmitted(true);
+    form.reset();
+    // Reset success state after 5 seconds
+    setTimeout(() => setIsSubmitted(false), 5000);
       } else {
         setSubmitError(result.error || 'データの送信に失敗しました。');
       }
@@ -69,20 +72,34 @@ export function ContactForm() {
           className="max-w-2xl mx-auto"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-main mb-6">
-              一緒に冒険しませんか？
+            <motion.div
+              className="mb-6"
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Mail className="w-16 h-16 mx-auto text-custom-accent" />
+            </motion.div>
+            
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 font-cinzel">
+              ビジネスのご相談はこちら
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground text-balance">
-              新しいプロジェクトのご相談や協業のお話など、
-              お気軽にお声かけください。
+            <p className="text-white/90 text-lg md:text-xl text-balance">
+              貴社のビジネス課題解決に向けた<span className="text-custom-accent font-semibold">受託開発のご相談</span>、<br />
+              または<span className="text-custom-accent font-semibold">協業・投資</span>のご提案など、お気軽にお問い合わせください。<br />
+              新たな価値創造のパートナーとして、最適なソリューションをご提案いたします。
             </p>
           </div>
 
-          <Card className="border-0 shadow-xl card-gradient backdrop-blur-sm">
+          <Card className="border-2 border-main/20 shadow-xl bg-main backdrop-blur-sm">
             <CardHeader className="text-center pb-6">
-              <CardTitle className="text-2xl font-semibold text-main">
+              <CardTitle className="text-2xl font-semibold text-white font-cinzel">
                 お問い合わせフォーム
               </CardTitle>
+              <p className="text-white/80 text-sm mt-2">
+                メッセージは厳重に管理されます。
+              </p>
             </CardHeader>
             <CardContent className="p-8">
               {isSubmitted ? (
@@ -94,10 +111,10 @@ export function ContactForm() {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-green-700 mb-2">
+                  <h3 className="text-xl font-semibold text-green-200 mb-2">
                     送信完了！
                   </h3>
-                  <p className="text-muted-foreground">
+                  <p className="text-white/80">
                     メッセージを受信いたしました。<br />
                     スプレッドシートに保存されました。<br />
                     お返事まで少々お待ちください。
@@ -122,15 +139,15 @@ export function ContactForm() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-main font-medium">お名前 *</FormLabel>
+                          <FormLabel className="text-white font-medium">お名前 *</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="山田太郎" 
                               {...field}
-                              className="border-2 border-gray-200 focus:border-main transition-colors duration-200"
+                              className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60"
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-white/80" />
                         </FormItem>
                       )}
                     />
@@ -140,16 +157,40 @@ export function ContactForm() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-main font-medium">メールアドレス *</FormLabel>
+                          <FormLabel className="text-white font-medium">メールアドレス *</FormLabel>
                           <FormControl>
                             <Input 
                               type="email"
                               placeholder="example@domain.com" 
                               {...field}
-                              className="border-2 border-gray-200 focus:border-main transition-colors duration-200"
+                              className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60"
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-white/80" />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="subject"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-white font-medium">お問い合わせ件名 *</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <FormControl>
+                              <SelectTrigger className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white">
+                                <SelectValue placeholder="件名を選択してください" className="text-white/60" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-main text-white border-2 border-white/30">
+                              <SelectItem value="受託開発について">受託開発について</SelectItem>
+                              <SelectItem value="協業・提携について">協業・提携について</SelectItem>
+                              <SelectItem value="採用について">採用について</SelectItem>
+                              <SelectItem value="その他">その他</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <FormMessage className="text-white/80" />
                         </FormItem>
                       )}
                     />
@@ -159,16 +200,16 @@ export function ContactForm() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-main font-medium">メッセージ *</FormLabel>
+                          <FormLabel className="text-white font-medium">メッセージ *</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="プロジェクトの詳細や、ご質問などをお聞かせください..."
                               rows={6}
                               {...field}
-                              className="border-2 border-gray-200 focus:border-main transition-colors duration-200 resize-none"
+                              className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 resize-none bg-white/10 text-white placeholder:text-white/60"
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-white/80" />
                         </FormItem>
                       )}
                     />
@@ -182,7 +223,7 @@ export function ContactForm() {
                         disabled={isSubmitting}
                         className={cn(
                           "w-full py-3 text-lg font-medium transition-all duration-300",
-                          "bg-accent hover:bg-accent/90 text-white shadow-lg hover:shadow-xl",
+                          "bg-custom-accent hover:bg-custom-accent/90 text-white shadow-lg hover:shadow-xl",
                           "disabled:opacity-50 disabled:cursor-not-allowed"
                         )}
                       >
@@ -198,7 +239,7 @@ export function ContactForm() {
                         ) : (
                           <>
                             <Send className="w-5 h-5 mr-2" />
-                            メッセージを送信
+                            送信する
                           </>
                         )}
                       </Button>

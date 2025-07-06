@@ -1,17 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Mountain, Heart } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Linkedin, Mail, Lightbulb, BriefcaseBusiness } from 'lucide-react';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-sub text-gray-200 py-12">
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand Section */}
+          {/* ブランド情報 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -20,15 +17,17 @@ export function Footer() {
             className="space-y-4"
           >
             <div className="flex items-center space-x-2">
-              <Mountain className="w-8 h-8 text-accent" />
-              <span className="text-2xl font-bold">Adventure Dev</span>
+              <Lightbulb className="w-8 h-8 text-custom-accent" />
+              <span className="text-xl font-bold font-cinzel text-white">（貴社名） Solutions</span>
             </div>
-            <p className="text-primary-foreground/80 leading-relaxed">
-              自然からインスピレーションを得て、革新的なWebソリューションを創造する開発者です。
+            <p className="text-gray-300 text-sm leading-relaxed">
+              私たちは、ビジネスに「ゲーム性」と「物語性」を融合させ、<br />
+              顧客体験を革新する<span className="font-semibold text-custom-accent">リアルRPGソリューション</span>を提供します。<br />
+              貴社の課題を解決し、新たな価値を創造するパートナーです。
             </p>
           </motion.div>
 
-          {/* Navigation */}
+          {/* 提供サービス */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -36,32 +35,17 @@ export function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold text-accent">ナビゲーション</h3>
-            <nav className="flex flex-col space-y-2">
-              <a 
-                href="#projects" 
-                className="text-primary-foreground/80 hover:text-accent transition-colors duration-200"
-              >
-                プロジェクト
-              </a>
-              <a 
-                href="#contact" 
-                className="text-primary-foreground/80 hover:text-accent transition-colors duration-200"
-              >
-                お問い合わせ
-              </a>
-              <a 
-                href="https://github.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary-foreground/80 hover:text-accent transition-colors duration-200"
-              >
-                GitHub
-              </a>
-            </nav>
+            <h3 className="text-lg font-semibold text-custom-accent font-cinzel">提供サービス</h3>
+            <ul className="text-gray-300 text-sm space-y-2">
+              <li>Webシステム受託開発</li>
+              <li>モバイルアプリ開発</li>
+              <li>ゲーミフィケーション導入支援</li>
+              <li>UI/UXデザイン</li>
+              <li>コンサルティング</li>
+            </ul>
           </motion.div>
 
-          {/* Contact & Social */}
+          {/* お問い合わせ */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -69,48 +53,48 @@ export function Footer() {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <h3 className="text-lg font-semibold text-accent">つながりましょう</h3>
-            <div className="flex space-x-3">
-              <Button 
-                variant="outline" 
-                size="icon"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent"
+            <h3 className="text-lg font-semibold text-custom-accent font-cinzel">お問い合わせ</h3>
+            <div className="flex space-x-4">
+              <motion.a
+                href="mailto:contact@example.com"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-custom-accent/20 transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                <Github className="w-5 h-5" />
-                <span className="sr-only">GitHub</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="icon"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent"
-              >
-                <Linkedin className="w-5 h-5" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="icon"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-accent hover:text-accent-foreground hover:border-accent"
-              >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-5 h-5 text-gray-200" />
                 <span className="sr-only">Email</span>
-              </Button>
+              </motion.a>
+              <motion.a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-custom-accent/20 transition-colors duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Linkedin className="w-5 h-5 text-gray-200" />
+                <span className="sr-only">LinkedIn</span>
+              </motion.a>
             </div>
+            <p className="text-gray-300 text-sm mt-4">
+              ご質問やご相談がございましたら、<br />
+              お気軽にご連絡ください。
+            </p>
           </motion.div>
         </div>
 
-        {/* Bottom Section */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="border-t border-primary-foreground/20 mt-8 pt-8 text-center"
+          className="border-t border-white/20 mt-8 pt-8 text-center"
         >
-          <p className="text-primary-foreground/60 flex items-center justify-center space-x-1">
-            <span>© {currentYear} Adventure Portfolio. Made with</span>
-            <Heart className="w-4 h-4 text-red-400 fill-current" />
-            <span>and lots of ☕</span>
+          <p className="text-gray-300 text-sm flex items-center justify-center">
+            Created with passion for <BriefcaseBusiness className="w-4 h-4 mx-1 text-custom-accent" /> business innovation
+          </p>
+          <p className="text-gray-400 text-xs mt-2">
+            © 2024 （貴社名） Solutions. All rights reserved.
           </p>
         </motion.div>
       </div>

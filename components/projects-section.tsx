@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { projects } from '../app/data/projects';
 import { ProjectCard } from './project-card';
+import { Award, BriefcaseBusiness, Lightbulb, TrendingUp } from 'lucide-react';
 
 export function ProjectsSection() {
   return (
@@ -15,12 +16,21 @@ export function ProjectsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">
-            冒険的なプロジェクト
+          <div className="flex justify-center mb-6">
+            <div className="flex items-center space-x-4">
+              <Award className="w-8 h-8 text-main" />
+              <BriefcaseBusiness className="w-10 h-10 text-sub" />
+              <TrendingUp className="w-8 h-8 text-main" />
+            </div>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-main mb-6 font-cinzel">
+            私たちの導入事例
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-balance">
-            自然からインスピレーションを得た革新的なソリューション。
-            各プロジェクトには探求心と技術への情熱が込められています。
+          <p className="text-lg md:text-xl text-foreground max-w-4xl mx-auto text-balance">
+            私たちは、現実社会に<span className="text-main font-semibold">「ゲーム性」</span>と<span className="text-main font-semibold">「物語性」</span>を重ねることで、<br />
+            ビジネス課題を解決し、顧客エンゲージメントを最大化する<br />
+            革新的なデジタルソリューションを提供しています。
           </p>
         </motion.div>
 
@@ -41,19 +51,16 @@ export function ProjectsSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-muted-foreground mb-6">
-            もっとプロジェクトをご覧になりたい方は
-          </p>
-          <motion.a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-all duration-300 font-medium"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            GitHubで全プロジェクトを見る
-          </motion.a>
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-2xl font-bold text-main mb-4 font-cinzel">
+              ビジネスに「リアルRPG」の力を
+            </h3>
+            <p className="text-foreground mb-6 text-balance">
+              お客様のビジネス課題を深く理解し、最適な技術と「物語性」を融合させたソリューションを開発します。<br />
+              ゲーミフィケーションを通じてユーザーの行動変容を促し、<br />
+              ビジネスの成長と新たな顧客体験の創出を強力にサポートします。
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
