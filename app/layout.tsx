@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Noto_Sans_JP } from 'next/font/google';
+import { Toaster } from '@/components/ui/toaster';
 
 const notoSansJP = Noto_Sans_JP({ 
   subsets: ['latin'],
@@ -9,12 +10,12 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: 'Adventure Portfolio - 冒険的な開発者のポートフォリオ',
-  description: '自然をテーマにした開発者ポートフォリオ。革新的なプロジェクトと冒険心溢れる開発実績をご紹介します。',
+  title: 'チームNobody',
+  description: 'ITとAIの力で地域の未来を創造する',
   keywords: 'ポートフォリオ, 開発者, Web開発, フロントエンド, バックエンド',
   openGraph: {
-    title: 'Adventure Portfolio',
-    description: '冒険的な開発者のポートフォリオサイト',
+    title: 'チームNobody',
+    description: 'ITとAIの力で地域の未来を創造する',
     type: 'website',
   },
 };
@@ -26,7 +27,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" className="scroll-smooth">
-      <body className={`${notoSansJP.className} antialiased`}>{children}</body>
+      <body className={`${notoSansJP.className} antialiased`}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

@@ -81,7 +81,7 @@ export function HeroSection() {
               className="bg-sub hover:bg-sub/90 text-white font-medium px-10 py-4 text-lg rounded-full transition-all duration-300 transform hover:scale-105 focus:scale-105 shadow-lg hover:shadow-xl"
             >
               <BriefcaseBusiness className="w-6 h-6 mr-2" />
-              事業内容を見る
+              プロダクトを見る
             </Button>
             <Button 
               onClick={scrollToContact}

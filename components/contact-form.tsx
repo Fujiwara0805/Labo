@@ -14,6 +14,7 @@ import { Send, CheckCircle, AlertCircle, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { submitToGoogleSheets } from '@/app/actions/google-sheets';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: 'お名前は2文字以上で入力してください' }),
@@ -27,7 +28,7 @@ type FormData = z.infer<typeof formSchema>;
 export function ContactForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -41,21 +42,38 @@ export function ContactForm() {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    setSubmitError(null);
     
     try {
       const result = await submitToGoogleSheets(data);
     
       if (result.success) {
-    setIsSubmitted(true);
-    form.reset();
-    // Reset success state after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+        setIsSubmitted(true);
+        form.reset();
+        
+        // 成功トーストを表示
+        toast({
+          title: "送信完了！",
+          description: "お問い合わせを受信いたしました。お返事まで少々お待ちください。",
+          variant: "default",
+        });
+        
+        // Reset success state after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000);
       } else {
-        setSubmitError(result.error || 'データの送信に失敗しました。');
+        // エラートーストを表示
+        toast({
+          title: "送信エラー",
+          description: result.error || 'データの送信に失敗しました。',
+          variant: "destructive",
+        });
       }
     } catch (error) {
-      setSubmitError('予期しないエラーが発生しました。');
+      // 予期しないエラーのトーストを表示
+      toast({
+        title: "送信エラー",
+        description: '予期しないエラーが発生しました。',
+        variant: "destructive",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -112,32 +130,26 @@ export function ContactForm() {
               ) : (
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    {submitError && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex items-center gap-2 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700"
-                      >
-                        <AlertCircle className="w-5 h-5" />
-                        <span>{submitError}</span>
-                      </motion.div>
-                    )}
-
                     <FormField
                       control={form.control}
                       name="name"
-                      render={({ field }) => (
+                      render={({ field, fieldState }) => (
                         <FormItem>
                           <FormLabel className="text-white font-medium text-lg">お名前 *</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="山田太郎" 
                               {...field}
-                              className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60"
+                              className={cn(
+                                "border-2 transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60",
+                                fieldState.error 
+                                  ? "border-red-400 focus:border-red-500" 
+                                  : "border-white/30 focus:border-custom-accent"
+                              )}
                               style={{ fontSize: '16px' }}
                             />
                           </FormControl>
-                          <FormMessage className="text-white/80" />
+                          <FormMessage className="text-red-300 font-medium" />
                         </FormItem>
                       )}
                     />
@@ -145,7 +157,7 @@ export function ContactForm() {
                     <FormField
                       control={form.control}
                       name="email"
-                      render={({ field }) => (
+                      render={({ field, fieldState }) => (
                         <FormItem>
                           <FormLabel className="text-white font-medium text-lg">メールアドレス *</FormLabel>
                           <FormControl>
@@ -153,11 +165,16 @@ export function ContactForm() {
                               type="email"
                               placeholder="example@domain.com" 
                               {...field}
-                              className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60"
+                              className={cn(
+                                "border-2 transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60",
+                                fieldState.error 
+                                  ? "border-red-400 focus:border-red-500" 
+                                  : "border-white/30 focus:border-custom-accent"
+                              )}
                               style={{ fontSize: '16px' }}
                             />
                           </FormControl>
-                          <FormMessage className="text-white/80" />
+                          <FormMessage className="text-red-300 font-medium" />
                         </FormItem>
                       )}
                     />
@@ -165,13 +182,18 @@ export function ContactForm() {
                     <FormField
                       control={form.control}
                       name="subject"
-                      render={({ field }) => (
+                      render={({ field, fieldState }) => (
                         <FormItem>
                           <FormLabel className="text-white font-medium text-lg">お問い合わせ件名 *</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger 
-                                className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 bg-white/10 text-white"
+                                className={cn(
+                                  "border-2 transition-colors duration-200 bg-white/10 text-white",
+                                  fieldState.error 
+                                    ? "border-red-400 focus:border-red-500" 
+                                    : "border-white/30 focus:border-custom-accent"
+                                )}
                                 style={{ fontSize: '16px' }}
                               >
                                 <SelectValue placeholder="件名を選択してください" className="text-white/60" />
@@ -183,7 +205,7 @@ export function ContactForm() {
                                 className="text-white hover:bg-white/10"
                                 style={{ fontSize: '16px' }}
                               >
-                                プラットフォーム開発について
+                                ご相談・お問い合わせ
                               </SelectItem>
                               <SelectItem 
                                 value="モバイルアプリ開発について" 
@@ -200,6 +222,13 @@ export function ContactForm() {
                                 AIの活用に向けた研修について
                               </SelectItem>
                               <SelectItem 
+                                value="イベント企画について" 
+                                className="text-white hover:bg-white/10"
+                                style={{ fontSize: '16px' }}
+                              >
+                                イベント企画について
+                              </SelectItem>
+                              <SelectItem 
                                 value="その他" 
                                 className="text-white hover:bg-white/10"
                                 style={{ fontSize: '16px' }}
@@ -208,7 +237,7 @@ export function ContactForm() {
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                          <FormMessage className="text-white/80" />
+                          <FormMessage className="text-red-300 font-medium" />
                         </FormItem>
                       )}
                     />
@@ -216,7 +245,7 @@ export function ContactForm() {
                     <FormField
                       control={form.control}
                       name="message"
-                      render={({ field }) => (
+                      render={({ field, fieldState }) => (
                         <FormItem>
                           <FormLabel className="text-white font-medium text-lg">メッセージ *</FormLabel>
                           <FormControl>
@@ -224,11 +253,16 @@ export function ContactForm() {
                               placeholder="プロジェクトの詳細や、ご質問などをお聞かせください..."
                               rows={6}
                               {...field}
-                              className="border-2 border-white/30 focus:border-custom-accent transition-colors duration-200 resize-none bg-white/10 text-white placeholder:text-white/60"
+                              className={cn(
+                                "border-2 transition-colors duration-200 resize-none bg-white/10 text-white placeholder:text-white/60",
+                                fieldState.error 
+                                  ? "border-red-400 focus:border-red-500" 
+                                  : "border-white/30 focus:border-custom-accent"
+                              )}
                               style={{ fontSize: '16px' }}
                             />
                           </FormControl>
-                          <FormMessage className="text-white/80" />
+                          <FormMessage className="text-red-300 font-medium" />
                         </FormItem>
                       )}
                     />
