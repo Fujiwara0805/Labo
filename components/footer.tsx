@@ -34,10 +34,10 @@ export function Footer() {
           >
             <h3 className="text-xl font-semibold text-custom-accent font-cinzel">事業内容</h3>
             <ul className="text-gray-300 text-lg space-y-2">
-              <li>地域課題解決型マッチングプラットフォーム</li>
+              <li>コンサルティング支援</li>
               <li>アプリケーション開発</li>
               <li>AI活用に向けた研修</li>
-              <li>地域活性化イベント企画・運営</li>
+              <li>地域活性化イベント企画支援</li>
             </ul>
           </motion.div>
 
