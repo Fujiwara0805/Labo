@@ -18,7 +18,7 @@ export function ProjectsSection() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
             プロダクト事例
           </h2>
-          <p className="text-2xl md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-lg md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
             これまで開発してきたプロダクトの事例をご紹介します。
             興味のある方は是非お気軽に下記のお問い合わせフォームからご連絡ください。
           </p>

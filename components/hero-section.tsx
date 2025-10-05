@@ -59,7 +59,7 @@ export function HeroSection() {
           </motion.h1>
           
           <motion.p 
-            className="text-2xl md:text-3xl lg:text-4xl mb-12 max-w-4xl mx-auto text-gray-600 leading-relaxed font-light"
+            className="text-lg md:text-3xl lg:text-4xl mb-12 max-w-4xl mx-auto text-gray-600 leading-relaxed font-light"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
