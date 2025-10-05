@@ -80,35 +80,35 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="py-24 bg-white">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
+          className="text-center mb-20"
         >
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-6 font-cinzel">
-              ご相談
-            </h2>
-            <p className="text-gray-700 text-xl md:text-2xl text-balance">
-              地域の課題解決に向けた
-              <span className="text-custom-accent font-semibold">アプリ開発</span>や<span className="text-custom-accent font-semibold">AIの活用に向けた研修</span>など、お気軽にご相談ください。共に地域の未来を創造しましょう。
-            </p>
-          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
+            ご相談
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+            地域の課題解決に向けた
+            <span className="font-semibold text-gray-900">アプリ開発</span>や<span className="font-semibold text-gray-900">AIの活用に向けた研修</span>など、お気軽にご相談ください。共に地域の未来を創造しましょう。
+          </p>
+        </motion.div>
 
-          <Card className="border-2 border-gray-200 shadow-xl bg-white backdrop-blur-sm">
-            <CardHeader className="text-center pb-6">
-              <CardTitle className="text-3xl font-semibold text-main font-cinzel">
+        <div className="max-w-3xl mx-auto">
+          <Card className="luxury-border luxury-shadow-xl rounded-none bg-white">
+            <CardHeader className="text-center pb-8">
+              <CardTitle className="text-3xl font-bold text-gray-900 tracking-tight">
                 お問い合わせフォーム
               </CardTitle>
-              <p className="text-gray-600 text-base mt-2">
+              <p className="text-gray-600 text-base mt-3 font-light">
                 お客様の情報は厳重に管理されます。
               </p>
             </CardHeader>
-            <CardContent className="p-8">
+            <CardContent className="p-12">
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -275,8 +275,8 @@ export function ContactForm() {
                         type="submit"
                         disabled={isSubmitting}
                         className={cn(
-                          "w-full py-4 text-xl font-medium transition-all duration-300",
-                          "bg-custom-accent hover:bg-custom-accent/90 text-white shadow-lg hover:shadow-xl",
+                          "w-full py-4 text-lg font-medium transition-all duration-300 rounded-none luxury-hover luxury-shadow-lg",
+                          "bg-gray-900 hover:bg-gray-800 text-white",
                           "disabled:opacity-50 disabled:cursor-not-allowed"
                         )}
                       >
@@ -302,7 +302,7 @@ export function ContactForm() {
               )}
             </CardContent>
           </Card>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

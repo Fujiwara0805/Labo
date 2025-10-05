@@ -1,8 +1,6 @@
 import type { Config } from 'tailwindcss';
 
 const config = {
-  // ダークモードの設定を削除
-  // darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -20,12 +18,24 @@ const config = {
     },
     extend: {
       colors: {
-        // カスタムカラーパレット
-        'main': 'hsl(var(--main-color))',
-        'sub': 'hsl(var(--sub-color))',
-        'custom-accent': 'hsl(var(--accent-color))',
+        // モノトーン最高級カラーパレット
+        'black': 'hsl(var(--black))',
+        'white': 'hsl(var(--white))',
+        'gray': {
+          50: 'hsl(var(--white))',
+          100: 'hsl(var(--gray-100))',
+          200: 'hsl(var(--gray-200))',
+          300: 'hsl(var(--gray-300))',
+          400: 'hsl(var(--gray-400))',
+          500: 'hsl(var(--gray-500))',
+          600: 'hsl(var(--gray-600))',
+          700: 'hsl(var(--gray-700))',
+          800: 'hsl(var(--gray-800))',
+          900: 'hsl(var(--gray-900))',
+          950: 'hsl(var(--black))',
+        },
         
-        // Shadcn/uiカラー (ライトモード専用)
+        // Shadcn/uiカラー
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -80,8 +90,23 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       fontFamily: {
-        cinzel: ['Cinzel', 'serif'],
-        notoSansJP: ['Noto Sans JP', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        noto: ['Noto Sans JP', 'sans-serif'],
+      },
+      fontSize: {
+        'xs': ['0.75rem', { lineHeight: '1rem' }],
+        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+        'base': ['1rem', { lineHeight: '1.5rem' }],
+        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
+        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        '2xl': ['1.5rem', { lineHeight: '2rem' }],
+        '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+        '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+        '5xl': ['3rem', { lineHeight: '1' }],
+        '6xl': ['3.75rem', { lineHeight: '1' }],
+        '7xl': ['4.5rem', { lineHeight: '1' }],
+        '8xl': ['6rem', { lineHeight: '1' }],
+        '9xl': ['8rem', { lineHeight: '1' }],
       },
     },
   },

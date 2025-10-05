@@ -74,17 +74,17 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       whileHover={{ y: -10, scale: 1.02 }}
       className="group"
     >
-      <Card className="overflow-hidden border-2 border-main/20 shadow-lg hover:shadow-2xl hover:border-main/40 transition-all duration-300 bg-white/95 backdrop-blur-sm">
-        <div className="relative overflow-hidden h-60">
+      <Card className="overflow-hidden luxury-border luxury-shadow-lg hover:luxury-shadow-xl luxury-hover transition-all duration-300 bg-white">
+        <div className="relative overflow-hidden h-64">
           {/* 画像カルーセル */}
-          <div className="relative w-full h-full bg-gradient-to-br from-main/5 to-sub/5">
+          <div className="relative w-full h-full bg-gray-100">
             {hasImages && displayImageUrl ? (
               <Image
                 src={displayImageUrl}
                 alt={`${project.title} - ${currentImageIndex + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain bg-gradient-to-br from-main/5 to-sub/5 transition-transform duration-300 group-hover:scale-105"
+                className="object-contain bg-gray-100 transition-transform duration-300 group-hover:scale-105"
                 onError={handleImageError}
                 priority={index < 3}
                 placeholder="blur"
@@ -92,18 +92,18 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               />
             ) : (
               // 画像がない場合のフォールバック
-              <div className="w-full h-full bg-gradient-to-br from-main/10 to-sub/10 flex items-center justify-center">
-                <div className="text-main/80 text-center">
-                  <div className="w-16 h-16 mx-auto mb-2 bg-main/20 rounded-full flex items-center justify-center">
-                    <Play className="w-8 h-8 text-main" />
+              <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                <div className="text-gray-500 text-center">
+                  <div className="w-16 h-16 mx-auto mb-2 bg-gray-200 rounded-none flex items-center justify-center">
+                    <Play className="w-8 h-8 text-gray-500" />
                   </div>
                   <p className="text-base">画像準備中</p>
                 </div>
               </div>
             )}
             
-            {/* RPG風グラデーションオーバーレイ */}
-            <div className="absolute inset-0 bg-gradient-to-t from-accent/60 via-transparent to-main/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* モノトーンオーバーレイ */}
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-gray-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
           
           {/* プロジェクトアクションオーバーレイ */}
@@ -111,7 +111,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <div className="flex space-x-3">
               <Button 
                 size="sm" 
-                className="bg-sub hover:bg-sub/90 text-white shadow-lg border-2 border-white/20"
+                className="bg-gray-900 hover:bg-gray-800 text-white luxury-shadow-lg luxury-border-thick border-white"
                 onClick={(e) => {
                   e.stopPropagation();
                   window.open(project.projectUrl, '_blank');
@@ -124,18 +124,18 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </div>
         </div>
         
-        <CardContent className="p-6">
-          <div className="flex justify-between items-start mb-3">
+        <CardContent className="p-8">
+          <div className="flex justify-between items-start mb-4">
             <h3 
-              className="text-2xl font-bold text-main group-hover:text-custom-accent transition-colors duration-300 font-cinzel"
+              className="text-2xl font-bold text-gray-900 group-hover:text-gray-700 transition-colors duration-300 tracking-tight"
               dangerouslySetInnerHTML={{ __html: project.title }}
             />
-            <Badge variant="outline" className="border-main/30 text-main bg-main/5 text-sm">
+            <Badge variant="outline" className="border-gray-300 text-gray-700 bg-gray-50 text-sm">
               {project.category}
             </Badge>
           </div>
           
-          <p className="text-gray-700 mb-4 text-base leading-relaxed">
+          <p className="text-gray-600 mb-6 text-base leading-relaxed font-light">
             {project.description}
           </p>
           
@@ -144,7 +144,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               <Badge 
                 key={techIndex} 
                 variant="secondary" 
-                className="text-sm bg-sub/10 text-sub hover:bg-sub/20 transition-colors duration-200"
+                className="text-sm bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors duration-200 border-gray-200"
               >
                 {tech}
               </Badge>
