@@ -5,7 +5,7 @@ import { Linkedin, Mail, MapPin, Users } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-sub text-gray-200 py-12">
+    <footer className="bg-gray-900 text-gray-200 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* 会社情報 */}
@@ -67,7 +67,7 @@ export function Footer() {
             Created with passion for <Users className="w-5 h-5 mx-1 text-custom-accent" /> regional innovation
           </p>
           <p className="text-gray-400 text-sm mt-2">
-            © 2025 チームNobody. All rights reserved.
+            © 2025 株式会社Nobody. All rights reserved.
           </p>
         </motion.div>
       </div>

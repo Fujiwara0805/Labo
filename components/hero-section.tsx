@@ -24,7 +24,7 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={ref} className="relative h-screen overflow-hidden">
+    <section id="hero" ref={ref} className="relative h-screen overflow-hidden pt-16">
       {/* Background with parallax effect */}
       <motion.div
         style={{ y: backgroundY }}
@@ -36,7 +36,7 @@ export function HeroSection() {
             backgroundImage: 'url(https://res.cloudinary.com/dz9trbwma/image/upload/v1751789185/RPG%E9%A2%A8%E5%A3%81%E7%B4%99_kcbxdt.png)'
           }}
         />
-        <div className="absolute inset-0 hero-gradient" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" />
       </motion.div>
 
       {/* Content */}

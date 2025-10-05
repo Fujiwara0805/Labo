@@ -80,7 +80,7 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-20 section-gradient">
+    <section id="contact" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -90,21 +90,21 @@ export function ContactForm() {
           className="max-w-2xl mx-auto"
         >
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-cinzel">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-main mb-6 font-cinzel">
               ご相談
             </h2>
-            <p className="text-white/90 text-xl md:text-2xl text-balance">
+            <p className="text-gray-700 text-xl md:text-2xl text-balance">
               地域の課題解決に向けた
               <span className="text-custom-accent font-semibold">アプリ開発</span>や<span className="text-custom-accent font-semibold">AIの活用に向けた研修</span>など、お気軽にご相談ください。共に地域の未来を創造しましょう。
             </p>
           </div>
 
-          <Card className="border-2 border-main/20 shadow-xl bg-main backdrop-blur-sm">
+          <Card className="border-2 border-gray-200 shadow-xl bg-white backdrop-blur-sm">
             <CardHeader className="text-center pb-6">
-              <CardTitle className="text-3xl font-semibold text-white font-cinzel">
+              <CardTitle className="text-3xl font-semibold text-main font-cinzel">
                 お問い合わせフォーム
               </CardTitle>
-              <p className="text-white/80 text-base mt-2">
+              <p className="text-gray-600 text-base mt-2">
                 お客様の情報は厳重に管理されます。
               </p>
             </CardHeader>
@@ -118,10 +118,10 @@ export function ContactForm() {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-green-200 mb-2">
+                  <h3 className="text-xl font-semibold text-green-600 mb-2">
                     送信完了！
                   </h3>
-                  <p className="text-white/80">
+                  <p className="text-gray-600">
                     メッセージを受信いたしました。<br />
                     スプレッドシートに保存されました。<br />
                     お返事まで少々お待ちください。
@@ -135,21 +135,21 @@ export function ContactForm() {
                       name="name"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium text-lg">お名前 *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-lg">お名前 *</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="山田太郎" 
                               {...field}
                               className={cn(
-                                "border-2 transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60",
+                                "border-2 transition-colors duration-200 bg-white text-gray-900 placeholder:text-gray-500",
                                 fieldState.error 
                                   ? "border-red-400 focus:border-red-500" 
-                                  : "border-white/30 focus:border-custom-accent"
+                                  : "border-gray-300 focus:border-custom-accent"
                               )}
                               style={{ fontSize: '16px' }}
                             />
                           </FormControl>
-                          <FormMessage className="text-red-300 font-medium" />
+                          <FormMessage className="text-red-500 font-medium" />
                         </FormItem>
                       )}
                     />
@@ -159,22 +159,22 @@ export function ContactForm() {
                       name="email"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium text-lg">メールアドレス *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-lg">メールアドレス *</FormLabel>
                           <FormControl>
                             <Input 
                               type="email"
                               placeholder="example@domain.com" 
                               {...field}
                               className={cn(
-                                "border-2 transition-colors duration-200 bg-white/10 text-white placeholder:text-white/60",
+                                "border-2 transition-colors duration-200 bg-white text-gray-900 placeholder:text-gray-500",
                                 fieldState.error 
                                   ? "border-red-400 focus:border-red-500" 
-                                  : "border-white/30 focus:border-custom-accent"
+                                  : "border-gray-300 focus:border-custom-accent"
                               )}
                               style={{ fontSize: '16px' }}
                             />
                           </FormControl>
-                          <FormMessage className="text-red-300 font-medium" />
+                          <FormMessage className="text-red-500 font-medium" />
                         </FormItem>
                       )}
                     />
@@ -184,60 +184,60 @@ export function ContactForm() {
                       name="subject"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium text-lg">お問い合わせ件名 *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-lg">お問い合わせ件名 *</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger 
                                 className={cn(
-                                  "border-2 transition-colors duration-200 bg-white/10 text-white",
+                                  "border-2 transition-colors duration-200 bg-white text-gray-900",
                                   fieldState.error 
                                     ? "border-red-400 focus:border-red-500" 
-                                    : "border-white/30 focus:border-custom-accent"
+                                    : "border-gray-300 focus:border-custom-accent"
                                 )}
                                 style={{ fontSize: '16px' }}
                               >
-                                <SelectValue placeholder="件名を選択してください" className="text-white/60" />
+                                <SelectValue placeholder="件名を選択してください" className="text-gray-500" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="bg-main text-white border-2 border-white/30">
+                            <SelectContent className="bg-white text-gray-900 border-2 border-gray-200">
                               <SelectItem 
                                 value="プラットフォーム開発について" 
-                                className="text-white hover:bg-white/10"
+                                className="text-gray-900 hover:bg-gray-100"
                                 style={{ fontSize: '16px' }}
                               >
                                 ご相談・お問い合わせ
                               </SelectItem>
                               <SelectItem 
                                 value="モバイルアプリ開発について" 
-                                className="text-white hover:bg-white/10"
+                                className="text-gray-900 hover:bg-gray-100"
                                 style={{ fontSize: '16px' }}
                               >
                                 アプリ開発について
                               </SelectItem>
                               <SelectItem 
                                 value="AI・データ分析について" 
-                                className="text-white hover:bg-white/10"
+                                className="text-gray-900 hover:bg-gray-100"
                                 style={{ fontSize: '16px' }}
                               >
                                 AIの活用に向けた研修について
                               </SelectItem>
                               <SelectItem 
                                 value="イベント企画について" 
-                                className="text-white hover:bg-white/10"
+                                className="text-gray-900 hover:bg-gray-100"
                                 style={{ fontSize: '16px' }}
                               >
                                 イベント企画について
                               </SelectItem>
                               <SelectItem 
                                 value="その他" 
-                                className="text-white hover:bg-white/10"
+                                className="text-gray-900 hover:bg-gray-100"
                                 style={{ fontSize: '16px' }}
                               >
                                 その他
                               </SelectItem>
                             </SelectContent>
                           </Select>
-                          <FormMessage className="text-red-300 font-medium" />
+                          <FormMessage className="text-red-500 font-medium" />
                         </FormItem>
                       )}
                     />
@@ -247,22 +247,22 @@ export function ContactForm() {
                       name="message"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-white font-medium text-lg">メッセージ *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-lg">メッセージ *</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="プロジェクトの詳細や、ご質問などをお聞かせください..."
                               rows={6}
                               {...field}
                               className={cn(
-                                "border-2 transition-colors duration-200 resize-none bg-white/10 text-white placeholder:text-white/60",
+                                "border-2 transition-colors duration-200 resize-none bg-white text-gray-900 placeholder:text-gray-500",
                                 fieldState.error 
                                   ? "border-red-400 focus:border-red-500" 
-                                  : "border-white/30 focus:border-custom-accent"
+                                  : "border-gray-300 focus:border-custom-accent"
                               )}
                               style={{ fontSize: '16px' }}
                             />
                           </FormControl>
-                          <FormMessage className="text-red-300 font-medium" />
+                          <FormMessage className="text-red-500 font-medium" />
                         </FormItem>
                       )}
                     />
