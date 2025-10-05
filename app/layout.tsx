@@ -10,11 +10,11 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: 'チームNobody',
+  title: '株式会社Nobody',
   description: 'ITとAIの力で地域の未来を創造する',
   keywords: 'ポートフォリオ, 開発者, Web開発, フロントエンド, バックエンド',
   openGraph: {
-    title: 'チームNobody',
+    title: '株式会社Nobody',
     description: 'ITとAIの力で地域の未来を創造する',
     type: 'website',
   },

@@ -52,9 +52,11 @@
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', 'Noto Sans JP', sans-serif;
     font-feature-settings: 'cv11', 'ss01';
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcz4KICAgIDxwYXR0ZXJuIGlkPSJtYXJibGUiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CiAgICAgIDxyZWN0IHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgZmlsbD0iI2ZmZmZmZiIvPgogICAgICA8cGF0aCBkPSJNMCAwTDYwIDYwTTYwIDBMMCA2MCIgc3Ryb2tlPSIjZjVmNWY1IiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4zIi8+CiAgICAgIDxjaXJjbGUgY3g9IjE1IiBjeT0iMTUiIHI9IjIiIGZpbGw9IiNmMGYwZjAiIG9wYWNpdHk9IjAuNCIvPgogICAgICA8Y2lyY2xlIGN4PSI0NSIgY3k9IjQ1IiByPSIxLjUiIGZpbGw9IiNlNWU1ZTUiIG9wYWNpdHk9IjAuMyIvPgogICAgICA8Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIxIiBmaWxsPSIjZGRkZGRkIiBvcGFjaXR5PSIwLjIiLz4KICAgIDwvcGF0dGVybj4KICA8L2RlZnM+CiAgPHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNtYXJibGUpIi8+Cjwvc3ZnPgo=');
-    background-size: 60px 60px;
+    background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/v1759651031/Gemini_Generated_Image_wb98hawb98hawb98_rbbd2k.png');
+    background-size: cover;
     background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -69,7 +71,27 @@
     text-wrap: balance;
   }
   
-  /* 最高級モノトーンエフェクト */
+  /* 背景画像上のコンテンツの視認性向上 */
+  .content-overlay {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(2px);
+  }
+  
+  .section-overlay {
+    background: rgba(255, 255, 255, 0.98);
+  }
+  
+  .section-overlay-70 {
+    background: rgba(255, 255, 255, 0.70);
+  }
+  
+  .section-overlay-75 {
+    background: rgba(255, 255, 255, 0.75);
+  }
+  
+  .section-overlay-80 {
+    background: rgba(255, 255, 255, 0.80);
+  }
   .luxury-shadow {
     box-shadow: 
       0 1px 3px 0 rgb(0 0 0 / 0.1),

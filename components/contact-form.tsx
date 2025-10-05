@@ -80,7 +80,7 @@ export function ContactForm() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white">
+    <section id="contact" className="py-24 section-overlay">
       <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -92,7 +92,7 @@ export function ContactForm() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
             ご相談
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-2xl md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
             地域の課題解決に向けた
             <span className="font-semibold text-gray-900">アプリ開発</span>や<span className="font-semibold text-gray-900">AIの活用に向けた研修</span>など、お気軽にご相談ください。共に地域の未来を創造しましょう。
           </p>
@@ -104,7 +104,7 @@ export function ContactForm() {
               <CardTitle className="text-3xl font-bold text-gray-900 tracking-tight">
                 お問い合わせフォーム
               </CardTitle>
-              <p className="text-gray-600 text-base mt-3 font-light">
+              <p className="text-gray-600 text-xl mt-3 font-light">
                 お客様の情報は厳重に管理されます。
               </p>
             </CardHeader>

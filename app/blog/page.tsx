@@ -37,7 +37,7 @@ export default function BlogPage() {
     <main className="min-h-screen">
       <Header />
       <div className="pt-20">
-        <section className="py-24 bg-white">
+        <section className="py-24 section-overlay">
           <div className="container mx-auto px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -48,7 +48,7 @@ export default function BlogPage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
                 ブログ
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+              <p className="text-2xl md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
                 私たちの取り組みや技術について、
                 最新の情報をお届けします。
               </p>
@@ -85,7 +85,7 @@ export default function BlogPage() {
                       {post.title}
                     </h2>
 
-                    <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                    <p className="text-gray-600 leading-relaxed mb-6 font-light text-xl">
                       {post.excerpt}
                     </p>
 
@@ -104,7 +104,7 @@ export default function BlogPage() {
                 viewport={{ once: true }}
                 className="text-center mt-16"
               >
-                <p className="text-gray-500 font-light">
+                <p className="text-gray-500 font-light text-xl">
                   更なる記事は準備中です。お楽しみに。
                 </p>
               </motion.div>

@@ -43,7 +43,7 @@ export function PrivacyPolicy() {
   ];
 
   return (
-    <section id="privacy" className="py-24 bg-gray-50">
+    <section id="privacy" className="py-24 section-overlay">
       <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -55,7 +55,7 @@ export function PrivacyPolicy() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
             プライバシーポリシー
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-2xl md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
             株式会社Nobodyは、個人情報の重要性を認識し、
             個人情報保護に関する法令を遵守し、適切な取り扱いを行います。
           </p>
@@ -82,13 +82,13 @@ export function PrivacyPolicy() {
                   <h3 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight">
                     {section.title}
                   </h3>
-                  <p className="text-gray-700 leading-relaxed mb-4 font-light">
+                  <p className="text-gray-700 leading-relaxed mb-4 font-light text-xl">
                     {section.content}
                   </p>
                   {section.list && (
                     <ul className="space-y-3 ml-6">
                       {section.list.map((item, itemIndex) => (
-                        <li key={itemIndex} className="text-gray-700 leading-relaxed font-light relative">
+                        <li key={itemIndex} className="text-gray-700 leading-relaxed font-light relative text-xl">
                           <span className="absolute -left-6 top-2 w-2 h-2 bg-gray-400 rounded-full"></span>
                           {item}
                         </li>

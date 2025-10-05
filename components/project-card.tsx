@@ -135,7 +135,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </Badge>
           </div>
           
-          <p className="text-gray-600 mb-6 text-base leading-relaxed font-light">
+          <p className="text-gray-600 mb-6 text-xl leading-relaxed font-light">
             {project.description}
           </p>
           

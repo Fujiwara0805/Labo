@@ -25,13 +25,13 @@ export function HeroSection() {
 
   return (
     <section id="hero" ref={ref} className="relative h-screen overflow-hidden pt-20">
-      {/* モノトーン背景 */}
+      {/* 透明背景オーバーレイ */}
       <motion.div
         style={{ y: backgroundY }}
         className="absolute inset-0 w-full h-[120%]"
       >
-        <div className="w-full h-full bg-gradient-to-br from-gray-50 via-white to-gray-100" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_0%,transparent_50%)]" />
+        <div className="w-full h-full bg-white/80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_0%,transparent_50%)]" />
       </motion.div>
 
       {/* Content */}
@@ -59,7 +59,7 @@ export function HeroSection() {
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto text-gray-600 leading-relaxed font-light"
+            className="text-2xl md:text-3xl lg:text-4xl mb-12 max-w-4xl mx-auto text-gray-600 leading-relaxed font-light"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
