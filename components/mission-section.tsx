@@ -14,7 +14,7 @@ export function MissionSection() {
           className="text-center"
         >
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-12 tracking-tight">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-12 tracking-tight">
               地域課題の解決に向けて
             </h2>
             <p className="text-xl md:text-4xl lg:text-5xl text-gray-700 leading-relaxed font-light">
