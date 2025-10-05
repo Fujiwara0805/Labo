@@ -36,7 +36,7 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen">
       <Header />
-      <div className="pt-20">
+        <div className="pt-48">
         <section className="py-24 section-overlay">
           <div className="container mx-auto px-6 lg:px-8">
             <motion.div

@@ -54,7 +54,7 @@ body {
   font-feature-settings: 'cv11', 'ss01';
   
   /* デスクトップ・タブレット用背景画像 */
-  background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/v1759651031/Gemini_Generated_Image_wb98hawb98hawb98_rbbd2k.png');
+  background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/v1759665763/Gemini_Generated_Image_u3ed2bu3ed2bu3ed_qfenab.png');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -65,7 +65,7 @@ body {
 @media (max-width: 768px) {
   body {
     /* モバイル用に最適化された背景設定 */
-    background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/c_scale,w_800,q_auto,f_auto/v1759651031/Gemini_Generated_Image_wb98hawb98hawb98_rbbd2k.png');
+    background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/c_scale,w_800,q_auto,f_auto/v1759665763/Gemini_Generated_Image_u3ed2bu3ed2bu3ed_qfenab.png');
     background-size: cover;
     background-attachment: scroll; /* モバイルでは固定背景を避ける */
     background-position: center center;
@@ -79,13 +79,13 @@ body {
 /* 高解像度ディスプレイ（Retina等）対応 */
 @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
   body {
-    background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/c_scale,w_1600,q_auto,f_auto/v1759651031/Gemini_Generated_Image_wb98hawb98hawb98_rbbd2k.png');
+    background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/c_scale,w_1600,q_auto,f_auto/v1759665763/Gemini_Generated_Image_u3ed2bu3ed2bu3ed_qfenab.png');
   }
 }
 
 @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 3) {
   body {
-    background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/c_scale,w_2400,q_auto,f_auto/v1759651031/Gemini_Generated_Image_wb98hawb98hawb98_rbbd2k.png');
+    background-image: url('https://res.cloudinary.com/dz9trbwma/image/upload/c_scale,w_2400,q_auto,f_auto/v1759665763/Gemini_Generated_Image_u3ed2bu3ed2bu3ed_qfenab.png');
   }
 }
   

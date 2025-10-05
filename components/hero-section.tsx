@@ -24,7 +24,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="hero" ref={ref} className="relative h-screen overflow-hidden pt-20">
+    <section id="hero" ref={ref} className="relative h-screen overflow-hidden pt-48">
       {/* 透明背景オーバーレイ */}
       <motion.div
         style={{ y: backgroundY }}

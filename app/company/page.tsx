@@ -9,7 +9,7 @@ export default function CompanyPage() {
   return (
     <main className="min-h-screen">
       <Header />
-      <div className="pt-20">
+        <div className="pt-48">
         <CompanyInfo />
       </div>
       <Footer />

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Building2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,7 +11,7 @@ export function Footer() {
 
   const footerLinks = [
     { label: 'プロダクト', href: '/#projects' },
-    { label: 'ブログ', href: '/blog' },
+    // { label: 'ブログ', href: '/blog' }, // 未実装のため非表示
     { label: '会社概要', href: '/company' },
     { label: 'プライバシーポリシー', href: '/privacy' },
     { label: 'お問い合わせ', href: '/#contact' },
@@ -43,7 +44,15 @@ export function Footer() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-6 tracking-tight">株式会社Nobody</h3>
+            <div className="mb-6">
+              <Image
+                src="https://res.cloudinary.com/dz9trbwma/image/upload/v1759666819/%E4%BC%9A%E7%A4%BE%E3%83%AD%E3%82%B4%E3%82%99_-_%E7%B7%A8%E9%9B%86%E6%B8%88%E3%81%BF_neleep.png"
+                alt="株式会社Nobody ロゴ"
+                width={690}
+                height={228}
+                className="h-48 w-auto object-contain brightness-0 invert"
+              />
+            </div>
             <p className="text-gray-300 mb-6 leading-relaxed font-light">
               ITとAIの力で地域の未来を創造し、
               持続可能で魅力あふれる地域社会の実現に貢献します。

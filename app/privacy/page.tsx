@@ -9,7 +9,7 @@ export default function PrivacyPage() {
   return (
     <main className="min-h-screen">
       <Header />
-      <div className="pt-20">
+        <div className="pt-48">
         <PrivacyPolicy />
       </div>
       <Footer />
