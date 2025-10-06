@@ -55,7 +55,7 @@ export function Header() {
       className="fixed top-0 left-0 right-0 z-50 luxury-backdrop border-b border-gray-200"
     >
       <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-48">
+        <div className="flex items-center justify-between h-24 md:h-48">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.02 }}
@@ -68,7 +68,7 @@ export function Header() {
               alt="株式会社Nobody ロゴ"
               width={600}
               height={198}
-              className="h-44 w-auto object-contain"
+              className="h-20 md:h-44 w-auto object-contain"
               priority
             />
           </motion.div>

@@ -50,7 +50,7 @@ export function Footer() {
                 alt="株式会社Nobody ロゴ"
                 width={690}
                 height={228}
-                className="h-48 w-auto object-contain brightness-0 invert"
+                className="h-24 md:h-48 w-auto object-contain brightness-0 invert"
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed font-light">
