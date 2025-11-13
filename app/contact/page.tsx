@@ -2,19 +2,20 @@
 
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/sidebar';
+import { ContactForm } from '@/components/contact-form';
 import { Footer } from '@/components/footer';
-import { CompanyInfo } from '@/components/company-info';
 
-export default function CompanyPage() {
+export default function ContactPage() {
   return (
     <main className="min-h-screen">
       <Sidebar />
       <div className="md:ml-64">
         <div className="pt-24 md:pt-48">
-          <CompanyInfo />
+          <ContactForm />
         </div>
         <Footer />
       </div>
     </main>
   );
 }
+

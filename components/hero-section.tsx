@@ -2,8 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { ArrowDown, Mail, BriefcaseBusiness, MapPin } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 export function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -17,10 +16,6 @@ export function HeroSection() {
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -59,7 +54,7 @@ export function HeroSection() {
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-3xl lg:text-4xl mb-12 max-w-4xl mx-auto text-gray-600 leading-relaxed font-light"
+            className="text-base md:text-xl lg:text-2xl mb-12 max-w-4xl mx-auto text-gray-600 leading-relaxed font-light"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -68,32 +63,6 @@ export function HeroSection() {
             住民・企業・自治体が協働できる<span className="font-semibold text-gray-900">&quot;場&quot;</span>を提供。
             持続可能で魅力あふれる地域社会の実現に貢献します。
           </motion.p>
-
-          {/* Action Buttons */}
-          <motion.div 
-            className="flex flex-col sm:flex-row justify-center gap-6 mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6 }}
-          >
-            <Button 
-              onClick={scrollToProjects}
-              size="lg"
-              className="bg-gray-900 hover:bg-gray-800 text-white font-medium px-12 py-4 text-lg rounded-none luxury-hover luxury-shadow-lg border-0"
-            >
-              <BriefcaseBusiness className="w-5 h-5 mr-3" />
-              プロダクトを見る
-            </Button>
-            <Button 
-              onClick={scrollToContact}
-              variant="outline"
-              size="lg"
-              className="border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white font-medium px-12 py-4 text-lg rounded-none luxury-hover luxury-shadow-lg"
-            >
-              <Mail className="w-5 h-5 mr-3" />
-              お問い合わせ
-            </Button>
-          </motion.div>
         </motion.div>
 
         {/* Scroll indicator */}
