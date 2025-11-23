@@ -1,111 +1,55 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Building2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  const router = useRouter();
-
-  const footerLinks = [
-    { label: 'プロダクト', href: '/#projects' },
-    { label: '会社概要', href: '/company' },
-    { label: 'プライバシーポリシー', href: '/privacy' },
-    { label: 'お問い合わせ', href: '/#contact' },
-  ];
-
-  const handleNavigation = (href: string) => {
-    if (href.startsWith('/#')) {
-      // ホームページ内のアンカーリンク
-      if (window.location.pathname !== '/') {
-        router.push(href);
-      } else {
-        const element = document.querySelector(href.substring(1));
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    } else {
-      router.push(href);
-    }
-  };
 
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="container mx-auto px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Company Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="mb-6">
-              <h1 className="text-3xl md:text-5xl font-bold text-white">Nobody</h1>
-            </div>
-            <p className="text-gray-300 mb-6 leading-relaxed font-light">
-              ITとAIの力で地域の未来を創造し、
+    <footer id="footer" className="bg-white pt-24 pb-8 border-t border-gray-100">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="grid md:grid-cols-2 gap-16 mb-24">
+          <div className="space-y-8">
+            <h2 className="text-5xl md:text-7xl font-serif font-bold tracking-tighter">NOBODY</h2>
+            <p className="text-gray-500 font-light max-w-md">
+              ITとAIの力で地域の未来を創造し、<br/>
               持続可能で魅力あふれる地域社会の実現に貢献します。
             </p>
-          </motion.div>
+          </div>
 
-          {/* Navigation Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold mb-6 tracking-tight">サイトマップ</h4>
-            <ul className="space-y-3">
-              {footerLinks.map((link) => (
-                <li key={link.label}>
-                  <button
-                    onClick={() => handleNavigation(link.href)}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 font-light luxury-hover"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold mb-6 tracking-tight">お問い合わせ</h4>
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 text-gray-300">
-                <Mail className="w-5 h-5" />
-                <span className="font-light">お問い合わせフォームをご利用ください</span>
-              </div>
-              <div className="flex items-center space-x-3 text-gray-300">
-                <Building2 className="w-5 h-5" />
-                <span className="font-light">株式会社Nobody</span>
-              </div>
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+               <h4 className="text-xs font-bold uppercase tracking-widest text-black mb-6">Contact</h4>
+               <div className="space-y-4">
+                 <a href="mailto:contact@nobody.co.jp" className="block text-gray-500 hover:text-black transition-colors text-sm font-light">
+                   contact@nobody.co.jp
+                 </a>
+                 <p className="text-gray-500 text-sm font-light">
+                   Oita, Japan
+                 </p>
+               </div>
             </div>
-          </motion.div>
+            <div>
+               <h4 className="text-xs font-bold uppercase tracking-widest text-black mb-6">Links</h4>
+               <ul className="space-y-4">
+                 <li><a href="#projects" className="text-gray-500 hover:text-black transition-colors text-sm font-light">Projects</a></li>
+                 <li><a href="#mission" className="text-gray-500 hover:text-black transition-colors text-sm font-light">Mission</a></li>
+                 <li><a href="#privacy" className="text-gray-500 hover:text-black transition-colors text-sm font-light">Privacy Policy</a></li>
+               </ul>
+            </div>
+          </div>
         </div>
 
-        {/* Bottom Bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="border-t border-gray-700 mt-12 pt-8 text-center"
-        >
-          <p className="text-gray-400 font-light">
-            © {currentYear} 株式会社Nobody. All rights reserved.
+        <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[10px] text-gray-400 tracking-widest uppercase">
+            © {currentYear} Nobody Inc. All rights reserved.
           </p>
-        </motion.div>
+          <div className="flex gap-4">
+            <div className="w-2 h-2 bg-black rounded-full"></div>
+            <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+            <div className="w-2 h-2 bg-gray-100 rounded-full"></div>
+          </div>
+        </div>
       </div>
     </footer>
   );
