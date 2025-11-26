@@ -117,11 +117,11 @@ const SectionTitle = ({ title, subtitle, align = "left" }: { title: React.ReactN
     transition={{ duration: 0.8 }}
     className={`mb-8 sm:mb-12 md:mb-16 lg:mb-20 ${align === "center" ? "text-center" : "text-left"}`}
   >
-    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-medium text-black tracking-tight mb-3 sm:mb-4 md:mb-6">
+    <h2 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-medium text-black tracking-tight mb-3 sm:mb-4 md:mb-6">
       {title}
     </h2>
     {subtitle && (
-      <p className="text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-500 max-w-2xl leading-relaxed font-light mx-auto px-2 sm:px-4 md:px-0">
+      <p className="text-xs sm:text-xs md:text-sm lg:text-base text-gray-500 max-w-2xl leading-relaxed font-light mx-auto px-2 sm:px-4 md:px-0">
         {subtitle}
       </p>
     )}
@@ -130,12 +130,12 @@ const SectionTitle = ({ title, subtitle, align = "left" }: { title: React.ReactN
 
 const LuxuryInput = ({ label, type = "text", ...props }: { label: string, type?: string, [key: string]: any }) => (
   <div className="group">
-    <label className="block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
+    <label className="block text-xs sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
       {label}
     </label>
     <input
       type={type}
-      className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors placeholder-gray-300"
+      className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-base sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors placeholder-gray-300"
       {...props}
     />
   </div>
@@ -143,12 +143,12 @@ const LuxuryInput = ({ label, type = "text", ...props }: { label: string, type?:
 
 const LuxurySelect = ({ label, options, ...props }: { label: string, options: string[], [key: string]: any }) => (
   <div className="group">
-    <label className="block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
+    <label className="block text-xs sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
       {label}
     </label>
     <div className="relative">
       <select
-        className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
+        className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-base sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
         {...props}
       >
         <option value="" disabled>選択してください</option>
@@ -163,12 +163,12 @@ const LuxurySelect = ({ label, options, ...props }: { label: string, options: st
 
 const LuxuryTextarea = ({ label, rows = 4, ...props }: { label: string, rows?: number, [key: string]: any }) => (
   <div className="group">
-    <label className="block text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
+    <label className="block text-xs sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
       {label}
     </label>
     <textarea
       rows={rows}
-      className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-sm sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors placeholder-gray-300 resize-none"
+      className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-base sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors placeholder-gray-300 resize-none"
       {...props}
     />
   </div>
@@ -203,14 +203,14 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
               className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8"
             >
               <div className="h-[1px] w-6 sm:w-8 md:w-12 bg-black"></div>
-              <span className="text-[9px] sm:text-[10px] md:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase text-gray-500">Silicon Valley Standard</span>
+              <span className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase text-gray-500">Silicon Valley Standard</span>
             </motion.div>
             
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-medium text-black leading-[0.95] sm:leading-[0.9] tracking-tighter mb-4 sm:mb-6 md:mb-10"
+              className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-medium text-black leading-[0.95] sm:leading-[0.9] tracking-tighter mb-4 sm:mb-6 md:mb-10"
             >
               Regional<br />
               <span className="text-gray-400 italic">Future</span><br />
@@ -221,7 +221,7 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-lg leading-relaxed font-light mb-6 sm:mb-8 md:mb-12 border-l-2 sm:border-l border-gray-200 pl-3 sm:pl-4 md:pl-6"
+              className="text-sm sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-lg leading-relaxed font-light mb-6 sm:mb-8 md:mb-12 border-l-2 sm:border-l border-gray-200 pl-3 sm:pl-4 md:pl-6"
             >
               ITとAIの力で、地域の未来を再定義する。<br className="hidden sm:block" />
               インターネットを通じてニーズとソリューションを繋ぎ、<br className="hidden md:block" />
@@ -257,15 +257,15 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
                   />
                 </div>
                 <div className="w-full md:w-1/2 space-y-3 sm:space-y-4 md:space-y-6">
-                  <span className="text-[9px] sm:text-[10px] md:text-xs font-bold text-gray-400 tracking-[0.15em] sm:tracking-[0.2em] uppercase block">0{index + 1} — Project</span>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium text-black leading-tight">{project.title}</h3>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed font-light border-l-2 sm:border-l-2 border-gray-200 pl-3 sm:pl-4 md:pl-6">
+                  <span className="text-[10px] sm:text-[10px] md:text-xs font-bold text-gray-400 tracking-[0.15em] sm:tracking-[0.2em] uppercase block">0{index + 1} — Project</span>
+                  <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium text-black leading-tight">{project.title}</h3>
+                  <p className="text-sm sm:text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed font-light border-l-2 sm:border-l-2 border-gray-200 pl-3 sm:pl-4 md:pl-6">
                     {project.description}
                   </p>
                   
                   <div className="pt-1 sm:pt-2 md:pt-4">
-                    <h4 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 md:mb-4">主な特徴</h4>
-                    <ul className="space-y-1.5 sm:space-y-2 md:space-y-3 list-disc list-inside text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-700">
+                    <h4 className="text-sm sm:text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 md:mb-4">主な特徴</h4>
+                    <ul className="space-y-1.5 sm:space-y-2 md:space-y-3 list-disc list-inside text-xs sm:text-xs md:text-sm lg:text-base text-gray-700">
                       {project.features.map((feature, i) => (
                         <li key={i} className="leading-relaxed">{feature}</li>
                       ))}
@@ -273,10 +273,10 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
                   </div>
 
                   <div className="pt-1 sm:pt-2 md:pt-4">
-                    <h4 className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 md:mb-4">技術スタック</h4>
+                    <h4 className="text-sm sm:text-sm md:text-base lg:text-lg font-semibold text-gray-900 mb-2 sm:mb-3 md:mb-4">技術スタック</h4>
                     <div className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3">
                       {project.technologies.map((tech, i) => (
-                        <span key={i} className="px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-1.5 bg-gray-100 text-gray-700 text-[9px] sm:text-[10px] md:text-xs lg:text-sm rounded-sm border border-gray-200">
+                        <span key={i} className="px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 md:py-1.5 bg-gray-100 text-gray-700 text-[10px] sm:text-[10px] md:text-xs lg:text-sm rounded-sm border border-gray-200">
                           {tech}
                         </span>
                       ))}
@@ -288,7 +288,7 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
                       href={project.url} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:gap-3 sm:hover:gap-4 transition-all text-gray-900 border-b border-gray-900 pb-0.5 sm:pb-1"
+                      className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:gap-3 sm:hover:gap-4 transition-all text-gray-900 border-b border-gray-900 pb-0.5 sm:pb-1"
                     >
                       View Project <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
                     </a>
@@ -305,10 +305,10 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 mx-auto mb-6 sm:mb-8 md:mb-12 text-gray-500" strokeWidth={1} />
-             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif font-medium mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-tight tracking-tight px-2 sm:px-4">
+             <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-serif font-medium mb-6 sm:mb-8 md:mb-12 lg:mb-16 leading-tight tracking-tight px-2 sm:px-4">
               Bridging Needs,<br className="hidden sm:block" /><span className="text-gray-500 italic">Designing</span> Society.
              </h2>
-             <p className="text-gray-400 font-light text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4">
+             <p className="text-gray-400 font-light text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4">
                デジタルとリアルの境界を溶かし、持続可能で洗練された<br className="hidden sm:block" />地域社会のエコシステムを構築します。
              </p>
           </div>
@@ -343,15 +343,15 @@ const CompanyPage = () => {
                 className="bg-white p-4 sm:p-6 md:p-8 lg:p-12 hover:bg-gray-50 transition-colors group"
               >
                 <detail.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-gray-300 mb-3 sm:mb-4 md:mb-6 group-hover:text-black transition-colors" strokeWidth={1} />
-                <h3 className="text-[9px] sm:text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 sm:mb-2 md:mb-3">{detail.label}</h3>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl font-serif font-medium text-black leading-tight">{detail.value}</p>
+                <h3 className="text-[10px] sm:text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-1.5 sm:mb-2 md:mb-3">{detail.label}</h3>
+                <p className="text-base sm:text-base md:text-lg lg:text-xl font-serif font-medium text-black leading-tight">{detail.value}</p>
               </motion.div>
             ))}
           </div>
 
           <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-24 text-center px-2 sm:px-4 md:px-0">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-medium mb-4 sm:mb-6 md:mb-8">Our Mission</h3>
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed font-light max-w-2xl mx-auto">
+            <h3 className="text-xl sm:text-xl md:text-2xl font-serif font-medium mb-4 sm:mb-6 md:mb-8">Our Mission</h3>
+            <p className="text-sm sm:text-sm md:text-base lg:text-lg text-gray-600 leading-relaxed font-light max-w-2xl mx-auto">
               インターネットを通じて地域のニーズとソリューションをつなぎ、
               住民・企業・自治体が協働できる&quot;場&quot;を提供します。
               モバイルアプリとイベント運営によって人と情報の流れを活性化し、
@@ -392,9 +392,9 @@ const ContactPage = () => {
           {status === 'success' ? (
             <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-gray-50 border border-gray-100 p-6 sm:p-8 md:p-12 text-center">
               <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-black mx-auto mb-3 sm:mb-4 md:mb-6" strokeWidth={1} />
-              <h3 className="text-lg sm:text-xl md:text-2xl font-serif mb-2 sm:mb-3 md:mb-4">Message Sent</h3>
-              <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light mb-4 sm:mb-6 md:mb-8">お問い合わせを受け付けました。担当者よりご連絡いたします。</p>
-              <button onClick={() => setStatus('idle')} className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest border-b border-black pb-0.5 sm:pb-1 hover:opacity-50 transition-opacity">
+              <h3 className="text-xl sm:text-xl md:text-2xl font-serif mb-2 sm:mb-3 md:mb-4">Message Sent</h3>
+              <p className="text-sm sm:text-sm md:text-base text-gray-500 font-light mb-4 sm:mb-6 md:mb-8">お問い合わせを受け付けました。担当者よりご連絡いたします。</p>
+              <button onClick={() => setStatus('idle')} className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest border-b border-black pb-0.5 sm:pb-1 hover:opacity-50 transition-opacity">
                 Send Another Message
               </button>
             </motion.div>
@@ -418,7 +418,7 @@ const ContactPage = () => {
                 <button 
                   type="submit" 
                   disabled={status === 'submitting'}
-                  className="bg-black text-white px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                  className="bg-black text-white px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
                 >
                   {status === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>
@@ -444,14 +444,14 @@ const PrivacyPage = () => {
         <div className="max-w-3xl mx-auto mt-6 sm:mt-8 md:mt-12 space-y-8 sm:space-y-12 md:space-y-16 px-2 sm:px-4 md:px-0">
           {privacySections.map((section, index) => (
             <div key={index} className="border-l-2 border-gray-100 pl-3 sm:pl-4 md:pl-6 lg:pl-8">
-              <h3 className="text-base sm:text-lg md:text-xl font-serif font-medium mb-3 sm:mb-4 md:mb-6">{section.title}</h3>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed font-light mb-3 sm:mb-4 text-justify">
+              <h3 className="text-lg sm:text-lg md:text-xl font-serif font-medium mb-3 sm:mb-4 md:mb-6">{section.title}</h3>
+              <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light mb-3 sm:mb-4 text-justify">
                 {section.content}
               </p>
               {section.list && (
                 <ul className="space-y-1.5 sm:space-y-2 md:space-y-3">
                   {section.list.map((item, i) => (
-                    <li key={i} className="text-gray-500 font-light text-[11px] sm:text-xs md:text-sm flex items-start gap-2 sm:gap-3">
+                    <li key={i} className="text-gray-500 font-light text-xs sm:text-xs md:text-sm flex items-start gap-2 sm:gap-3">
                       <span className="w-1 h-1 bg-black rounded-full mt-1.5 sm:mt-2 shrink-0"></span>
                       <span>{item}</span>
                     </li>
@@ -461,7 +461,7 @@ const PrivacyPage = () => {
             </div>
           ))}
           <div className="text-center pt-6 sm:pt-8 md:pt-12 border-t border-gray-100">
-            <p className="text-[9px] sm:text-[10px] md:text-xs text-gray-400 font-bold tracking-widest uppercase">2025年1月1日 制定</p>
+            <p className="text-[10px] sm:text-[10px] md:text-xs text-gray-400 font-bold tracking-widest uppercase">2025年1月1日 制定</p>
           </div>
         </div>
       </div>
@@ -547,7 +547,7 @@ const Sidebar = ({ currentPage, onNavigate }: { currentPage: string, onNavigate:
                   initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => handleNav(item.id)}
-                  className={`text-2xl font-light tracking-widest uppercase ${currentPage === item.id ? 'text-white font-bold' : 'text-gray-400'}`}
+                  className={`text-3xl font-light tracking-widest uppercase ${currentPage === item.id ? 'text-white font-bold' : 'text-gray-400'}`}
                 >
                   {item.label}
                 </motion.button>
@@ -565,26 +565,26 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
     <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 sm:mb-12 md:mb-16 lg:mb-24">
         <div className="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-serif font-bold tracking-tighter">NOBODY</h2>
-          <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light max-w-md leading-relaxed">ITとAIの力で地域の未来を創造し、<br className="hidden sm:block" />持続可能で魅力あふれる地域社会の実現に貢献します。</p>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl font-serif font-bold tracking-tighter">NOBODY</h2>
+          <p className="text-sm sm:text-sm md:text-base text-gray-500 font-light max-w-md leading-relaxed">ITとAIの力で地域の未来を創造し、<br className="hidden sm:block" />持続可能で魅力あふれる地域社会の実現に貢献します。</p>
         </div>
         <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           <div>
-             <h4 className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Contact</h4>
-             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(PAGES.CONTACT); }} className="block text-[10px] sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light break-all mb-1 sm:mb-2">contact@nobody.co.jp</a>
-             <p className="text-[10px] sm:text-xs md:text-sm text-gray-500 font-light">Oita, Japan</p>
+             <h4 className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Contact</h4>
+             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(PAGES.CONTACT); }} className="block text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light break-all mb-1 sm:mb-2">contact@nobody.co.jp</a>
+             <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light">Oita, Japan</p>
           </div>
           <div>
-             <h4 className="text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Menu</h4>
+             <h4 className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Menu</h4>
              <ul className="space-y-2 sm:space-y-3 md:space-y-4">
-               <li><button onClick={() => onNavigate(PAGES.COMPANY)} className="text-[10px] sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Company</button></li>
-               <li><button onClick={() => onNavigate(PAGES.PRIVACY)} className="text-[10px] sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Privacy Policy</button></li>
+               <li><button onClick={() => onNavigate(PAGES.COMPANY)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Company</button></li>
+               <li><button onClick={() => onNavigate(PAGES.PRIVACY)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Privacy Policy</button></li>
              </ul>
           </div>
         </div>
       </div>
       <div className="border-t border-gray-100 pt-4 sm:pt-6 md:pt-8 flex justify-between items-center">
-        <p className="text-[8px] sm:text-[9px] md:text-[10px] text-gray-400 tracking-widest uppercase">© 2025 Nobody Inc.</p>
+        <p className="text-[9px] sm:text-[9px] md:text-[10px] text-gray-400 tracking-widest uppercase">© 2025 Nobody Inc.</p>
       </div>
     </div>
   </footer>

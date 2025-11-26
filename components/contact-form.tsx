@@ -89,10 +89,10 @@ export function ContactForm() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
             ご相談
           </h2>
-          <p className="text-lg md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-xl md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
             地域の課題解決に向けた
             <span className="font-semibold text-gray-900">アプリ開発</span>や<span className="font-semibold text-gray-900">AIの活用に向けた研修</span>など、お気軽にご相談ください。共に地域の未来を創造しましょう。
           </p>
@@ -101,10 +101,10 @@ export function ContactForm() {
         <div className="max-w-3xl mx-auto">
           <Card className="luxury-border luxury-shadow-xl rounded-none bg-white">
             <CardHeader className="text-center pb-8">
-              <CardTitle className="text-3xl font-bold text-gray-900 tracking-tight">
+              <CardTitle className="text-4xl font-bold text-gray-900 tracking-tight">
                 お問い合わせフォーム
               </CardTitle>
-              <p className="text-gray-600 text-base mt-3 font-light">
+              <p className="text-gray-600 text-lg mt-3 font-light">
                 お客様の情報は厳重に管理されます。
               </p>
             </CardHeader>
@@ -118,10 +118,10 @@ export function ContactForm() {
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                     <CheckCircle className="w-8 h-8 text-green-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-green-600 mb-2">
+                  <h3 className="text-2xl font-semibold text-green-600 mb-2">
                     送信完了！
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-base text-gray-600">
                     メッセージを受信いたしました。<br />
                     スプレッドシートに保存されました。<br />
                     お返事まで少々お待ちください。
@@ -135,7 +135,7 @@ export function ContactForm() {
                       name="name"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 font-medium text-lg">お名前 *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-xl">お名前 *</FormLabel>
                           <FormControl>
                             <Input 
                               placeholder="山田太郎" 
@@ -159,7 +159,7 @@ export function ContactForm() {
                       name="email"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 font-medium text-lg">メールアドレス *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-xl">メールアドレス *</FormLabel>
                           <FormControl>
                             <Input 
                               type="email"
@@ -184,7 +184,7 @@ export function ContactForm() {
                       name="subject"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 font-medium text-lg">お問い合わせ件名 *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-xl">お問い合わせ件名 *</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger 
@@ -247,7 +247,7 @@ export function ContactForm() {
                       name="message"
                       render={({ field, fieldState }) => (
                         <FormItem>
-                          <FormLabel className="text-gray-700 font-medium text-lg">メッセージ *</FormLabel>
+                          <FormLabel className="text-gray-700 font-medium text-xl">メッセージ *</FormLabel>
                           <FormControl>
                             <Textarea
                               placeholder="プロジェクトの詳細や、ご質問などをお聞かせください..."
@@ -275,7 +275,7 @@ export function ContactForm() {
                         type="submit"
                         disabled={isSubmitting}
                         className={cn(
-                          "w-full py-4 text-lg font-medium transition-all duration-300 rounded-none luxury-hover luxury-shadow-lg",
+                          "w-full py-4 text-xl font-medium transition-all duration-300 rounded-none luxury-hover luxury-shadow-lg",
                           "bg-gray-900 hover:bg-gray-800 text-white",
                           "disabled:opacity-50 disabled:cursor-not-allowed"
                         )}

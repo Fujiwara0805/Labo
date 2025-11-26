@@ -37,10 +37,10 @@ export function CompanyInfo() {
           viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
             会社概要
           </h2>
-          <p className="text-lg md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
+          <p className="text-xl md:text-3xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
             私たちは地域社会の課題解決に取り組み、
             持続可能で魅力あふれる未来の実現を目指しています。
           </p>
@@ -70,10 +70,10 @@ export function CompanyInfo() {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-sm font-medium text-gray-500 mb-2 uppercase tracking-wider">
+                    <h3 className="text-base font-medium text-gray-500 mb-2 uppercase tracking-wider">
                       {detail.label}
                     </h3>
-                    <p className="text-xl font-semibold text-gray-900 leading-tight">
+                    <p className="text-2xl font-semibold text-gray-900 leading-tight">
                       {detail.value}
                     </p>
                   </div>
@@ -89,10 +89,10 @@ export function CompanyInfo() {
               viewport={{ once: true }}
               className="mt-16 pt-12 border-t border-gray-200"
             >
-              <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center tracking-tight">
+              <h3 className="text-4xl font-bold text-gray-900 mb-6 text-center tracking-tight">
                 ミッション
               </h3>
-              <p className="text-gray-700 text-lg leading-relaxed text-center max-w-4xl mx-auto font-light">
+              <p className="text-gray-700 text-xl leading-relaxed text-center max-w-4xl mx-auto font-light">
                 インターネットを通じて地域のニーズとソリューションをつなぎ、
                 住民・企業・自治体が協働できる&quot;場&quot;を提供します。
                 モバイルアプリとイベント運営によって人と情報の流れを活性化し、
