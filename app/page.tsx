@@ -35,14 +35,14 @@ const projects = [
     id: "tokudoku",
     title: "TOKUDOKU",
     subtitle: "Event Platform",
-    description: "最新のイベント情報を提供するプラットフォーム。地域の情報が集約され、効果的な告知と集客を支援します。ユーザーは多彩なイベント情報を閲覧し、興味のあるイベントを見つけることができます。",
+    description: "大分県内すべての市町村のイベント情報を網羅したイベント情報プラットフォーム。開催中のイベント情報をマップ上に表示することで、ユーザーが興味のあるイベントを簡単に発見できます。",
     features: [
-      "最新のイベント情報を幅広く提供",
+      "大分県内すべての市町村のイベント情報を網羅",
+      "開催中のイベント情報をマップ上に表示",
       "ユーザーが興味のあるイベントを簡単に発見",
-      "イベント主催者が自身のイベントを掲載可能",
-      "イベントの告知と集客を効率的にサポート"
+      "週末の予定を探している人におすすめ"
     ],
-    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
+    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
     url: "https://tokudoku.com",
     image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
   },
@@ -50,14 +50,14 @@ const projects = [
     id: "nikenme",
     title: "NIKENME+",
     subtitle: "Vacancy Visualization",
-    description: "「夜の続きは、ここから」をコンセプトに、大分の二軒目探しをサポートするサービスです。地図上でリアルタイムに飲食店の空席状況を表示し、今すぐ入れるお店がすぐ分かります。",
+    description: "「夜の続きは、ここから」をコンセプトに、大分の二軒目探しをサポートするサービスです。地図上でリアルタイムに飲食店の空席状況を表示。自動音声があなたがそのお店に到着するまで席をキープしてくれるので、電話が苦手な方でも安心してお店を予約できます。",
     features: [
       "地図上でリアルタイムに空席状況を確認",
       "今すぐ入れるお店がすぐ分かる",
-      "加盟店が更新する最新の空席情報をチェック",
+      "自動音声があなたがお店に到着するまで席をキープしてくれる",
       "ログイン不要で今すぐ利用可能"
     ],
-    technologies: ["React Native", "Firebase", "Google Maps", "TypeScript", "Expo"],
+    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
     url: "https://nikenme.jp",
     image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop"
   },
@@ -65,14 +65,13 @@ const projects = [
     id: "zaseki",
     title: "ZASEKI-KUN",
     subtitle: "Seat Management",
-    description: "ざせきくんは、学生の出席管理を効率的に行うWebシステムです。リアルタイムでの出席記録、授業別の出席状況確認、Googleスプレッドシートとの連携機能を提供します。",
+    description: "ざせきくんは、学生の出席とレポート提出を効率化するWebシステムです。レポートは Google スプレッドシートで一元管理でき、位置情報で「教室外からの出席」を防止。さらに、提出後しばらく同一端末から再提出できない仕組みにより、代筆も抑止します。",
     features: [
-      "リアルタイムでの座席状況の把握",
-      "効率的な座席管理システム",
-      "お客様の待ち時間を削減",
-      "店舗運営の最適化をサポート"
+      "提出したレポートはGoogleスプレッドシートで管理",
+      "位置情報を使用して指定された教室以外からの出席を防ぐ",
+      "１ユーザーがレポート提出後数分間同一端末からの提出ができないことで代筆を防ぐ"
     ],
-    technologies: ["Vue.js", "AWS", "WebSocket", "TypeScript", "Docker"],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Google Maps API"],
     url: "https://zaseki-kun.com",
     image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop"
   }
