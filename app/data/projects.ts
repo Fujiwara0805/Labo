@@ -3,8 +3,8 @@ import { Project } from '../types/project';
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'トクドク',
-    description: '最新のイベント情報を提供するプラットフォーム。多彩なイベント情報を閲覧し、興味のあるイベントを見つけることができます。',
+    title: 'TOKUDOKU',
+    description: '「いつもの街に、まだ知らない景色がある」をコンセプトに、大分県内14市4町村すべてのイベント・観光スポット・隠れた名所を網羅した地域情報プラットフォーム。登録不要・完全無料で、マップ上から現在地周辺のイベントを直感的に発見でき、お祭り・マルシェ・ワークショップなど多彩なカテゴリーから週末の予定を見つけられます。',
     imageUrls: [
       'https://res.cloudinary.com/dz9trbwma/image/upload/v1751627047/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2025-07-04_19.59.32_bt4efr.png',
       'https://res.cloudinary.com/dz9trbwma/image/upload/v1751627046/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2025-07-04_20.00.56_uvqhce.png',
@@ -15,25 +15,25 @@ export const projects: Project[] = [
       'https://res.cloudinary.com/dz9trbwma/image/upload/v1751627044/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2025-07-04_20.03.06_i7teqe.png',
     ],
     projectUrl: 'https://tokudoku.com',
-    technologies: ['Next.js', 'Node.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS', 'Vercel', 'Supabase'],
-    category: 'イベント情報プラットフォーム'
+    technologies: ['Next.js', 'Node.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS', 'Vercel', 'Supabase', 'Google Maps API'],
+    category: '地域イベント情報プラットフォーム'
   },
   {
     id: '2',
     title: 'NIKENME+',
-    description: '大分の二軒目探しサービス。地図上でリアルタイムに空席状況を確認でき、今すぐ入れるお店がすぐ分かります。',
+    description: '「夜の続きは、ここから」をコンセプトに、大分市内の飲食店（バー・スナック・居酒屋）のリアルタイム空席情報をマップ上に可視化するサービス。電話予約が不要で、自動音声が到着まで席をキープ。飲食店オーナーにはデータドリブン経営を支援する分析機能を提供します。',
     imageUrls: [],
     projectUrl: 'https://nikenme.jp/landing',
-    technologies: ['Next.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS'],
-    category: '飲食店検索'
+    technologies: ['Next.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS', 'Supabase', 'Google Maps API'],
+    category: 'リアルタイム空席可視化'
   },
   {
     id: '3',
-    title: 'ざせきくん',
-    description: '座席管理を効率化するサービス。リアルタイムで座席状況を把握し、スムーズな来店体験を提供します。',
+    title: 'ZASEKI-KUN',
+    description: '教育現場における学生の出席管理とレポート提出を効率化するWebシステム。位置情報で教室外からの出席を防止し、同一端末からの連続提出制限で代筆を抑止。公正な学習環境を実現します。',
     imageUrls: [],
     projectUrl: 'https://www.zaseki-kun.com/',
-    technologies: ['Next.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS'],
-    category: '座席管理'
+    technologies: ['Next.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS', 'Google Maps API'],
+    category: '出席・レポート管理'
   },
 ];

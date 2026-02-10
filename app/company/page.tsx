@@ -1,20 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Sidebar } from '@/components/sidebar';
-import { Footer } from '@/components/footer';
-import { CompanyInfo } from '@/components/company-info';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function CompanyPage() {
-  return (
-    <main className="min-h-screen">
-      <Sidebar />
-      <div className="md:ml-64">
-        <div className="pt-24 md:pt-48">
-          <CompanyInfo />
-        </div>
-        <Footer />
-      </div>
-    </main>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/');
+  }, [router]);
+
+  return null;
 }

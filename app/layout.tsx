@@ -10,17 +10,17 @@ const notoSansJP = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  title: '株式会社Nobody',
-  description: 'ITとAIの力で地域の未来を創造する',
-  keywords: 'ポートフォリオ, 開発者, Web開発, フロントエンド, バックエンド',
+  title: '株式会社Nobody | 大切なものが後世も残り続けること',
+  description: '大分県を拠点に、ITとAIの力で地域の文化・産業・つながりを次世代へ届けるソーシャルビジネス。アプリケーション開発・AI実装支援を通じ、自治体・教育機関・地域企業と連携し持続可能な地域社会の実現に貢献します。',
+  keywords: '株式会社Nobody, 大分県, ソーシャルビジネス, アプリ開発, AI実装, 地域課題解決, 自治体連携, TOKUDOKU, NIKENME+',
   icons: {
     icon: 'https://res.cloudinary.com/dz9trbwma/image/upload/v1759666819/%E4%BC%9A%E7%A4%BE%E3%83%AD%E3%82%B4%E3%82%99_-_%E7%B7%A8%E9%9B%86%E6%B8%88%E3%81%BF_neleep.png',
     shortcut: 'https://res.cloudinary.com/dz9trbwma/image/upload/v1759666819/%E4%BC%9A%E7%A4%BE%E3%83%AD%E3%82%B4%E3%82%99_-_%E7%B7%A8%E9%9B%86%E6%B8%88%E3%81%BF_neleep.png',
     apple: 'https://res.cloudinary.com/dz9trbwma/image/upload/v1759666819/%E4%BC%9A%E7%A4%BE%E3%83%AD%E3%82%B4%E3%82%99_-_%E7%B7%A8%E9%9B%86%E6%B8%88%E3%81%BF_neleep.png',
   },
   openGraph: {
-    title: '株式会社Nobody',
-    description: 'ITとAIの力で地域の未来を創造する',
+    title: '株式会社Nobody | 大切なものが後世も残り続けること',
+    description: '大分県を拠点に、ITとAIの力で地域の文化・産業・つながりを次世代へ届けるソーシャルビジネス。',
     type: 'website',
     images: [
       {

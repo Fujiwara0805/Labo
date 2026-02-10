@@ -1,18 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Header } from '@/components/header';
-import { Footer } from '@/components/footer';
-import { PrivacyPolicy } from '@/components/privacy-policy';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function PrivacyPage() {
-  return (
-    <main className="min-h-screen">
-      <Header />
-        <div className="pt-24 md:pt-48">
-        <PrivacyPolicy />
-      </div>
-      <Footer />
-    </main>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/');
+  }, [router]);
+
+  return null;
 }
