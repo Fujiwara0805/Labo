@@ -64,7 +64,7 @@ export function Header() {
             onClick={scrollToTop}
           >
             <Image
-              src="https://res.cloudinary.com/dz9trbwma/image/upload/v1759666819/%E4%BC%9A%E7%A4%BE%E3%83%AD%E3%82%B4%E3%82%99_-_%E7%B7%A8%E9%9B%86%E6%B8%88%E3%81%BF_neleep.png"
+              src="https://res.cloudinary.com/dz9trbwma/image/upload/v1770858047/Gemini_Generated_Image_h26lvkh26lvkh26l_p6fuop.png"
               alt="株式会社Nobody ロゴ"
               width={600}
               height={198}
