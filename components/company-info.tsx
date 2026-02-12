@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Building2, Users, MapPin, Calendar } from 'lucide-react';
+import { Building2, Users, MapPin, Calendar, GraduationCap } from 'lucide-react';
 
 export function CompanyInfo() {
   const companyDetails = [
@@ -11,19 +11,24 @@ export function CompanyInfo() {
       value: '株式会社Nobody'
     },
     {
+      icon: GraduationCap,
+      label: '種別',
+      value: '大分大学発ベンチャー'
+    },
+    {
       icon: Users,
       label: '事業内容',
-      value: 'ITとAIの力で地域の未来を創造'
+      value: 'ITとAIの力で大切なものが後世も残り続けることを目指しています。'
     },
     {
       icon: MapPin,
       label: '所在地',
-      value: '大分県'
+      value: '大分県大分市大字旦野原700番地（※2026年4月〜）'
     },
     {
       icon: Calendar,
       label: '設立',
-      value: '2025年'
+      value: '2025年8月5日'
     }
   ];
 
@@ -94,9 +99,9 @@ export function CompanyInfo() {
               </h3>
               <p className="text-gray-700 text-xl leading-relaxed text-center max-w-4xl mx-auto font-light">
                 インターネットを通じて地域のニーズとソリューションをつなぎ、
-                住民・企業・自治体が協働できる&quot;場&quot;を提供します。
-                モバイルアプリとイベント運営によって人と情報の流れを活性化し、
-                持続可能で魅力あふれる地域社会の実現に貢献することを目指しています。
+                社会課題をビジネスで解決していきます。
+                WebアプリとAIを活用して、持続可能で魅力あふれる
+                地域社会の実現に貢献することを目指しています。
               </p>
             </motion.div>
           </motion.div>

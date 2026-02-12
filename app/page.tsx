@@ -98,6 +98,7 @@ const projects = [
 
 const companyDetails = [
   { icon: Building2, label: '会社名', value: '株式会社Nobody' },
+  { icon: GraduationCap, label: '種別', value: '大分大学発ベンチャー' },
   { icon: Briefcase, label: '事業内容', value: 'アプリケーション開発・AI実装支援' },
   { icon: MapPin, label: '所在地', value: '大分県' },
   { icon: Calendar, label: '設立', value: '2025年' }
@@ -285,8 +286,8 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
               大切なものが後世も残り続けること
             </h2>
             <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
-              シリコンバレー型のスケール追求ではなく、地域に根ざしたソーシャルビジネスとして、<br className="hidden md:block" />
-              住民・企業・自治体の皆さまと共に歩むことを選びました。
+              地域に根ざしたソーシャルビジネスとして、<br className="hidden md:block" />
+              小さな社会課題をビジネスで解決する道を選びました。
             </p>
           </motion.div>
         </div>
@@ -383,11 +384,10 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
             >
               <HandHeart className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mx-auto mb-4 sm:mb-6 md:mb-8 text-gray-500" strokeWidth={1} />
               <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium mb-4 sm:mb-6 md:mb-8 leading-tight tracking-tight px-2 sm:px-4">
-                Not Silicon Valley,<br className="hidden sm:block" />
                 <span className="text-gray-500 italic">Social</span> Business.
               </h2>
               <p className="text-gray-400 font-light text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4 max-w-2xl mx-auto">
-                急成長やEXITを目的とせず、地域に寄り添い、<br className="hidden sm:block" />
+                地域に寄り添い、<br className="hidden sm:block" />
                 社会課題を持続的に解決するソーシャルビジネスとして歩みます。
               </p>
             </motion.div>
@@ -458,7 +458,7 @@ const CompanyPage = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <SectionTitle
           title="Company"
-          subtitle="地域社会の課題解決に取り組み、大切なものが後世も残り続ける未来の実現を目指しています。"
+          subtitle="大分大学発ベンチャー。地域社会の課題解決に取り組み、大切なものが後世も残り続ける未来の実現を目指しています。"
           align="center"
         />
 
@@ -518,10 +518,8 @@ const CompanyPage = () => {
               </h3>
             </div>
             <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-center px-2 sm:px-4 md:px-0">
-              私たちはシリコンバレー型の急成長・EXITモデルではなく、
               地域に根ざしたソーシャルビジネスとして活動することを選びました。
-              スケールの大きさよりも、一つひとつの地域課題に誠実に向き合い、
-              住民・企業・自治体の皆さまと協働しながら、
+              一つひとつの地域課題に誠実に向き合い、ビジネスの力を通じて、
               持続可能で魅力あふれる地域社会の実現に貢献してまいります。
             </p>
           </motion.div>
@@ -543,7 +541,7 @@ const CompanyPage = () => {
             </div>
             <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-center px-2 sm:px-4 md:px-0">
               インターネットを通じて地域のニーズとソリューションをつなぎ、
-              住民・企業・自治体が協働できる「場」を提供します。
+              社会課題をビジネスで解決していきます。
               アプリケーション開発とAI実装によって人と情報の流れを活性化し、
               持続可能で魅力あふれる地域社会の実現に貢献することを使命としています。
             </p>
@@ -566,8 +564,8 @@ const CompanyPage = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-gray-100 border border-gray-100">
               {[
                 { icon: Heart, title: "地域への誠実さ", desc: "地域の方々の声に耳を傾け、本当に必要とされるプロダクトだけを創ります。" },
-                { icon: Shield, title: "信頼と品質", desc: "公的機関との連携にも対応できる、セキュリティとコンプライアンスを重視した開発体制。" },
-                { icon: Globe, title: "持続可能性", desc: "短期的な利益ではなく、地域と共に長期的に成長できるビジネスモデルを追求します。" }
+                { icon: Shield, title: "信頼と品質", desc: "セキュリティとコンプライアンスを重視した開発体制。" },
+                { icon: Globe, title: "持続可能性", desc: "短期的な利益ではなく、地域課題をビジネスで解決していきます。" }
               ].map((item, i) => (
                 <motion.div
                   key={item.title}
@@ -610,7 +608,7 @@ const ContactPage = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <SectionTitle
           title="Contact"
-          subtitle="地域課題の解決に向けたアプリ開発・AI活用のご相談や、自治体・教育機関との連携についてお気軽にお問い合わせください。"
+          subtitle="地域課題の解決に向けたアプリ開発・AI活用のご相談についてお気軽にお問い合わせください。"
           align="center"
         />
 
@@ -633,9 +631,7 @@ const ContactPage = () => {
                 label="お問い合わせ種別"
                 options={[
                   "アプリケーション開発のご相談",
-                  "AI導入・データ活用のご相談",
-                  "自治体・公的機関との連携について",
-                  "教育機関との連携について",
+                  "AI活用のご相談",
                   "既存プロダクトに関するお問い合わせ",
                   "その他"
                 ]}
@@ -690,7 +686,7 @@ const PrivacyPage = () => {
             </div>
           ))}
           <div className="text-center pt-6 sm:pt-8 md:pt-12 border-t border-gray-100">
-            <p className="text-[10px] sm:text-[10px] md:text-xs text-gray-400 font-bold tracking-widest uppercase">2025年1月1日 制定</p>
+            <p className="text-[10px] sm:text-[10px] md:text-xs text-gray-400 font-bold tracking-widest uppercase">2025年8月5日 制定</p>
           </div>
         </div>
       </div>
@@ -812,7 +808,7 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
         <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           <div>
              <h4 className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Contact</h4>
-             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(PAGES.CONTACT); }} className="block text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light break-all mb-1 sm:mb-2">contact@nobody.co.jp</a>
+             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(PAGES.CONTACT); }} className="block text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light break-all mb-1 sm:mb-2">sobota@nobody-info.com</a>
              <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light">Oita, Japan</p>
           </div>
           <div>
