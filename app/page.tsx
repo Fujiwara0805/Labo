@@ -100,8 +100,8 @@ const companyDetails = [
   { icon: Building2, label: '会社名', value: '株式会社Nobody' },
   { icon: GraduationCap, label: '種別', value: '大分大学発ベンチャー' },
   { icon: Briefcase, label: '事業内容', value: 'アプリケーション開発・AI実装支援' },
-  { icon: MapPin, label: '所在地', value: '大分県' },
-  { icon: Calendar, label: '設立', value: '2025年' }
+  { icon: MapPin, label: '所在地', value: '大分県大分市大字旦野原700番地（※2026年4月〜）' },
+  { icon: Calendar, label: '設立', value: '2025年8月5日' }
 ];
 
 const privacySections = [
@@ -458,7 +458,7 @@ const CompanyPage = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <SectionTitle
           title="Company"
-          subtitle="大分大学発ベンチャー。地域社会の課題解決に取り組み、大切なものが後世も残り続ける未来の実現を目指しています。"
+          subtitle="株式会社Nobodyは大分大学発ベンチャーです。地域社会の課題解決に取り組み、大切なものが後世も残り続けることを目指しています。"
           align="center"
         />
 
