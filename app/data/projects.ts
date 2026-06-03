@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     id: '1',
     title: 'TOKUDOKU',
-    description: '「いつもの街に、まだ知らない景色がある」をコンセプトに、大分県内14市4町村すべてのイベント・観光スポット・隠れた名所を網羅した地域情報プラットフォーム。登録不要・完全無料で、マップ上から現在地周辺のイベントを直感的に発見でき、お祭り・マルシェ・ワークショップなど多彩なカテゴリーから週末の予定を見つけられます。',
+    description: '大分県内のイベントを探せる地域情報プラットフォーム。おでかけ先や週末の予定を探すユーザーに向けて、地域のイベント情報やスポット情報をわかりやすく掲載します。',
     imageUrls: [
       'https://res.cloudinary.com/dz9trbwma/image/upload/v1751627047/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2025-07-04_19.59.32_bt4efr.png',
       'https://res.cloudinary.com/dz9trbwma/image/upload/v1751627046/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88_2025-07-04_20.00.56_uvqhce.png',
@@ -21,7 +21,7 @@ export const projects: Project[] = [
   {
     id: '2',
     title: 'NIKENME+',
-    description: '「夜の続きは、ここから」をコンセプトに、大分市内の飲食店（バー・スナック・居酒屋）のリアルタイム空席情報をマップ上に可視化するサービス。電話予約が不要で、自動音声が到着まで席をキープ。飲食店オーナーにはデータドリブン経営を支援する分析機能を提供します。',
+    description: '一次会前後のお店探しを支援するナイトディスカバリープラットフォーム。地図上で加盟店のリアルタイム空席状況を確認でき、雰囲気・メニュー・料金目安を見ながら次のお店を選べます。',
     imageUrls: [],
     projectUrl: 'https://nikenme.jp/landing',
     technologies: ['Next.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS', 'Supabase', 'Google Maps API'],
@@ -30,10 +30,19 @@ export const projects: Project[] = [
   {
     id: '3',
     title: 'ZASEKI-KUN',
-    description: '教育現場における学生の出席管理とレポート提出を効率化するWebシステム。位置情報で教室外からの出席を防止し、同一端末からの連続提出制限で代筆を抑止。公正な学習環境を実現します。',
+    description: '出席管理・招待フォーム・リアルタイムQ&A・ライブ投票をワンストップで扱える学習機会向けプラットフォーム。QRコードと位置情報を活用し、授業・研修・イベントの運営をインタラクティブにします。',
     imageUrls: [],
     projectUrl: 'https://www.zaseki-kun.com/',
     technologies: ['Next.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS', 'Google Maps API'],
     category: '出席・レポート管理'
+  },
+  {
+    id: '4',
+    title: 'YOBIDASHI-KUN',
+    description: 'QR整理券の発券から順番待ち管理・呼出・入場確認までを一元化する順番待ち管理システム。来場者はスマートフォンで待ち状況や目安時間を確認でき、スタッフは管理画面から呼出と来場確認を行えます。',
+    imageUrls: [],
+    projectUrl: 'https://www.seiri-ken.com/',
+    technologies: ['Next.js', 'TypeScript', 'Shadcn UI', 'Tailwind CSS', 'Supabase'],
+    category: 'QR整理券・順番待ち管理'
   },
 ];

@@ -33,6 +33,7 @@ export function Footer() {
                <h4 className="text-sm font-bold uppercase tracking-widest text-black mb-6">Links</h4>
                <ul className="space-y-4">
                  <li><a href="#projects" className="text-gray-500 hover:text-black transition-colors text-base font-light">Projects</a></li>
+                 <li><a href="/news" className="text-gray-500 hover:text-black transition-colors text-base font-light">News</a></li>
                  <li><a href="#mission" className="text-gray-500 hover:text-black transition-colors text-base font-light">Mission</a></li>
                  <li><a href="#privacy" className="text-gray-500 hover:text-black transition-colors text-base font-light">Privacy Policy</a></li>
                </ul>

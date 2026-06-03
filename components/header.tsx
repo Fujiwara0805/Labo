@@ -14,6 +14,7 @@ export function Header() {
 
   const menuItems = [
     { label: 'プロダクト', href: '/#projects', isExternal: false },
+    { label: 'お知らせ', href: '/news', isExternal: false },
     // { label: 'ブログ', href: '/blog', isExternal: false }, // 未実装のため非表示
     { label: '会社概要', href: '/company', isExternal: false },
     { label: 'プライバシーポリシー', href: '/privacy', isExternal: false },

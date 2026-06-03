@@ -13,6 +13,7 @@ import {
   ArrowDown,
   ExternalLink,
   ArrowRight,
+  Bell,
   Calendar,
   Send,
   CheckCircle,
@@ -30,6 +31,7 @@ import {
   Utensils,
   GraduationCap
 } from 'lucide-react';
+import { newsItems } from './data/news';
 
 /* -------------------------------------------------------------------------- */
 /* CONSTANTS & DATA                                                           */
@@ -38,6 +40,7 @@ import {
 const PAGES = {
   HOME: 'home',
   COMPANY: 'company',
+  NEWS: 'news',
   CONTACT: 'contact',
   PRIVACY: 'privacy'
 };
@@ -48,13 +51,13 @@ const projects = [
     title: "TOKUDOKU",
     subtitle: "Regional Event Discovery Platform",
     icon: Map,
-    description: "「いつもの街に、まだ知らない景色がある」をコンセプトに、大分県内14市4町村すべてのイベント・観光スポット・隠れた名所を網羅した地域情報プラットフォーム。登録不要・完全無料で、マップ上から現在地周辺のイベントを直感的に発見でき、お祭り・マルシェ・ワークショップなど多彩なカテゴリーから週末の予定を見つけられます。地域住民のシビックプライドを高め、地域への愛着を育むことを目指しています。",
+    description: "TOKUDOKUは、大分県内のイベント・観光・穴場スポットを探せる地域情報プラットフォームです。おでかけ先や週末の予定を探すユーザーに向けて、地域のイベント情報やスポット情報をわかりやすく掲載。地元の人にも観光客にも、まだ知らない大分との出会いを届けます。",
     features: [
-      "大分県内14市4町村すべてのイベント情報を網羅",
-      "マップ上でイベント開催場所を可視化し直感的に発見",
-      "現在地から周辺のイベントをリアルタイムで表示",
-      "お祭り・マルシェ・ワークショップなど多彩なカテゴリーで検索可能",
-      "登録不要・完全無料で今すぐ利用可能"
+      "大分県内のイベント・観光・穴場スポット情報を掲載",
+      "おでかけ先を探しやすい地域密着型の情報設計",
+      "観光客にも地元住民にも役立つスポット情報を発信",
+      "地域の魅力を可視化し、回遊と来訪機会を創出",
+      "登録不要で閲覧できるオープンな情報プラットフォーム"
     ],
     technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
     url: "https://tokudoku.com",
@@ -65,14 +68,13 @@ const projects = [
     title: "NIKENME+",
     subtitle: "Real-time Vacancy Visualization",
     icon: Utensils,
-    description: "「夜の続きは、ここから」をコンセプトに、大分市内の飲食店（バー・スナック・居酒屋）のリアルタイム空席情報をマップ上に可視化するサービス。電話予約が不要で、自動音声が到着まで席をキープ。お店の雰囲気や価格帯を事前に確認でき、来店後のGoogleレビューやSNSフォローでクーポンも獲得可能。飲食店オーナーにはワンタップでの空席ステータス更新、クーポン作成、顧客分析ダッシュボードなどデータドリブン経営を支援する機能を提供。愛されるお店が「帰る場所」として何十年先も残り続けることを目指しています。",
+    description: "にけんめぷらすは、一次会前後のお店探しを支援するナイトディスカバリープラットフォームです。地図上で加盟店のリアルタイム空席状況を確認でき、雰囲気・メニュー・料金目安を見ながら次のお店を選べます。到着時間や人数を入力すると、自動音声が店舗へ連絡し、スムーズな席のキープにつなげます。",
     features: [
-      "マップ上で飲食店のリアルタイム空席状況を可視化",
-      "自動音声予約で電話不要、到着まで席をキープ",
-      "お店の雰囲気・価格帯を事前にチェック可能",
-      "Googleレビュー・SNSフォローでクーポン獲得",
-      "飲食店オーナー向けデータ分析ダッシュボード搭載",
-      "登録不要・完全無料で今すぐ利用可能"
+      "加盟店のリアルタイム空席状況を地図上で確認",
+      "お店の雰囲気・メニュー・料金目安を事前に把握",
+      "到着時間と人数を入力し、自動音声で席をキープ",
+      "LINE公式アカウントからのクーポン配信に対応",
+      "店舗向けにクーポン消込率や来店者属性の分析機能を提供"
     ],
     technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
     url: "https://nikenme.jp",
@@ -81,18 +83,36 @@ const projects = [
   {
     id: "zaseki",
     title: "ZASEKI-KUN",
-    subtitle: "Attendance & Report Management",
+    subtitle: "Interactive Attendance Platform",
     icon: GraduationCap,
-    description: "ざせきくんは、教育現場における学生の出席管理とレポート提出を効率化するWebシステムです。提出されたレポートはGoogleスプレッドシートで一元管理。位置情報を活用し、指定された教室外からの出席を防止。さらに、提出後一定時間は同一端末からの再提出を制限することで代筆を抑止し、公正な学習環境を実現します。",
+    description: "ざせきくんは、出席管理・招待フォーム・リアルタイムQ&A・ライブ投票をワンストップで扱える学習機会向けプラットフォームです。QRコードと位置情報を活用した出席管理に加え、事前登録から当日受付、質問投稿、投票集計までを管理画面で完結。授業・研修・カンファレンスの運営をインタラクティブにします。",
     features: [
-      "提出されたレポートをGoogleスプレッドシートで一元管理",
-      "位置情報を活用し、指定教室外からの出席を防止",
-      "同一端末からの連続提出を制限し代筆を抑止",
-      "教員の業務負担を大幅に軽減"
+      "QRコードと位置情報で正確な出席管理を実現",
+      "招待フォームで事前登録から当日受付まで一元管理",
+      "リアルタイムQ&Aとライブ投票で双方向性を向上",
+      "回答データをリアルタイムで集計しCSVで出力",
+      "アプリ不要・ログイン不要で参加者がすぐ利用可能"
     ],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Google Maps API"],
     url: "https://zaseki-kun.com",
     image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop"
+  },
+  {
+    id: "yobidashi",
+    title: "YOBIDASHI-KUN",
+    subtitle: "QR Ticket & Queue Calling System",
+    icon: Bell,
+    description: "呼び出しくんは、QR整理券の発券から順番待ち管理・呼出・入場確認までを一元化する順番待ち管理システムです。来場者はQRコードから整理券を発券し、スマートフォンで待ち状況や目安時間を確認できます。スタッフは管理画面から呼出と来場確認を行うだけで、行列や受付の混雑を減らせます。",
+    features: [
+      "QRコードから登録不要で整理券を発券",
+      "待ち組数や目安時間をリアルタイムに表示",
+      "管理画面からワンクリックで呼出・入場確認",
+      "PDFや資料を配信し、待ち時間を有効活用",
+      "飲食店・クリニック・イベント・行政窓口・サロンに対応"
+    ],
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Supabase"],
+    url: "https://www.seiri-ken.com/",
+    image: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?q=80&w=2070&auto=format&fit=crop"
   }
 ];
 
@@ -370,6 +390,60 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         </div>
       </section>
 
+      {/* News Section */}
+      <section id="news" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-10 md:mb-14">
+            <SectionTitle
+              title="News"
+              subtitle="サービスリリースや主要アップデートに関するお知らせ"
+            />
+            <a
+              href="/news"
+              className="inline-flex items-center gap-2 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest text-gray-900 border-b border-gray-900 pb-1 w-fit hover:gap-4 transition-all"
+            >
+              すべてのお知らせを見る <ArrowRight size={14} />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border border-gray-200">
+            {newsItems.slice(0, 3).map((item, index) => (
+              <motion.article
+                key={`${item.date}-${item.title}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col min-h-[260px] hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center justify-between gap-3 mb-5 sm:mb-6">
+                  <time className="text-[10px] sm:text-xs font-bold tracking-[0.2em] text-gray-400">{item.date}</time>
+                  <span className="text-[10px] font-bold tracking-widest text-gray-500 border border-gray-200 px-2 py-1">
+                    {item.category}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-black leading-tight mb-3 sm:mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-light flex-1">
+                  {item.description}
+                </p>
+                {item.href && (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-900 hover:gap-3 transition-all w-fit"
+                  >
+                    関連ページ <ExternalLink size={12} />
+                  </a>
+                )}
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Social Business Philosophy Section */}
       <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:32px_32px]"></div>
@@ -448,7 +522,63 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
   );
 };
 
-// 2. COMPANY PAGE
+// 2. NEWS PAGE
+const NewsPage = () => {
+  return (
+    <motion.section
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="min-h-screen pt-16 sm:pt-20 md:pt-24 lg:pt-32 pb-10 sm:pb-12 md:pb-16 lg:pb-20 bg-white"
+    >
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <SectionTitle
+          title="News"
+          subtitle="株式会社Nobodyのサービスリリース、機能追加、主要アップデートをお知らせします。"
+          align="center"
+        />
+
+        <div className="max-w-4xl mx-auto mt-8 sm:mt-12 md:mt-16 border-y border-gray-100">
+          {newsItems.map((item, index) => (
+            <motion.article
+              key={`${item.date}-${item.title}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="grid grid-cols-1 md:grid-cols-[180px_1fr] gap-4 sm:gap-6 md:gap-10 py-7 sm:py-8 md:py-10 border-b border-gray-100 last:border-b-0"
+            >
+              <div className="space-y-2">
+                <time className="block text-xs font-bold tracking-[0.2em] text-gray-400">{item.date}</time>
+                <span className="inline-block text-[10px] font-bold tracking-widest text-gray-500 border border-gray-200 px-2 py-1">
+                  {item.category}
+                </span>
+              </div>
+              <div>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-medium text-black leading-tight mb-3 sm:mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed font-light">
+                  {item.description}
+                </p>
+                {item.href && (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 sm:mt-6 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-900 border-b border-gray-900 pb-1 hover:gap-3 transition-all"
+                  >
+                    関連ページ <ExternalLink size={13} />
+                  </a>
+                )}
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+};
+
+// 3. COMPANY PAGE
 const CompanyPage = () => {
   return (
     <motion.section
@@ -588,7 +718,7 @@ const CompanyPage = () => {
   );
 };
 
-// 3. CONTACT PAGE
+// 4. CONTACT PAGE
 const ContactPage = () => {
   const [status, setStatus] = useState('idle');
 
@@ -656,7 +786,7 @@ const ContactPage = () => {
   );
 };
 
-// 4. PRIVACY POLICY PAGE
+// 5. PRIVACY POLICY PAGE
 const PrivacyPage = () => {
   return (
     <motion.section
@@ -704,6 +834,7 @@ const Sidebar = ({ currentPage, onNavigate }: { currentPage: string, onNavigate:
   const menuItems = [
     { id: PAGES.HOME, label: 'TOP', icon: Sparkles },
     { id: PAGES.COMPANY, label: 'COMPANY', icon: Building2 },
+    { id: PAGES.NEWS, label: 'NEWS', icon: Calendar },
     { id: PAGES.CONTACT, label: 'CONTACT', icon: Mail },
     { id: PAGES.PRIVACY, label: 'PRIVACY', icon: FileText },
   ];
@@ -815,6 +946,7 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
              <h4 className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Menu</h4>
              <ul className="space-y-2 sm:space-y-3 md:space-y-4">
                <li><button onClick={() => onNavigate(PAGES.COMPANY)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Company</button></li>
+               <li><button onClick={() => onNavigate(PAGES.NEWS)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">News</button></li>
                <li><button onClick={() => onNavigate(PAGES.PRIVACY)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Privacy Policy</button></li>
              </ul>
           </div>
@@ -848,6 +980,7 @@ export default function App() {
           <div key={currentPage}>
             {currentPage === PAGES.HOME && <HomePage navigateTo={setCurrentPage} />}
             {currentPage === PAGES.COMPANY && <CompanyPage />}
+            {currentPage === PAGES.NEWS && <NewsPage />}
             {currentPage === PAGES.CONTACT && <ContactPage />}
             {currentPage === PAGES.PRIVACY && <PrivacyPage />}
           </div>
