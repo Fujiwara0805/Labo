@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 
+const CONTACT_EMAIL = 'sobota@nobody-info.com';
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -21,8 +23,8 @@ export function Footer() {
             <div>
                <h4 className="text-sm font-bold uppercase tracking-widest text-black mb-6">Contact</h4>
                <div className="space-y-4">
-                 <a href="mailto:contact@nobody.co.jp" className="block text-gray-500 hover:text-black transition-colors text-base font-light">
-                   sobota@nobody-info.com
+                 <a href={`mailto:${CONTACT_EMAIL}`} className="block text-gray-500 hover:text-black transition-colors text-base font-light">
+                   {CONTACT_EMAIL}
                  </a>
                  <p className="text-gray-500 text-base font-light">
                    Oita, Japan

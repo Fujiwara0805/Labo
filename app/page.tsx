@@ -10,12 +10,10 @@ import {
   Mail,
   Menu,
   X,
-  ArrowDown,
   ExternalLink,
   ArrowRight,
   Bell,
   Calendar,
-  Send,
   CheckCircle,
   FileText,
   Globe,
@@ -44,6 +42,8 @@ const PAGES = {
   CONTACT: 'contact',
   PRIVACY: 'privacy'
 };
+
+const CONTACT_EMAIL = 'sobota@nobody-info.com';
 
 const projects = [
   {
@@ -165,52 +165,6 @@ const SectionTitle = ({ title, subtitle, align = "left" }: { title: React.ReactN
       </p>
     )}
   </motion.div>
-);
-
-const LuxuryInput = ({ label, type = "text", ...props }: { label: string, type?: string, [key: string]: any }) => (
-  <div className="group">
-    <label className="block text-xs sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
-      {label}
-    </label>
-    <input
-      type={type}
-      className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-base sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors placeholder-gray-300"
-      {...props}
-    />
-  </div>
-);
-
-const LuxurySelect = ({ label, options, ...props }: { label: string, options: string[], [key: string]: any }) => (
-  <div className="group">
-    <label className="block text-xs sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
-      {label}
-    </label>
-    <div className="relative">
-      <select
-        className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-base sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors appearance-none cursor-pointer"
-        {...props}
-      >
-        <option value="" disabled>選択してください</option>
-        {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-      </select>
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
-        <ArrowDown size={14} className="sm:w-4 sm:h-4" />
-      </div>
-    </div>
-  </div>
-);
-
-const LuxuryTextarea = ({ label, rows = 4, ...props }: { label: string, rows?: number, [key: string]: any }) => (
-  <div className="group">
-    <label className="block text-xs sm:text-xs font-bold uppercase tracking-widest text-gray-400 mb-1.5 sm:mb-2 group-focus-within:text-black transition-colors">
-      {label}
-    </label>
-    <textarea
-      rows={rows}
-      className="w-full bg-transparent border-b border-gray-200 py-2 sm:py-2.5 md:py-3 text-base sm:text-base md:text-lg font-light focus:outline-none focus:border-black transition-colors placeholder-gray-300 resize-none"
-      {...props}
-    />
-  </div>
 );
 
 /* -------------------------------------------------------------------------- */
@@ -720,16 +674,6 @@ const CompanyPage = () => {
 
 // 4. CONTACT PAGE
 const ContactPage = () => {
-  const [status, setStatus] = useState('idle');
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('submitting');
-    setTimeout(() => {
-      setStatus('success');
-    }, 1500);
-  };
-
   return (
     <motion.section
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -738,48 +682,37 @@ const ContactPage = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <SectionTitle
           title="Contact"
-          subtitle="地域課題の解決に向けたアプリ開発・AI活用のご相談についてお気軽にお問い合わせください。"
+          subtitle="地域課題の解決に向けたアプリ開発・AI活用のご相談は、メールにてお問い合わせください。"
           align="center"
         />
 
         <div className="max-w-2xl mx-auto mt-6 sm:mt-8 md:mt-12 px-2 sm:px-4 md:px-0">
-          {status === 'success' ? (
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="bg-gray-50 border border-gray-100 p-6 sm:p-8 md:p-12 text-center">
-              <CheckCircle className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-black mx-auto mb-3 sm:mb-4 md:mb-6" strokeWidth={1} />
-              <h3 className="text-xl sm:text-xl md:text-2xl font-serif mb-2 sm:mb-3 md:mb-4">Message Sent</h3>
-              <p className="text-sm sm:text-sm md:text-base text-gray-500 font-light mb-4 sm:mb-6 md:mb-8">お問い合わせを受け付けました。担当者よりご連絡いたします。</p>
-              <button onClick={() => setStatus('idle')} className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest border-b border-black pb-0.5 sm:pb-1 hover:opacity-50 transition-opacity">
-                Send Another Message
-              </button>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 md:space-y-12">
-              <LuxuryInput label="お名前" placeholder="山田 太郎" required />
-              <LuxuryInput label="所属（企業名・自治体名など）" placeholder="大分県庁 / 株式会社○○" />
-              <LuxuryInput label="メールアドレス" type="email" placeholder="example@nobody.co.jp" required />
-              <LuxurySelect
-                label="お問い合わせ種別"
-                options={[
-                  "アプリケーション開発のご相談",
-                  "AI活用のご相談",
-                  "既存プロダクトに関するお問い合わせ",
-                  "その他"
-                ]}
-                required
-              />
-              <LuxuryTextarea label="お問い合わせ内容" placeholder="ご相談内容をご記入ください..." required />
-
-              <div className="pt-3 sm:pt-4 md:pt-8 text-center">
-                <button
-                  type="submit"
-                  disabled={status === 'submitting'}
-                  className="bg-black text-white px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
-                >
-                  {status === 'submitting' ? 'Sending...' : 'Send Message'}
-                </button>
-              </div>
-            </form>
-          )}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="bg-gray-50 border border-gray-100 p-6 sm:p-8 md:p-12 text-center"
+          >
+            <Mail className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-black mx-auto mb-3 sm:mb-4 md:mb-6" strokeWidth={1} />
+            <h3 className="text-xl sm:text-xl md:text-2xl font-serif mb-2 sm:mb-3 md:mb-4">Email Us</h3>
+            <p className="text-sm sm:text-sm md:text-base text-gray-500 font-light leading-relaxed mb-5 sm:mb-6 md:mb-8">
+              お名前・ご所属・ご相談内容をメール本文にご記載のうえ、下記メールアドレスまでご連絡ください。担当者より返信いたします。
+            </p>
+            <div className="flex flex-col items-center gap-4 sm:gap-5">
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="text-base sm:text-lg md:text-xl font-light text-black break-all border-b border-black pb-1 hover:opacity-60 transition-opacity"
+              >
+                {CONTACT_EMAIL}
+              </a>
+              <a
+                href={`mailto:${CONTACT_EMAIL}`}
+                className="bg-black text-white px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+              >
+                メールで問い合わせる <Mail size={14} />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>
@@ -939,7 +872,7 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
         <div className="grid grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           <div>
              <h4 className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Contact</h4>
-             <a href="#" onClick={(e) => { e.preventDefault(); onNavigate(PAGES.CONTACT); }} className="block text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light break-all mb-1 sm:mb-2">sobota@nobody-info.com</a>
+             <a href={`mailto:${CONTACT_EMAIL}`} className="block text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light break-all mb-1 sm:mb-2">{CONTACT_EMAIL}</a>
              <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light">Oita, Japan</p>
           </div>
           <div>
