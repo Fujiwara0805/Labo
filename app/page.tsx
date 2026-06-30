@@ -12,7 +12,7 @@ import {
   X,
   ExternalLink,
   ArrowRight,
-  Bell,
+  Ticket,
   Calendar,
   CheckCircle,
   FileText,
@@ -47,15 +47,15 @@ const CONTACT_EMAIL = 'sobota@nobody-info.com';
 
 const projects = [
   {
-    id: "tokudoku",
-    title: "TOKUDOKU",
-    subtitle: "Regional Event Discovery Platform",
+    id: "tale",
+    title: "TALE",
+    subtitle: "Local Event Discovery Platform",
     icon: Map,
-    description: "TOKUDOKUは、大分県内のイベント・観光・穴場スポットを探せる地域情報プラットフォームです。おでかけ先や週末の予定を探すユーザーに向けて、地域のイベント情報やスポット情報をわかりやすく掲載。地元の人にも観光客にも、まだ知らない大分との出会いを届けます。",
+    description: "TALEは、各地域のイベント・お祭り・マルシェ情報を探せる地域情報プラットフォームです。おでかけ先や週末の予定を探すユーザーに向けて、地域のイベント情報をわかりやすく掲載。主催者は自分のイベントを手軽に発信でき、地元の人にも訪れる人にも、まだ知らない地域との出会いを届けます。",
     features: [
-      "大分県内のイベント・観光・穴場スポット情報を掲載",
+      "各地域のイベント・お祭り・マルシェ情報を一覧と地図で探せる",
       "おでかけ先を探しやすい地域密着型の情報設計",
-      "観光客にも地元住民にも役立つスポット情報を発信",
+      "主催者が自分のイベントを簡単に掲載・発信できる",
       "地域の魅力を可視化し、回遊と来訪機会を創出",
       "登録不要で閲覧できるオープンな情報プラットフォーム"
     ],
@@ -66,49 +66,49 @@ const projects = [
   {
     id: "nikenme",
     title: "NIKENME+",
-    subtitle: "Real-time Vacancy Visualization",
+    subtitle: "Local Dining Map",
     icon: Utensils,
-    description: "にけんめぷらすは、一次会前後のお店探しを支援するナイトディスカバリープラットフォームです。地図上で加盟店のリアルタイム空席状況を確認でき、雰囲気・メニュー・料金目安を見ながら次のお店を選べます。到着時間や人数を入力すると、自動音声が店舗へ連絡し、スムーズな席のキープにつなげます。",
+    description: "にけんめぷらす（NIKENME+）は、「今いける」飲食店を見つけ、街の店舗回遊を空席通知でサポートするローカルダイニングマップです。地図上で加盟店のリアルタイム空席状況を確認でき、雰囲気・メニュー・料金目安を見ながら次の一軒を選べます。あなたの街の、次の一軒へ。",
     features: [
-      "加盟店のリアルタイム空席状況を地図上で確認",
-      "お店の雰囲気・メニュー・料金目安を事前に把握",
-      "到着時間と人数を入力し、自動音声で席をキープ",
-      "LINE公式アカウントからのクーポン配信に対応",
-      "店舗向けにクーポン消込率や来店者属性の分析機能を提供"
+      "「空席有／満席」がひと目でわかるリアルタイム空席情報",
+      "現在地周辺のお店を地図表示し、近い順で次の店舗を選択",
+      "気になるお店に空席が出たらLINEでお知らせする空席通知",
+      "電話予約を自動音声で対応する予約サポート",
+      "QRコード形式のデジタル会員証でスムーズにチェックイン"
     ],
     technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
-    url: "https://nikenme.jp",
+    url: "https://nikenme.jp/landing",
     image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop"
   },
   {
     id: "zaseki",
     title: "ZASEKI-KUN",
-    subtitle: "Interactive Attendance Platform",
+    subtitle: "Interactive Participation Platform",
     icon: GraduationCap,
-    description: "ざせきくんは、出席管理・招待フォーム・リアルタイムQ&A・ライブ投票をワンストップで扱える学習機会向けプラットフォームです。QRコードと位置情報を活用した出席管理に加え、事前登録から当日受付、質問投稿、投票集計までを管理画面で完結。授業・研修・カンファレンスの運営をインタラクティブにします。",
+    description: "ざせきくんは、リアルタイムQ&A・ライブ投票・出席管理・招待フォームをワンストップで扱える参加管理プラットフォームです。出席・受付・その場の反応・実施後の記録を、QRコードひとつでつなぎます。授業・研修・カンファレンスの運営をインタラクティブにし、その場にいる全員を主役にします。",
     features: [
-      "QRコードと位置情報で正確な出席管理を実現",
-      "招待フォームで事前登録から当日受付まで一元管理",
-      "リアルタイムQ&Aとライブ投票で双方向性を向上",
-      "回答データをリアルタイムで集計しCSVで出力",
-      "アプリ不要・ログイン不要で参加者がすぐ利用可能"
+      "リアルタイムQ&A・ライブ投票・クイズで参加者全員の声を集計",
+      "GPS連携の位置情報で代理出席を抑止する出席管理",
+      "ログイン不要・QRコードでワンタップ参加登録",
+      "事前登録から当日受付まで一気通貫の招待フォーム",
+      "回答をリアルタイム集計・CSV出力し、1,000人規模でも安定稼働"
     ],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Google Maps API"],
     url: "https://zaseki-kun.com",
     image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop"
   },
   {
-    id: "yobidashi",
-    title: "YOBIDASHI-KUN",
-    subtitle: "QR Ticket & Queue Calling System",
-    icon: Bell,
-    description: "呼び出しくんは、QR整理券の発券から順番待ち管理・呼出・入場確認までを一元化する順番待ち管理システムです。来場者はQRコードから整理券を発券し、スマートフォンで待ち状況や目安時間を確認できます。スタッフは管理画面から呼出と来場確認を行うだけで、行列や受付の混雑を減らせます。",
+    id: "banken",
+    title: "BANKEN",
+    subtitle: "Ticketing, Lottery & Entry Management",
+    icon: Ticket,
+    description: "ばんけんは、イベントの「整理券発券・当落抽選・入場管理」をひとつにしたクラウドサービスです。現地でのその場発券、時間指定のWeb予約、公平な当落抽選、QRでの入場確認までを一元化。来場者は登録不要で利用でき、発券・予約・抽選・入場をひとつにまとめます。",
     features: [
-      "QRコードから登録不要で整理券を発券",
-      "待ち組数や目安時間をリアルタイムに表示",
-      "管理画面からワンクリックで呼出・入場確認",
-      "PDFや資料を配信し、待ち時間を有効活用",
-      "飲食店・クリニック・イベント・行政窓口・サロンに対応"
+      "当日その場でQR整理券を発券する現地発券に対応",
+      "ルーム一覧から日時を選べる時間指定Web予約",
+      "決定的アルゴリズムと監査ログで証明する公平な当落抽選",
+      "QRスキャンでスムーズな入場確認・来場者管理",
+      "展示会・物販即売・催事・抽選販売など繰り返しイベントに対応"
     ],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Supabase"],
     url: "https://www.seiri-ken.com/",
@@ -116,11 +116,20 @@ const projects = [
   }
 ];
 
+const exhibition = {
+  name: 'NEXT BUSINESS EXPO SUMMER 2026',
+  theme: '次世代ビジネスの基盤を再定義する、AI・DX実装の最前線',
+  date: '2026年7月16日（木）・17日（金） 10:00〜18:00',
+  venue: '東京都立産業貿易センター 浜松町館 2・3F南',
+  address: '東京都港区海岸1-7-1',
+  url: 'https://www.next-business-expo.jp/'
+};
+
 const companyDetails = [
   { icon: Building2, label: '会社名', value: '株式会社Nobody' },
   { icon: GraduationCap, label: '種別', value: '大分大学発ベンチャー' },
   { icon: Briefcase, label: '事業内容', value: 'アプリケーション開発・AI実装支援' },
-  { icon: MapPin, label: '所在地', value: '大分県大分市大字旦野原700番地（※2026年4月〜）' },
+  { icon: MapPin, label: '所在地', value: '大分県大分市大字旦野原700番地' },
   { icon: Calendar, label: '設立', value: '2025年8月5日' }
 ];
 
@@ -243,6 +252,54 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
             </motion.div>
           </div>
         </motion.div>
+      </section>
+
+      {/* Exhibition Announcement Banner */}
+      <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <motion.a
+            href={exhibition.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="group block border-2 border-black bg-white hover:bg-black transition-colors duration-300"
+          >
+            <div className="flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-8 p-6 sm:p-8 md:p-10 lg:p-12">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 group-hover:text-gray-300 transition-colors" strokeWidth={1.5} />
+                  <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 group-hover:text-gray-300 transition-colors">
+                    Exhibition — 出展のお知らせ
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-black group-hover:text-white leading-tight tracking-tight mb-3 sm:mb-4 transition-colors">
+                  {exhibition.name} に出展します
+                </h2>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 group-hover:text-gray-300 font-light leading-relaxed mb-4 sm:mb-5 transition-colors">
+                  「{exhibition.theme}」をテーマに開催される国内最大級のAI・DX実装展示会に出展。地域課題の解決に取り組む私たちのアプリ・AI実装プロダクトをご紹介します。
+                </p>
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 group-hover:text-gray-300 font-light transition-colors">
+                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" strokeWidth={1.5} />
+                    <span>{exhibition.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 group-hover:text-gray-300 font-light transition-colors">
+                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" strokeWidth={1.5} />
+                    <span>{exhibition.venue}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="shrink-0">
+                <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-black group-hover:text-white border-b border-black group-hover:border-white pb-1 transition-all">
+                  詳細を見る <ExternalLink size={14} />
+                </span>
+              </div>
+            </div>
+          </motion.a>
+        </div>
       </section>
 
       {/* Vision Statement Band */}
