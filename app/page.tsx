@@ -27,7 +27,11 @@ import {
   TrendingUp,
   Map,
   Utensils,
-  GraduationCap
+  GraduationCap,
+  Cpu,
+  Bot,
+  Code2,
+  Workflow
 } from 'lucide-react';
 import { newsItems } from './data/news';
 
@@ -128,7 +132,7 @@ const exhibition = {
 const companyDetails = [
   { icon: Building2, label: '会社名', value: '株式会社Nobody' },
   { icon: GraduationCap, label: '種別', value: '大分大学発ベンチャー' },
-  { icon: Briefcase, label: '事業内容', value: 'アプリケーション開発・AI実装支援' },
+  { icon: Briefcase, label: '事業内容', value: 'アプリケーション開発・AI実装支援・AI受託開発（生成AI／DX）' },
   { icon: MapPin, label: '所在地', value: '大分県大分市大字旦野原700番地' },
   { icon: Calendar, label: '設立', value: '2025年8月5日' }
 ];
@@ -501,6 +505,77 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         </div>
       </section>
 
+      {/* AI-Native Development Section */}
+      <section id="ai-development" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:16px_16px] md:bg-[size:32px_32px]"></div>
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-10 sm:mb-12 md:mb-16"
+            >
+              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" strokeWidth={1.5} />
+                <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-400">
+                  AI-Native Development — 開発パートナーとして
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium text-black leading-tight tracking-tight mb-4 sm:mb-6 px-2 sm:px-4">
+                <span className="text-gray-400 italic">AI-Native</span> な<br className="sm:hidden" />開発チームとして。
+              </h2>
+              <p className="text-xs sm:text-sm md:text-base text-gray-600 font-light leading-relaxed max-w-2xl mx-auto px-2 sm:px-4">
+                私たちは、自社プロダクトを生成AIとともに設計・開発してきたAIネイティブな企業です。<br className="hidden md:block" />
+                その知見を活かし、大分県内をはじめとする企業・自治体・教育機関の皆さまへ、
+                生成AIの活用・業務のDX化・アプリケーション開発の<span className="font-medium text-black">受託開発</span>をお引き受けしています。
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-gray-100 border border-gray-100">
+              {[
+                { icon: Bot, title: "生成AI・AIエージェント開発", desc: "チャットボット、社内ナレッジ検索、業務アシスタントなど、生成AIを組み込んだプロダクトを企画から実装まで一貫して開発します。" },
+                { icon: Workflow, title: "業務DX・自動化", desc: "手作業やアナログな業務フローをAIとソフトウェアで自動化し、地域の現場の生産性向上と省人化を支援します。" },
+                { icon: Code2, title: "Web・アプリの受託開発", desc: "自社サービスで培ったモダンな技術スタックで、Webサイト・業務システム・モバイルアプリを開発します。" }
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.12 }}
+                  className="bg-white p-5 sm:p-6 md:p-8 lg:p-10 text-center hover:bg-gray-50 transition-colors group"
+                >
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 md:mb-5 text-gray-300 group-hover:text-black transition-colors" strokeWidth={1.2} />
+                  <h3 className="text-sm sm:text-base md:text-lg font-serif font-medium mb-2 sm:mb-3 text-black">{item.title}</h3>
+                  <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mt-8 sm:mt-10 md:mt-14 text-center"
+            >
+              <p className="text-xs sm:text-sm md:text-base text-gray-600 font-light leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-8">
+                「AIで何かできないか」という構想段階からのご相談も歓迎します。<br className="hidden md:block" />
+                大分発のAIネイティブ企業として、アイデアの壁打ちから開発・運用まで伴走します。
+              </p>
+              <button
+                onClick={() => navigateTo(PAGES.CONTACT)}
+                className="bg-black text-white px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center gap-2"
+              >
+                AI開発を相談する <ArrowRight size={14} />
+              </button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Trust / CTA Section */}
       <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-gray-50 border-y border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
@@ -685,6 +760,29 @@ const CompanyPage = () => {
               社会課題をビジネスで解決していきます。
               アプリケーション開発とAI実装によって人と情報の流れを活性化し、
               持続可能で魅力あふれる地域社会の実現に貢献することを使命としています。
+            </p>
+          </motion.div>
+
+          {/* AI-Native */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-10 sm:mt-14 md:mt-20 lg:mt-28"
+          >
+            <div className="text-center mb-6 sm:mb-8 md:mb-10">
+              <Cpu className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 text-gray-300" strokeWidth={1} />
+              <p className="text-[10px] sm:text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 sm:mb-3">AI-Native</p>
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-black tracking-tight">
+                AIネイティブな開発体制
+              </h3>
+            </div>
+            <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-center px-2 sm:px-4 md:px-0">
+              私たちは、自社プロダクトの設計から実装・運用までを生成AIとともに進めるAIネイティブな企業です。
+              この開発スタイルで培った知見をもとに、大分県内の企業・自治体・教育機関の皆さまへ、
+              生成AIの活用・業務のDX化・アプリケーション開発の受託開発もお引き受けしています。
+              AIを活用したプロダクト開発のパートナーをお探しの際は、お気軽にご相談ください。
             </p>
           </motion.div>
 
