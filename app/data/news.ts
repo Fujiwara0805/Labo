@@ -8,6 +8,13 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026.07.17',
+    category: '出展報告',
+    title: '「NEXT BUSINESS EXPO SUMMER 2026」に出展しました',
+    description: '2026年7月16日（木）・17日（金）の2日間、東京都立産業貿易センター 浜松町館にて開催された「NEXT BUSINESS EXPO SUMMER 2026」に、株式会社Nobodyがブース出展いたしました。ご来場いただいた皆さま、ブースにお立ち寄りいただいた皆さま、そしてお問い合わせいただいた皆さまに、心より御礼申し上げます。業務改善・DXをテーマに、多くの方々と直接お話しできる貴重な機会となりました。皆さまからいただいたご意見・ご要望を今後のサービス向上に活かしてまいります。ご不明な点やご相談がございましたら、どうぞお気軽にご連絡ください。',
+    href: 'https://www.next-business-expo.jp/'
+  },
+  {
     date: '2026.06.30',
     category: '出展',
     title: '「NEXT BUSINESS EXPO SUMMER 2026」に出展します',

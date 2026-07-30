@@ -126,7 +126,8 @@ const exhibition = {
   date: '2026年7月16日（木）・17日（金） 10:00〜18:00',
   venue: '東京都立産業貿易センター 浜松町館 2・3F南',
   address: '東京都港区海岸1-7-1',
-  url: 'https://www.next-business-expo.jp/'
+  url: 'https://www.next-business-expo.jp/',
+  status: '開催終了'
 };
 
 const companyDetails = [
@@ -276,14 +277,17 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                   <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 group-hover:text-gray-300 transition-colors" strokeWidth={1.5} />
                   <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 group-hover:text-gray-300 transition-colors">
-                    Exhibition — 出展のお知らせ
+                    Exhibition Report — 出展報告
+                  </span>
+                  <span className="text-[10px] sm:text-xs font-bold tracking-widest text-gray-500 group-hover:text-gray-300 border border-gray-200 group-hover:border-gray-600 px-2 py-0.5 transition-colors">
+                    {exhibition.status}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-black group-hover:text-white leading-tight tracking-tight mb-3 sm:mb-4 transition-colors">
-                  {exhibition.name} に出展します
+                  {exhibition.name} に出展しました
                 </h2>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 group-hover:text-gray-300 font-light leading-relaxed mb-4 sm:mb-5 transition-colors">
-                  「{exhibition.theme}」をテーマに開催される国内最大級のAI・DX実装展示会に出展。地域課題の解決に取り組む私たちのアプリ・AI実装プロダクトをご紹介します。
+                  「{exhibition.theme}」をテーマに開催された展示会に、株式会社Nobodyがブース出展いたしました。ご来場いただいた皆さま、ブースにお立ち寄りいただいた皆さまに心より御礼申し上げます。業務改善・DXをテーマにいただいたご意見・ご要望を、今後のサービス向上に活かしてまいります。ご不明な点やご相談がございましたら、どうぞお気軽にご連絡ください。
                 </p>
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
                   <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 group-hover:text-gray-300 font-light transition-colors">
