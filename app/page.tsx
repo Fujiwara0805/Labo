@@ -10,6 +10,7 @@ import {
   Mail,
   Menu,
   X,
+  Megaphone,
   ExternalLink,
   ArrowRight,
   Ticket,
@@ -120,15 +121,8 @@ const projects = [
   }
 ];
 
-const exhibition = {
-  name: 'NEXT BUSINESS EXPO SUMMER 2026',
-  theme: '次世代ビジネスの基盤を再定義する、AI・DX実装の最前線',
-  date: '2026年7月16日（木）・17日（金） 10:00〜18:00',
-  venue: '東京都立産業貿易センター 浜松町館 2・3F南',
-  address: '東京都港区海岸1-7-1',
-  url: 'https://www.next-business-expo.jp/',
-  status: '開催終了'
-};
+// トップの告知枠は常に最新のお知らせ（newsItems の先頭）を表示する
+const latestNews = newsItems[0];
 
 const companyDetails = [
   { icon: Building2, label: '会社名', value: '株式会社Nobody' },
@@ -259,13 +253,12 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         </motion.div>
       </section>
 
-      {/* Exhibition Announcement Banner */}
+      {/* Latest News Banner */}
       <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.a
-            href={exhibition.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={latestNews.href ?? '/news'}
+            {...(latestNews.href ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -275,34 +268,28 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
             <div className="flex flex-col lg:flex-row lg:items-center gap-6 sm:gap-8 p-6 sm:p-8 md:p-10 lg:p-12">
               <div className="flex-1">
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <Ticket className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 group-hover:text-gray-300 transition-colors" strokeWidth={1.5} />
+                  <Megaphone className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 group-hover:text-gray-300 transition-colors" strokeWidth={1.5} />
                   <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 group-hover:text-gray-300 transition-colors">
-                    Exhibition Report — 出展報告
+                    Latest News — 最新のお知らせ
                   </span>
                   <span className="text-[10px] sm:text-xs font-bold tracking-widest text-gray-500 group-hover:text-gray-300 border border-gray-200 group-hover:border-gray-600 px-2 py-0.5 transition-colors">
-                    {exhibition.status}
+                    {latestNews.category}
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-black group-hover:text-white leading-tight tracking-tight mb-3 sm:mb-4 transition-colors">
-                  {exhibition.name} に出展しました
+                  {latestNews.title}
                 </h2>
                 <p className="text-xs sm:text-sm md:text-base text-gray-600 group-hover:text-gray-300 font-light leading-relaxed mb-4 sm:mb-5 transition-colors">
-                  「{exhibition.theme}」をテーマに開催された展示会に、株式会社Nobodyがブース出展いたしました。ご来場いただいた皆さま、ブースにお立ち寄りいただいた皆さまに心より御礼申し上げます。業務改善・DXをテーマにいただいたご意見・ご要望を、今後のサービス向上に活かしてまいります。ご不明な点やご相談がございましたら、どうぞお気軽にご連絡ください。
+                  {latestNews.description}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-6">
-                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 group-hover:text-gray-300 font-light transition-colors">
-                    <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" strokeWidth={1.5} />
-                    <span>{exhibition.date}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 group-hover:text-gray-300 font-light transition-colors">
-                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" strokeWidth={1.5} />
-                    <span>{exhibition.venue}</span>
-                  </div>
+                <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 group-hover:text-gray-300 font-light transition-colors">
+                  <Calendar className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" strokeWidth={1.5} />
+                  <span>{latestNews.date}</span>
                 </div>
               </div>
               <div className="shrink-0">
                 <span className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-black group-hover:text-white border-b border-black group-hover:border-white pb-1 transition-all">
-                  詳細を見る <ExternalLink size={14} />
+                  詳細を見る {latestNews.href ? <ExternalLink size={14} /> : <ArrowRight size={14} />}
                 </span>
               </div>
             </div>
