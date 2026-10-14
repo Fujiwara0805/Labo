@@ -52,38 +52,21 @@ const CONTACT_EMAIL = 'sobota@nobody-info.com';
 
 const projects = [
   {
-    id: "tale",
-    title: "TALE",
-    subtitle: "Local Event Discovery Platform",
-    icon: Map,
-    description: "TALEは、各地域のイベント・お祭り・マルシェ情報を探せる地域情報プラットフォームです。おでかけ先や週末の予定を探すユーザーに向けて、地域のイベント情報をわかりやすく掲載。主催者は自分のイベントを手軽に発信でき、地元の人にも訪れる人にも、まだ知らない地域との出会いを届けます。",
+    id: "banken",
+    title: "BANKEN",
+    subtitle: "Ticketing, Lottery & Entry Management",
+    icon: Ticket,
+    description: "ばんけんは、イベントの「整理券発券・当落抽選・入場管理」をひとつにしたクラウドサービスです。現地でのその場発券、時間指定のWeb予約、公平な当落抽選、QRでの入場確認までを一元化。来場者は登録不要で利用でき、発券・予約・抽選・入場をひとつにまとめます。",
     features: [
-      "各地域のイベント・お祭り・マルシェ情報を一覧と地図で探せる",
-      "おでかけ先を探しやすい地域密着型の情報設計",
-      "主催者が自分のイベントを簡単に掲載・発信できる",
-      "地域の魅力を可視化し、回遊と来訪機会を創出",
-      "登録不要で閲覧できるオープンな情報プラットフォーム"
+      "当日その場でQR整理券を発券する現地発券に対応",
+      "ルーム一覧から日時を選べる時間指定Web予約",
+      "決定的アルゴリズムと監査ログで証明する公平な当落抽選",
+      "QRスキャンでスムーズな入場確認・来場者管理",
+      "展示会・物販即売・催事・抽選販売など繰り返しイベントに対応"
     ],
-    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
-    url: "https://tokudoku.com",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    id: "nikenme",
-    title: "NIKENME+",
-    subtitle: "Local Dining Map",
-    icon: Utensils,
-    description: "にけんめぷらす（NIKENME+）は、「今いける」飲食店を見つけ、街の店舗回遊を空席通知でサポートするローカルダイニングマップです。地図上で加盟店のリアルタイム空席状況を確認でき、雰囲気・メニュー・料金目安を見ながら次の一軒を選べます。あなたの街の、次の一軒へ。",
-    features: [
-      "「空席有／満席」がひと目でわかるリアルタイム空席情報",
-      "現在地周辺のお店を地図表示し、近い順で次の店舗を選択",
-      "気になるお店に空席が出たらLINEでお知らせする空席通知",
-      "電話予約を自動音声で対応する予約サポート",
-      "QRコード形式のデジタル会員証でスムーズにチェックイン"
-    ],
-    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
-    url: "https://nikenme.jp/landing",
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop"
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Supabase"],
+    url: "https://www.seiri-ken.com/",
+    image: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?q=80&w=2070&auto=format&fit=crop"
   },
   {
     id: "zaseki",
@@ -103,21 +86,38 @@ const projects = [
     image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop"
   },
   {
-    id: "banken",
-    title: "BANKEN",
-    subtitle: "Ticketing, Lottery & Entry Management",
-    icon: Ticket,
-    description: "ばんけんは、イベントの「整理券発券・当落抽選・入場管理」をひとつにしたクラウドサービスです。現地でのその場発券、時間指定のWeb予約、公平な当落抽選、QRでの入場確認までを一元化。来場者は登録不要で利用でき、発券・予約・抽選・入場をひとつにまとめます。",
+    id: "nikenme",
+    title: "NIKENME+",
+    subtitle: "Local Dining Map",
+    icon: Utensils,
+    description: "にけんめぷらす（NIKENME+）は、「今いける」飲食店を見つけ、街の店舗回遊を空席通知でサポートするローカルダイニングマップです。地図上で加盟店のリアルタイム空席状況を確認でき、雰囲気・メニュー・料金目安を見ながら次の一軒を選べます。あなたの街の、次の一軒へ。",
     features: [
-      "当日その場でQR整理券を発券する現地発券に対応",
-      "ルーム一覧から日時を選べる時間指定Web予約",
-      "決定的アルゴリズムと監査ログで証明する公平な当落抽選",
-      "QRスキャンでスムーズな入場確認・来場者管理",
-      "展示会・物販即売・催事・抽選販売など繰り返しイベントに対応"
+      "「空席有／満席」がひと目でわかるリアルタイム空席情報",
+      "現在地周辺のお店を地図表示し、近い順で次の店舗を選択",
+      "気になるお店に空席が出たらLINEでお知らせする空席通知",
+      "電話予約を自動音声で対応する予約サポート",
+      "QRコード形式のデジタル会員証でスムーズにチェックイン"
     ],
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Supabase"],
-    url: "https://www.seiri-ken.com/",
-    image: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?q=80&w=2070&auto=format&fit=crop"
+    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
+    url: "https://nikenme.jp/landing",
+    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop"
+  },
+  {
+    id: "tale",
+    title: "TALE",
+    subtitle: "Local Event Discovery Platform",
+    icon: Map,
+    description: "TALEは、各地域のイベント・お祭り・マルシェ情報を探せる地域情報プラットフォームです。おでかけ先や週末の予定を探すユーザーに向けて、地域のイベント情報をわかりやすく掲載。主催者は自分のイベントを手軽に発信でき、地元の人にも訪れる人にも、まだ知らない地域との出会いを届けます。",
+    features: [
+      "各地域のイベント・お祭り・マルシェ情報を一覧と地図で探せる",
+      "おでかけ先を探しやすい地域密着型の情報設計",
+      "主催者が自分のイベントを簡単に掲載・発信できる",
+      "地域の魅力を可視化し、回遊と来訪機会を創出",
+      "登録不要で閲覧できるオープンな情報プラットフォーム"
+    ],
+    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel", "Google Maps API"],
+    url: "https://tokudoku.com",
+    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=2070&auto=format&fit=crop"
   }
 ];
 
