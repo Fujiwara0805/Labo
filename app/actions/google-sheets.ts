@@ -57,25 +57,29 @@ export async function submitToGoogleSheets(input: InquiryInput) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    const existingData = await sheets.spreadsheets.values.get({ spreadsheetId, range: 'A1:H1' });
+    const HEADERS = ['送信日時', '名前', 'メールアドレス', '件名', 'メッセージ', '会社・団体名', '電話番号', '希望時期'];
+    const headerRow = (await sheets.spreadsheets.values.get({ spreadsheetId, range: 'A1:H1' })).data.values?.[0] ?? [];
 
-    // 新規シートのときだけヘッダーを書き込む（A〜Eは旧フォームと同じ並び）
-    if (!existingData.data.values || existingData.data.values.length === 0) {
+    // ヘッダーが無い・列が足りないときに書き込む（A〜Eは旧フォームと同じ並び）
+    if (HEADERS.some((h, i) => headerRow[i] !== h)) {
       await sheets.spreadsheets.values.update({
         spreadsheetId,
         range: 'A1:H1',
-        valueInputOption: 'USER_ENTERED',
-        requestBody: {
-          values: [['送信日時', '名前', 'メールアドレス', '件名', 'メッセージ', '会社・団体名', '電話番号', '希望時期']],
-        },
+        valueInputOption: 'RAW',
+        requestBody: { values: [HEADERS] },
       });
     }
 
+    // append は空欄を境に表範囲を誤判定し、右の列へずれて書き込むことがあるため、
+    // 全列を見て最終行を求め、その次の行のA列から明示的に書き込む
+    const used = await sheets.spreadsheets.values.get({ spreadsheetId, range: 'A:Z' });
+    const nextRow = (used.data.values?.length ?? 1) + 1;
+
     const timestamp = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
 
-    await sheets.spreadsheets.values.append({
+    await sheets.spreadsheets.values.update({
       spreadsheetId,
-      range: 'A:H',
+      range: `A${nextRow}:H${nextRow}`,
       // RAW: 先頭が "=" の入力が数式として評価されないようにする
       valueInputOption: 'RAW',
       requestBody: {

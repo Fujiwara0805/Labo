@@ -1006,7 +1006,7 @@ const CompanyPage = () => {
 };
 
 // 4. CONTACT PAGE
-const inputClass = "w-full border border-gray-300 bg-white px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-light text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors rounded-none";
+const inputClass = "w-full border border-gray-300 bg-white px-3 sm:px-4 py-2.5 sm:py-3 text-base font-light text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors rounded-none";
 const labelClass = "block text-xs sm:text-sm font-medium text-gray-900 mb-1.5 sm:mb-2";
 
 const RequiredMark = () => <span className="ml-1.5 text-[10px] font-bold text-white bg-black px-1.5 py-0.5 align-middle">必須</span>;
