@@ -11,8 +11,8 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: '株式会社Nobody | 大切なものが後世も残り続けること',
-  description: '大分県を拠点に、ITとAIの力で地域の文化・産業・つながりを次世代へ届けるソーシャルビジネス。アプリケーション開発・AI実装支援に加え、生成AI・AIエージェントを活用したプロダクト開発やDX化の受託開発にも対応する、大分発のAIネイティブ企業です。自治体・教育機関・地域企業と連携し、持続可能な地域社会の実現に貢献します。',
-  keywords: '株式会社Nobody, 大分大学発ベンチャー, 大分県, AIネイティブ企業, 大分 AI企業, 大分県 AI開発, AI開発会社 大分, AI受託開発, 生成AI開発, AIエージェント開発, DX支援 大分, 受託開発 大分, システム開発 大分, ソーシャルビジネス, アプリ開発, AI実装, 地域課題解決, TALE, にけんめぷらす, ざせきくん, ばんけん, NEXT BUSINESS EXPO',
+  description: '大分発のAIネイティブ企業。AI勉強会・研修、講演・登壇、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談を承ります。自社プロダクトを生成AIとともに開発してきた実践知で、企業・自治体・教育機関の皆さまに伴走します。',
+  keywords: '株式会社Nobody, 大分大学発ベンチャー, 大分県, AIネイティブ企業, 大分 AI企業, AI勉強会, AI研修 大分, 生成AI 研修, 生成AI 講演, AI 講師 大分, AIコンサルティング 大分, AI活用 相談, DX 相談 大分, Webサイト 相談, Webアプリ 相談, FDE, ソーシャルビジネス, 地域課題解決, TALE, にけんめぷらす, ざせきくん, ばんけん, NEXT BUSINESS EXPO',
   icons: {
     icon: 'https://res.cloudinary.com/dz9trbwma/image/upload/v1770858047/Gemini_Generated_Image_h26lvkh26lvkh26l_p6fuop.png',
     shortcut: 'https://res.cloudinary.com/dz9trbwma/image/upload/v1770858047/Gemini_Generated_Image_h26lvkh26lvkh26l_p6fuop.png',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: '株式会社Nobody | 大切なものが後世も残り続けること',
-    description: '大分県を拠点に、ITとAIの力で地域の文化・産業・つながりを次世代へ届けるソーシャルビジネス。生成AI・DXのプロダクト開発／受託開発にも対応する、大分発のAIネイティブ企業です。',
+    description: '大分発のAIネイティブ企業。AI勉強会・研修、講演、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談を承ります。',
     type: 'website',
     images: [
       {
@@ -41,7 +41,7 @@ const organizationJsonLd = {
   url: 'https://nobody-info.com',
   logo: 'https://res.cloudinary.com/dz9trbwma/image/upload/v1770858047/Gemini_Generated_Image_h26lvkh26lvkh26l_p6fuop.png',
   description:
-    '大分県を拠点とするAIネイティブ企業。ソーシャルビジネスとして地域課題の解決に取り組みながら、生成AI・AIエージェントを活用したプロダクト開発やDX化の受託開発を手がけています。',
+    '大分県を拠点とするAIネイティブ企業。ソーシャルビジネスとして地域課題の解決に取り組みながら、AI勉強会・研修、講演、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談を承っています。',
   slogan: '大切なものが後世も残り続けること',
   email: 'sobota@nobody-info.com',
   foundingDate: '2025-08-05',
@@ -58,12 +58,12 @@ const organizationJsonLd = {
     { '@type': 'Country', name: '日本' },
   ],
   knowsAbout: [
-    'AI開発',
     '生成AI',
-    'AIエージェント',
-    'AI受託開発',
+    'AI活用',
+    'AI研修',
+    'AIコンサルティング',
     'DX（デジタルトランスフォーメーション）',
-    'アプリケーション開発',
+    'Webアプリケーション開発',
     '地域課題解決',
   ],
   makesOffer: [
@@ -71,8 +71,8 @@ const organizationJsonLd = {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'AI受託開発・生成AIプロダクト開発',
-        serviceType: 'AI開発／受託開発',
+        name: 'AI勉強会・研修',
+        serviceType: '研修',
         provider: { '@type': 'Organization', name: '株式会社Nobody' },
         areaServed: { '@type': 'AdministrativeArea', name: '大分県' },
       },
@@ -81,8 +81,28 @@ const organizationJsonLd = {
       '@type': 'Offer',
       itemOffered: {
         '@type': 'Service',
-        name: 'DX支援・業務自動化',
-        serviceType: 'DX支援',
+        name: '講演・登壇',
+        serviceType: '講演',
+        provider: { '@type': 'Organization', name: '株式会社Nobody' },
+        areaServed: { '@type': 'AdministrativeArea', name: '大分県' },
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'AI活用コンサルティング',
+        serviceType: 'コンサルティング',
+        provider: { '@type': 'Organization', name: '株式会社Nobody' },
+        areaServed: { '@type': 'AdministrativeArea', name: '大分県' },
+      },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'Webサイト・Webアプリ開発のご相談',
+        serviceType: '開発相談',
         provider: { '@type': 'Organization', name: '株式会社Nobody' },
         areaServed: { '@type': 'AdministrativeArea', name: '大分県' },
       },

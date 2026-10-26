@@ -1,45 +1,51 @@
 'use server';
 
 import { google } from 'googleapis';
+import { z } from 'zod';
+import { INQUIRY_TYPES } from '../data/inquiry';
 
-export async function submitToGoogleSheets(formData: {
-  name: string;
-  email: string;
-  subject: string;
-  message: string;
-}) {
+const inquirySchema = z.object({
+  inquiryType: z.enum(INQUIRY_TYPES, { errorMap: () => ({ message: 'ご依頼の種別を選択してください' }) }),
+  company: z.string().trim().max(200).optional().default(''),
+  name: z.string().trim().min(1, 'お名前を入力してください').max(100),
+  email: z.string().trim().email('メールアドレスの形式が正しくありません').max(200),
+  phone: z.string().trim().max(30).optional().default(''),
+  timing: z.string().trim().max(200).optional().default(''),
+  message: z.string().trim().min(1, 'ご相談内容を入力してください').max(5000),
+  agreed: z.literal(true, { errorMap: () => ({ message: 'プライバシーポリシーへの同意が必要です' }) }),
+  // スパム対策用のハニーポット（人間は入力しない）
+  website: z.string().optional().default(''),
+});
+
+type InquiryInput = z.input<typeof inquirySchema>;
+
+export async function submitToGoogleSheets(input: InquiryInput) {
+  const parsed = inquirySchema.safeParse(input);
+  if (!parsed.success) {
+    return { success: false as const, error: parsed.error.issues[0]?.message ?? '入力内容をご確認ください' };
+  }
+  const data = parsed.data;
+
+  // ハニーポットに入力があればボットとみなし、保存せず成功扱いにする
+  if (data.website) {
+    return { success: true as const };
+  }
+
   try {
-    // 環境変数の確認
     const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
     const privateKey = process.env.GOOGLE_SHEETS_SERVICE_ACCOUNT_KEY;
     const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
 
-    if (!serviceAccountEmail) {
-      throw new Error('GOOGLE_SERVICE_ACCOUNT_EMAIL環境変数が設定されていません');
-    }
-    
-    if (!privateKey) {
-      throw new Error('GOOGLE_SHEETS_SERVICE_ACCOUNT_KEY環境変数が設定されていません');
-    }
-    
-    if (!spreadsheetId) {
-      throw new Error('GOOGLE_SPREADSHEET_ID環境変数が設定されていません');
+    if (!serviceAccountEmail || !privateKey || !spreadsheetId) {
+      throw new Error('Google Sheets の環境変数が設定されていません');
     }
 
-    // 秘密鍵の処理を改善
-    let processedPrivateKey = privateKey;
-    
-    // 複数の改行文字パターンに対応
-    processedPrivateKey = processedPrivateKey.replace(/\\n/g, '\n');
-    processedPrivateKey = processedPrivateKey.replace(/\\\\/g, '\\');
-    
-    // 秘密鍵が正しい形式かチェック
-    if (!processedPrivateKey.includes('-----BEGIN PRIVATE KEY-----') || 
+    const processedPrivateKey = privateKey.replace(/\\n/g, '\n').replace(/\\\\/g, '\\');
+    if (!processedPrivateKey.includes('-----BEGIN PRIVATE KEY-----') ||
         !processedPrivateKey.includes('-----END PRIVATE KEY-----')) {
-      throw new Error('秘密鍵の形式が正しくありません。BEGIN PRIVATE KEYとEND PRIVATE KEYが含まれている必要があります。');
+      throw new Error('秘密鍵の形式が正しくありません');
     }
 
-    // より堅牢な認証設定
     const auth = new google.auth.GoogleAuth({
       credentials: {
         type: 'service_account',
@@ -51,48 +57,35 @@ export async function submitToGoogleSheets(formData: {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
-    // スプレッドシートの既存データを確認
-    const existingData = await sheets.spreadsheets.values.get({
-      spreadsheetId,
-      range: 'A:E',
-    });
+    const existingData = await sheets.spreadsheets.values.get({ spreadsheetId, range: 'A1:H1' });
 
-    // データが存在しない場合（新規の場合）のみヘッダーを追加
+    // 新規シートのときだけヘッダーを書き込む（A〜Eは旧フォームと同じ並び）
     if (!existingData.data.values || existingData.data.values.length === 0) {
       await sheets.spreadsheets.values.update({
         spreadsheetId,
-        range: 'A1:E1',
+        range: 'A1:H1',
         valueInputOption: 'USER_ENTERED',
         requestBody: {
-          values: [['送信日時', '名前', 'メールアドレス', '件名', 'メッセージ']],
+          values: [['送信日時', '名前', 'メールアドレス', '件名', 'メッセージ', '会社・団体名', '電話番号', '希望時期']],
         },
       });
     }
 
-    // 現在の日時を取得
-    const timestamp = new Date().toLocaleString('ja-JP', {
-      timeZone: 'Asia/Tokyo'
-    });
+    const timestamp = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
 
-    // スプレッドシートにデータを追加
     await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: 'A:E',
-      valueInputOption: 'USER_ENTERED',
+      range: 'A:H',
+      // RAW: 先頭が "=" の入力が数式として評価されないようにする
+      valueInputOption: 'RAW',
       requestBody: {
-        values: [[timestamp, formData.name, formData.email, formData.subject, formData.message]],
+        values: [[timestamp, data.name, data.email, data.inquiryType, data.message, data.company, data.phone, data.timing]],
       },
     });
 
-    return { success: true };
+    return { success: true as const };
   } catch (error) {
     console.error('Google Sheets API Error:', error);
-    
-    // より詳細なエラーメッセージを返す
-    if (error instanceof Error) {
-      return { success: false, error: error.message };
-    }
-    
-    return { success: false, error: 'データの送信に失敗しました。' };
+    return { success: false as const, error: '送信に失敗しました。お手数ですがメールにてお問い合わせください。' };
   }
 }

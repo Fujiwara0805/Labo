@@ -30,11 +30,19 @@ import {
   Utensils,
   GraduationCap,
   Cpu,
-  Bot,
-  Code2,
-  Workflow
+  Presentation,
+  Mic,
+  Compass,
+  MonitorSmartphone,
+  Ear,
+  MessageCircle,
+  Send,
+  ChevronDown,
+  Loader2
 } from 'lucide-react';
 import { newsItems } from './data/news';
+import { INQUIRY_TYPES, type InquiryType } from './data/inquiry';
+import { submitToGoogleSheets } from './actions/google-sheets';
 
 /* -------------------------------------------------------------------------- */
 /* CONSTANTS & DATA                                                           */
@@ -124,10 +132,81 @@ const projects = [
 // トップの告知枠は常に最新のお知らせ（newsItems の先頭）を表示する
 const latestNews = newsItems[0];
 
+type NavigateFn = (page: string, inquiryType?: InquiryType) => void;
+
+const services: { icon: React.ElementType; label: string; title: string; desc: string; points: string[]; inquiryType: InquiryType; cta: string }[] = [
+  {
+    icon: Presentation,
+    label: 'Workshop',
+    title: 'AI勉強会・研修',
+    desc: '「生成AIって何ができるの？」から、日々の業務で使いこなすまで。参加者のレベルや業種に合わせて内容を組み立てます。',
+    points: ['社内研修・新人研修', '自治体職員・教職員向け研修', 'ハンズオン形式のワークショップ'],
+    inquiryType: 'AI勉強会・研修のご依頼',
+    cta: '勉強会を依頼する'
+  },
+  {
+    icon: Mic,
+    label: 'Lecture',
+    title: '講演・登壇',
+    desc: '生成AIの最新動向、AIネイティブな働き方、地域×テクノロジーの実践事例などをテーマに、講演・パネル登壇をお引き受けします。',
+    points: ['企業・団体のセミナー', '学校・大学での特別講義', '商工会・業界団体のイベント'],
+    inquiryType: '講演・登壇のご依頼',
+    cta: '講演を依頼する'
+  },
+  {
+    icon: Compass,
+    label: 'Consulting',
+    title: 'AI活用コンサルティング',
+    desc: '業務のどこにAIを使うと効果が出るのか。現状の業務を一緒に整理し、無理なく始められる活用方法と導入の進め方をご提案します。',
+    points: ['業務の棚卸しとAI活用の優先順位づけ', 'ツール選定・社内ルールづくり', '導入後の定着支援'],
+    inquiryType: 'AI活用コンサルティングのご相談',
+    cta: 'コンサルを相談する'
+  },
+  {
+    icon: MonitorSmartphone,
+    label: 'Web & App',
+    title: 'Webサイト・Webアプリ開発のご相談',
+    desc: 'お客様の声と現場の課題を丁寧に伺い、本当に必要なWebサイト・Webアプリの形を一緒に考えます。「何を作ればいいかわからない」段階から歓迎します。',
+    points: ['要件の整理・壁打ち', '最適な構成・進め方のご提案', '小さく始めて育てる設計'],
+    inquiryType: 'Webサイト・Webアプリ開発のご相談',
+    cta: '開発を相談する'
+  }
+];
+
+const fdePoints = [
+  { icon: Ear, title: '現場の声を聴く', desc: '机上の要件ではなく、実際に使う方の声や業務の流れを丁寧にヒアリングし、課題の本質を一緒に探ります。' },
+  { icon: Lightbulb, title: '最適な形を提案する', desc: '作ることありきではなく、既存ツールの活用やAI導入も含めて、いちばん効果の出る解決策をご提案します。' },
+  { icon: Cpu, title: '実践知で伴走する', desc: '自社プロダクトを生成AIとともに設計・開発・運用してきた経験をもとに、現実的で続けられる形に落とし込みます。' }
+];
+
+const worries = [
+  '生成AIを使ってみたいが、何から始めればいいかわからない',
+  '社員・職員向けにAIの勉強会を開きたい',
+  'イベントやセミナーでAIをテーマに話せる講師を探している',
+  '業務のどこにAIを使えば効果が出るのか相談したい',
+  'Webサイトやアプリを作りたいが、要件がまとまっていない',
+  '今あるシステムやWebサイトの改善について意見がほしい'
+];
+
+const flowSteps = [
+  { title: 'フォームから問い合わせ', desc: 'ご依頼の種別を選んで、ご相談内容をお送りください。まだ漠然とした内容でも大丈夫です。' },
+  { title: 'ヒアリング', desc: 'オンラインまたは対面で、目的・現状・ご希望を詳しく伺います。' },
+  { title: 'ご提案', desc: '内容・進め方・スケジュール・お見積りをご提案します。' },
+  { title: '実施・伴走', desc: '勉強会・講演・コンサルティングなどを実施し、その後のフォローまで伴走します。' }
+];
+
+const faqs = [
+  { q: '相談だけでも大丈夫ですか？', a: 'はい、もちろんです。「AIで何かできないか」「こんなことに困っている」といった構想段階のご相談も歓迎しています。' },
+  { q: '大分県外からの依頼にも対応していますか？', a: 'オンラインでの勉強会・コンサルティング・打ち合わせに対応しています。対面での実施も、内容や日程に応じてご相談ください。' },
+  { q: 'AIの知識がまったくなくても勉強会を依頼できますか？', a: 'はい。参加される方のレベルに合わせて、基礎から丁寧に内容を組み立てます。' },
+  { q: '開発を丸ごと依頼（受託）することはできますか？', a: '受託開発や常駐でのご支援は行っていません。お客様の声を伺いながら、最適なWebサイト・Webアプリの形を一緒に考え、進め方をご相談させていただくスタイルです。' },
+  { q: '費用はどのくらいかかりますか？', a: 'ご依頼の内容・規模・回数によって異なります。ヒアリングのうえでお見積りをご提示しますので、まずはお気軽にお問い合わせください。' }
+];
+
 const companyDetails = [
   { icon: Building2, label: '会社名', value: '株式会社Nobody' },
   { icon: GraduationCap, label: '種別', value: '大分大学発ベンチャー' },
-  { icon: Briefcase, label: '事業内容', value: 'アプリケーション開発・AI実装支援・AI受託開発（生成AI／DX）' },
+  { icon: Briefcase, label: '事業内容', value: 'AI勉強会・研修／講演／AI活用コンサルティング／自社プロダクト開発' },
   { icon: MapPin, label: '所在地', value: '大分県大分市大字旦野原700番地' },
   { icon: Calendar, label: '設立', value: '2025年8月5日' }
 ];
@@ -180,7 +259,7 @@ const SectionTitle = ({ title, subtitle, align = "left" }: { title: React.ReactN
 /* -------------------------------------------------------------------------- */
 
 // 1. HOME PAGE
-const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
+const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -205,7 +284,7 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
               className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8"
             >
               <div className="h-[1px] w-6 sm:w-8 md:w-12 bg-black"></div>
-              <span className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase text-gray-500">Social Business from Oita</span>
+              <span className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase text-gray-500">AI Learning &amp; Consulting from Oita</span>
             </motion.div>
 
             <motion.h1
@@ -214,9 +293,9 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-medium text-black leading-[0.95] sm:leading-[0.9] tracking-tighter mb-4 sm:mb-6 md:mb-10"
             >
-              Preserve<br />
-              <span className="text-gray-400 italic">What</span><br />
-              Matters.
+              Let&apos;s Talk<br />
+              <span className="text-gray-400 italic">About</span><br />
+              AI.
             </motion.h1>
 
             <motion.p
@@ -225,9 +304,10 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-sm sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-xl leading-relaxed font-light mb-6 sm:mb-8 md:mb-12 border-l-2 sm:border-l border-gray-200 pl-3 sm:pl-4 md:pl-6"
             >
-              大切なものが後世も残り続けること。<br />
-              私たちはITとAIの力で、地域の文化・産業・つながりを<br className="hidden md:block" />
-              次の世代へ届けるソーシャルビジネスに取り組みます。
+              <span className="font-medium text-black">AIの「はじめの一歩」を、大分から。</span><br />
+              AI勉強会・講演・AI活用コンサルティングから、<br className="hidden md:block" />
+              現場に合ったWebサイト・Webアプリづくりのご相談まで。<br className="hidden md:block" />
+              生成AIとともにプロダクトを生み出してきた実践知で伴走します。
             </motion.p>
 
             <motion.div
@@ -240,13 +320,13 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
                 onClick={() => navigateTo(PAGES.CONTACT)}
                 className="bg-black text-white px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center justify-center gap-2"
               >
-                お問い合わせ <ArrowRight size={14} />
+                まずは相談する <ArrowRight size={14} />
               </button>
               <button
-                onClick={() => navigateTo(PAGES.COMPANY)}
+                onClick={() => navigateTo(PAGES.CONTACT, 'AI勉強会・研修のご依頼')}
                 className="border border-gray-300 text-gray-700 px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-xs font-bold uppercase tracking-widest hover:border-black hover:text-black transition-all inline-flex items-center justify-center gap-2"
               >
-                会社概要を見る
+                勉強会・講演を依頼する
               </button>
             </motion.div>
           </div>
@@ -297,25 +377,160 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         </div>
       </section>
 
-      {/* Vision Statement Band */}
-      <section className="py-10 sm:py-12 md:py-16 bg-gray-50 border-y border-gray-100">
+      {/* Services Section */}
+      <section id="services" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-3 sm:mb-4">Our Vision</p>
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-medium text-black leading-relaxed tracking-tight">
-              大切なものが後世も残り続けること
-            </h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
-              地域に根ざしたソーシャルビジネスとして、<br className="hidden md:block" />
-              小さな社会課題をビジネスで解決する道を選びました。
-            </p>
-          </motion.div>
+          <SectionTitle
+            title="Services"
+            subtitle="ご依頼いただけること。勉強会・講演・コンサルティング・開発のご相談まで、目的に合わせてお選びください。"
+          />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-200 border border-gray-200">
+            {services.map((service, i) => (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col group hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                  <service.icon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-300 group-hover:text-black transition-colors" strokeWidth={1.2} />
+                  <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-400">0{i + 1} — {service.label}</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-medium text-black leading-tight mb-3 sm:mb-4">{service.title}</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-600 font-light leading-relaxed mb-4 sm:mb-6">{service.desc}</p>
+                <ul className="space-y-1.5 sm:space-y-2 mb-6 sm:mb-8 flex-1">
+                  {service.points.map((point) => (
+                    <li key={point} className="text-gray-600 font-light text-xs sm:text-sm flex items-start gap-2">
+                      <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 mt-0.5 shrink-0" strokeWidth={1.5} />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => navigateTo(PAGES.CONTACT, service.inquiryType)}
+                  className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-gray-900 border-b border-gray-900 pb-1 w-fit hover:gap-4 transition-all"
+                >
+                  {service.cta} <ArrowRight size={14} />
+                </button>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FDE-style Partnership Section */}
+      <section id="approach" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-10 sm:mb-12 md:mb-16"
+            >
+              <p className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 sm:mb-6">Our Approach — FDE型の伴走</p>
+              <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium leading-tight tracking-tight mb-4 sm:mb-6 px-2 sm:px-4">
+                作る前に、<span className="text-gray-500 italic">聴く</span>ことから。
+              </h2>
+              <p className="text-gray-400 font-light text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl mx-auto px-2 sm:px-4">
+                私たちは受託開発や常駐でのご支援は行っていません。<br className="hidden md:block" />
+                FDE（Forward Deployed Engineer）のように、お客様の現場の声に耳を傾け、<br className="hidden md:block" />
+                本当に必要なWebサイト・Webアプリの形を一緒に考え、開発のご相談を承ります。
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-gray-800 border border-gray-800">
+              {fdePoints.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                  className="bg-black/80 p-5 sm:p-6 md:p-8 lg:p-10 text-center"
+                >
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 md:mb-5 text-gray-400" strokeWidth={1} />
+                  <h3 className="text-sm sm:text-base md:text-lg font-serif font-medium mb-2 sm:mb-3 text-white">{item.title}</h3>
+                  <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-8 sm:mt-10 md:mt-14 text-center">
+              <button
+                onClick={() => navigateTo(PAGES.CONTACT, 'Webサイト・Webアプリ開発のご相談')}
+                className="bg-white text-black px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-all inline-flex items-center gap-2"
+              >
+                開発について相談する <ArrowRight size={14} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Worries Section */}
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-gray-50 border-b border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="max-w-4xl mx-auto">
+            <SectionTitle
+              title="こんなお悩み、ありませんか？"
+              subtitle="ひとつでも当てはまれば、お気軽にご相談ください。"
+              align="center"
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+              {worries.map((worry, i) => (
+                <motion.div
+                  key={worry}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 }}
+                  className="bg-white border border-gray-200 p-4 sm:p-5 flex items-start gap-3"
+                >
+                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-black mt-0.5 shrink-0" strokeWidth={1.5} />
+                  <span className="text-xs sm:text-sm md:text-base text-gray-700 font-light leading-relaxed">{worry}</span>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mt-8 sm:mt-10 md:mt-12 text-center">
+              <button
+                onClick={() => navigateTo(PAGES.CONTACT)}
+                className="bg-black text-white px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center gap-2"
+              >
+                相談してみる <MessageCircle size={14} />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Flow Section */}
+      <section id="flow" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <SectionTitle
+            title="Flow"
+            subtitle="ご相談から実施までの流れ"
+          />
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200">
+            {flowSteps.map((step, i) => (
+              <motion.li
+                key={step.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white p-5 sm:p-6 md:p-8"
+              >
+                <span className="block text-3xl sm:text-4xl md:text-5xl font-serif text-gray-200 mb-3 sm:mb-4">0{i + 1}</span>
+                <h3 className="text-base sm:text-lg md:text-xl font-serif font-medium text-black mb-2 sm:mb-3">{step.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 font-light leading-relaxed">{step.desc}</p>
+              </motion.li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -324,7 +539,7 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <SectionTitle
             title={<>Our<br className="hidden sm:block" />Products</>}
-            subtitle="地域の課題解決に向けて開発・運営する私たちの主要プロダクト"
+            subtitle="実践から生まれたプロダクト。生成AIとともに自社で企画・開発・運営し、地域の課題解決に取り組んでいます。"
           />
           <div className="space-y-16 sm:space-y-20 md:space-y-28 lg:space-y-36">
             {projects.map((project, index) => {
@@ -450,6 +665,28 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         </div>
       </section>
 
+      {/* Vision Statement Band */}
+      <section className="py-10 sm:py-12 md:py-16 bg-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-3 sm:mb-4">Our Vision</p>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-medium text-black leading-relaxed tracking-tight">
+              大切なものが後世も残り続けること
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
+              地域に根ざしたソーシャルビジネスとして、<br className="hidden md:block" />
+              小さな社会課題をビジネスで解決する道を選びました。
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Social Business Philosophy Section */}
       <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-black text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:32px_32px]"></div>
@@ -496,79 +733,30 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
         </div>
       </section>
 
-      {/* AI-Native Development Section */}
-      <section id="ai-development" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:16px_16px] md:bg-[size:32px_32px]"></div>
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-10 sm:mb-12 md:mb-16"
-            >
-              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <Cpu className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" strokeWidth={1.5} />
-                <span className="text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase text-gray-400">
-                  AI-Native Development — 開発パートナーとして
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium text-black leading-tight tracking-tight mb-4 sm:mb-6 px-2 sm:px-4">
-                <span className="text-gray-400 italic">AI-Native</span> な<br className="sm:hidden" />開発チームとして。
-              </h2>
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 font-light leading-relaxed max-w-2xl mx-auto px-2 sm:px-4">
-                私たちは、自社プロダクトを生成AIとともに設計・開発してきたAIネイティブな企業です。<br className="hidden md:block" />
-                その知見を活かし、大分県内をはじめとする企業・自治体・教育機関の皆さまへ、
-                生成AIの活用・業務のDX化・アプリケーション開発の<span className="font-medium text-black">受託開発</span>をお引き受けしています。
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-gray-100 border border-gray-100">
-              {[
-                { icon: Bot, title: "生成AI・AIエージェント開発", desc: "チャットボット、社内ナレッジ検索、業務アシスタントなど、生成AIを組み込んだプロダクトを企画から実装まで一貫して開発します。" },
-                { icon: Workflow, title: "業務DX・自動化", desc: "手作業やアナログな業務フローをAIとソフトウェアで自動化し、地域の現場の生産性向上と省人化を支援します。" },
-                { icon: Code2, title: "Web・アプリの受託開発", desc: "自社サービスで培ったモダンな技術スタックで、Webサイト・業務システム・モバイルアプリを開発します。" }
-              ].map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.12 }}
-                  className="bg-white p-5 sm:p-6 md:p-8 lg:p-10 text-center hover:bg-gray-50 transition-colors group"
-                >
-                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 md:mb-5 text-gray-300 group-hover:text-black transition-colors" strokeWidth={1.2} />
-                  <h3 className="text-sm sm:text-base md:text-lg font-serif font-medium mb-2 sm:mb-3 text-black">{item.title}</h3>
-                  <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
-                </motion.div>
+      {/* FAQ Section */}
+      <section id="faq" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="max-w-3xl mx-auto">
+            <SectionTitle title="FAQ" subtitle="よくあるご質問" align="center" />
+            <div className="border-t border-gray-200">
+              {faqs.map((faq) => (
+                <details key={faq.q} className="group border-b border-gray-200">
+                  <summary className="flex items-center justify-between gap-4 py-5 sm:py-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                    <span className="text-sm sm:text-base md:text-lg font-serif font-medium text-black">
+                      <span className="text-gray-400 mr-2 sm:mr-3">Q.</span>{faq.q}
+                    </span>
+                    <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 shrink-0 transition-transform group-open:rotate-180" strokeWidth={1.5} />
+                  </summary>
+                  <p className="pb-5 sm:pb-6 pl-6 sm:pl-8 text-xs sm:text-sm md:text-base text-gray-600 font-light leading-relaxed">{faq.a}</p>
+                </details>
               ))}
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="mt-8 sm:mt-10 md:mt-14 text-center"
-            >
-              <p className="text-xs sm:text-sm md:text-base text-gray-600 font-light leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-8">
-                「AIで何かできないか」という構想段階からのご相談も歓迎します。<br className="hidden md:block" />
-                大分発のAIネイティブ企業として、アイデアの壁打ちから開発・運用まで伴走します。
-              </p>
-              <button
-                onClick={() => navigateTo(PAGES.CONTACT)}
-                className="bg-black text-white px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center gap-2"
-              >
-                AI開発を相談する <ArrowRight size={14} />
-              </button>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Trust / CTA Section */}
-      <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-gray-50 border-y border-gray-100">
+      {/* Final CTA Section */}
+      <section className="py-12 sm:py-16 md:py-24 bg-black text-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -577,21 +765,28 @@ const HomePage = ({ navigateTo }: { navigateTo: (page: string) => void }) => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-3 sm:mb-4">Partnership</p>
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-medium text-black leading-relaxed tracking-tight mb-3 sm:mb-4 md:mb-6">
-              地域課題の解決に向けて、<br className="hidden sm:block" />ご一緒しませんか。
+            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-3 sm:mb-4">Contact</p>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium leading-relaxed tracking-tight mb-3 sm:mb-4 md:mb-6">
+              まずは、お気軽に<br className="sm:hidden" />ご相談ください。
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light leading-relaxed mb-6 sm:mb-8">
-              自治体・教育機関・地域企業の皆さまとの連携を通じ、<br className="hidden md:block" />
-              地域の持続可能な発展に貢献するプロダクトを開発しています。<br className="hidden md:block" />
-              アプリ開発やAI活用のご相談など、お気軽にお問い合わせください。
+            <p className="text-xs sm:text-sm md:text-base text-gray-400 font-light leading-relaxed mb-6 sm:mb-8">
+              AI勉強会・講演のご依頼、AI活用のご相談、Webサイト・Webアプリ開発のご相談など、<br className="hidden md:block" />
+              内容が固まっていなくても大丈夫です。フォームから種別を選んでお送りください。
             </p>
-            <button
-              onClick={() => navigateTo(PAGES.CONTACT)}
-              className="bg-black text-white px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center gap-2"
-            >
-              Contact Us <Mail size={14} />
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <button
+                onClick={() => navigateTo(PAGES.CONTACT)}
+                className="bg-white text-black px-6 sm:px-8 md:px-10 py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-all inline-flex items-center justify-center gap-2"
+              >
+                問い合わせフォームへ <ArrowRight size={14} />
+              </button>
+              <button
+                onClick={() => navigateTo(PAGES.CONTACT, '講演・登壇のご依頼')}
+                className="border border-gray-600 text-gray-300 px-6 sm:px-8 md:px-10 py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:border-white hover:text-white transition-all inline-flex items-center justify-center gap-2"
+              >
+                講演を依頼する <Mic size={14} />
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -749,7 +944,7 @@ const CompanyPage = () => {
             <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-center px-2 sm:px-4 md:px-0">
               インターネットを通じて地域のニーズとソリューションをつなぎ、
               社会課題をビジネスで解決していきます。
-              アプリケーション開発とAI実装によって人と情報の流れを活性化し、
+              自社プロダクトの開発と、AIの学び・活用の支援によって人と情報の流れを活性化し、
               持続可能で魅力あふれる地域社会の実現に貢献することを使命としています。
             </p>
           </motion.div>
@@ -766,14 +961,14 @@ const CompanyPage = () => {
               <Cpu className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 text-gray-300" strokeWidth={1} />
               <p className="text-[10px] sm:text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 sm:mb-3">AI-Native</p>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-black tracking-tight">
-                AIネイティブな開発体制
+                AIネイティブな実践知を、地域へ
               </h3>
             </div>
             <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-center px-2 sm:px-4 md:px-0">
               私たちは、自社プロダクトの設計から実装・運用までを生成AIとともに進めるAIネイティブな企業です。
-              この開発スタイルで培った知見をもとに、大分県内の企業・自治体・教育機関の皆さまへ、
-              生成AIの活用・業務のDX化・アプリケーション開発の受託開発もお引き受けしています。
-              AIを活用したプロダクト開発のパートナーをお探しの際は、お気軽にご相談ください。
+              この開発スタイルで培った実践知をもとに、企業・自治体・教育機関の皆さまへ、
+              AI勉強会・研修、講演、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談をお引き受けしています。
+              受託開発や常駐は行わず、お客様の声を伺いながら最適な形を一緒に考えるスタイルで伴走します。
             </p>
           </motion.div>
 
@@ -819,7 +1014,53 @@ const CompanyPage = () => {
 };
 
 // 4. CONTACT PAGE
-const ContactPage = () => {
+const inputClass = "w-full border border-gray-300 bg-white px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-light text-black placeholder:text-gray-400 focus:outline-none focus:border-black transition-colors rounded-none";
+const labelClass = "block text-xs sm:text-sm font-medium text-gray-900 mb-1.5 sm:mb-2";
+
+const RequiredMark = () => <span className="ml-1.5 text-[10px] font-bold text-white bg-black px-1.5 py-0.5 align-middle">必須</span>;
+
+const ContactPage = ({ initialType, onNavigate }: { initialType?: InquiryType; onNavigate: NavigateFn }) => {
+  const [form, setForm] = useState({
+    inquiryType: initialType ?? '',
+    company: '',
+    name: '',
+    email: '',
+    phone: '',
+    timing: '',
+    message: '',
+    agreed: false,
+    website: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const update = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const value = e.target instanceof HTMLInputElement && e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    setErrorMessage('');
+    const result = await submitToGoogleSheets({
+      ...form,
+      inquiryType: form.inquiryType as InquiryType,
+      agreed: form.agreed as true
+    });
+    if (result.success) {
+      setStatus('done');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      setStatus('error');
+      setErrorMessage(result.error);
+    }
+  };
+
+  const mailtoHref = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`【お問い合わせ】${form.inquiryType || 'ご相談'}`)}&body=${encodeURIComponent(
+    `会社・団体名：${form.company}\nお名前：${form.name}\nメールアドレス：${form.email}\n電話番号：${form.phone}\nご希望の時期：${form.timing}\n\nご相談内容：\n${form.message}`
+  )}`;
+
   return (
     <motion.section
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -828,37 +1069,132 @@ const ContactPage = () => {
       <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <SectionTitle
           title="Contact"
-          subtitle="地域課題の解決に向けたアプリ開発・AI活用のご相談は、メールにてお問い合わせください。"
+          subtitle="AI勉強会・研修、講演のご依頼、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談など、お気軽にお問い合わせください。内容を確認のうえ、担当者よりご連絡いたします。"
           align="center"
         />
 
-        <div className="max-w-2xl mx-auto mt-6 sm:mt-8 md:mt-12 px-2 sm:px-4 md:px-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="bg-gray-50 border border-gray-100 p-6 sm:p-8 md:p-12 text-center"
-          >
-            <Mail className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-black mx-auto mb-3 sm:mb-4 md:mb-6" strokeWidth={1} />
-            <h3 className="text-xl sm:text-xl md:text-2xl font-serif mb-2 sm:mb-3 md:mb-4">Email Us</h3>
-            <p className="text-sm sm:text-sm md:text-base text-gray-500 font-light leading-relaxed mb-5 sm:mb-6 md:mb-8">
-              お名前・ご所属・ご相談内容をメール本文にご記載のうえ、下記メールアドレスまでご連絡ください。担当者より返信いたします。
-            </p>
-            <div className="flex flex-col items-center gap-4 sm:gap-5">
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="text-base sm:text-lg md:text-xl font-light text-black break-all border-b border-black pb-1 hover:opacity-60 transition-opacity"
+        <div className="max-w-2xl mx-auto mt-6 sm:mt-8 md:mt-12">
+          {status === 'done' ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-gray-50 border border-gray-100 p-6 sm:p-8 md:p-12 text-center"
+            >
+              <CheckCircle className="w-10 h-10 sm:w-12 sm:h-12 text-black mx-auto mb-4 sm:mb-6" strokeWidth={1} />
+              <h3 className="text-xl sm:text-2xl font-serif mb-3 sm:mb-4">送信が完了しました</h3>
+              <p className="text-sm sm:text-base text-gray-500 font-light leading-relaxed mb-6 sm:mb-8">
+                お問い合わせありがとうございます。<br />
+                内容を確認のうえ、担当者よりご入力のメールアドレス宛にご連絡いたします。
+              </p>
+              <button
+                onClick={() => onNavigate(PAGES.HOME)}
+                className="border border-gray-300 text-gray-700 px-6 sm:px-8 py-2.5 sm:py-3 text-xs font-bold uppercase tracking-widest hover:border-black hover:text-black transition-all"
               >
-                {CONTACT_EMAIL}
-              </a>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="bg-black text-white px-6 sm:px-8 md:px-12 py-2.5 sm:py-3 md:py-4 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+                トップへ戻る
+              </button>
+            </motion.div>
+          ) : (
+            <motion.form
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              onSubmit={handleSubmit}
+              className="space-y-5 sm:space-y-6"
+            >
+              <div>
+                <label htmlFor="inquiryType" className={labelClass}>ご依頼の種別<RequiredMark /></label>
+                <div className="relative">
+                  <select
+                    id="inquiryType"
+                    required
+                    value={form.inquiryType}
+                    onChange={update('inquiryType')}
+                    className={`${inputClass} appearance-none pr-10 ${form.inquiryType ? '' : 'text-gray-400'}`}
+                  >
+                    <option value="" disabled>選択してください</option>
+                    {INQUIRY_TYPES.map((type) => (
+                      <option key={type} value={type} className="text-black">{type}</option>
+                    ))}
+                  </select>
+                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="company" className={labelClass}>会社・団体名</label>
+                <input id="company" type="text" autoComplete="organization" value={form.company} onChange={update('company')} className={inputClass} placeholder="株式会社〇〇 / 〇〇市役所 など" />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                <div>
+                  <label htmlFor="name" className={labelClass}>お名前<RequiredMark /></label>
+                  <input id="name" type="text" required autoComplete="name" value={form.name} onChange={update('name')} className={inputClass} placeholder="山田 太郎" />
+                </div>
+                <div>
+                  <label htmlFor="phone" className={labelClass}>電話番号</label>
+                  <input id="phone" type="tel" autoComplete="tel" value={form.phone} onChange={update('phone')} className={inputClass} placeholder="097-000-0000" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="email" className={labelClass}>メールアドレス<RequiredMark /></label>
+                <input id="email" type="email" required autoComplete="email" value={form.email} onChange={update('email')} className={inputClass} placeholder="example@example.com" />
+              </div>
+
+              <div>
+                <label htmlFor="timing" className={labelClass}>ご希望の時期・日程</label>
+                <input id="timing" type="text" value={form.timing} onChange={update('timing')} className={inputClass} placeholder="例：12月中旬ごろ／未定" />
+              </div>
+
+              <div>
+                <label htmlFor="message" className={labelClass}>ご相談内容<RequiredMark /></label>
+                <textarea
+                  id="message"
+                  required
+                  rows={7}
+                  value={form.message}
+                  onChange={update('message')}
+                  className={`${inputClass} resize-y`}
+                  placeholder="例：社員30名向けに生成AIの基礎勉強会を開きたい／自治体のイベントで講演をお願いしたい／業務にAIを取り入れたいので相談したい など"
+                />
+              </div>
+
+              {/* ハニーポット（画面には表示しない） */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input id="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={update('website')} />
+              </div>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input type="checkbox" required checked={form.agreed} onChange={update('agreed')} className="mt-1 w-4 h-4 accent-black shrink-0" />
+                <span className="text-xs sm:text-sm text-gray-600 font-light leading-relaxed">
+                  <button type="button" onClick={() => onNavigate(PAGES.PRIVACY)} className="underline underline-offset-2 hover:text-black">プライバシーポリシー</button>
+                  に同意のうえ送信します
+                </span>
+              </label>
+
+              {status === 'error' && (
+                <div className="border border-red-200 bg-red-50 p-4 text-xs sm:text-sm text-red-700 font-light leading-relaxed">
+                  {errorMessage}
+                  <a href={mailtoHref} className="mt-2 inline-flex items-center gap-1.5 font-medium underline underline-offset-2">
+                    入力内容をメールで送る <Mail size={13} />
+                  </a>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="w-full bg-black text-white px-6 py-3.5 sm:py-4 text-xs sm:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 disabled:opacity-60 transition-all inline-flex items-center justify-center gap-2"
               >
-                メールで問い合わせる <Mail size={14} />
-              </a>
-            </div>
-          </motion.div>
+                {status === 'sending' ? <>送信中 <Loader2 size={14} className="animate-spin" /></> : <>送信する <Send size={14} /></>}
+              </button>
+
+              <p className="text-center text-[11px] sm:text-xs text-gray-400 font-light">
+                メールでのお問い合わせは <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-2 hover:text-black break-all">{CONTACT_EMAIL}</a> まで
+              </p>
+            </motion.form>
+          )}
         </div>
       </div>
     </motion.section>
@@ -1001,7 +1337,7 @@ const Sidebar = ({ currentPage, onNavigate }: { currentPage: string, onNavigate:
 };
 
 const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
-  <footer className="bg-white pt-10 sm:pt-12 md:pt-16 lg:pt-24 pb-5 sm:pb-6 md:pb-8 border-t border-gray-100">
+  <footer className="bg-white pt-10 sm:pt-12 md:pt-16 lg:pt-24 pb-24 md:pb-8 border-t border-gray-100">
     <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 sm:mb-12 md:mb-16 lg:mb-24">
         <div className="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
@@ -1011,7 +1347,7 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
           </div>
           <p className="text-sm sm:text-sm md:text-base text-gray-500 font-light max-w-md leading-relaxed">
             大切なものが後世も残り続けること。<br className="hidden sm:block" />
-            地域に根ざしたソーシャルビジネスとして、<br className="hidden sm:block" />
+            AI勉強会・講演・AI活用コンサルティングを通じて、<br className="hidden sm:block" />
             持続可能な地域社会の実現に貢献します。
           </p>
         </div>
@@ -1024,6 +1360,7 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
           <div>
              <h4 className="text-[10px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest text-black mb-3 sm:mb-4 md:mb-6">Menu</h4>
              <ul className="space-y-2 sm:space-y-3 md:space-y-4">
+               <li><button onClick={() => onNavigate(PAGES.CONTACT)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">お問い合わせ</button></li>
                <li><button onClick={() => onNavigate(PAGES.COMPANY)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Company</button></li>
                <li><button onClick={() => onNavigate(PAGES.NEWS)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">News</button></li>
                <li><button onClick={() => onNavigate(PAGES.PRIVACY)} className="text-xs sm:text-xs md:text-sm text-gray-500 hover:text-black transition-colors font-light">Privacy Policy</button></li>
@@ -1044,6 +1381,13 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(PAGES.HOME);
+  const [contactType, setContactType] = useState<InquiryType | undefined>(undefined);
+
+  // 問い合わせ種別を指定して遷移できるようにする（Servicesカードなどから利用）
+  const navigateTo: NavigateFn = (page, inquiryType) => {
+    if (page === PAGES.CONTACT) setContactType(inquiryType);
+    setCurrentPage(page);
+  };
 
   // Scroll to top on page change
   useEffect(() => {
@@ -1052,21 +1396,31 @@ export default function App() {
 
   return (
     <main className="min-h-screen bg-white text-black selection:bg-black selection:text-white font-sans antialiased">
-      <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
+      <Sidebar currentPage={currentPage} onNavigate={navigateTo} />
 
       <div className="md:ml-20 lg:ml-64 transition-all duration-500 ease-out overflow-x-hidden">
         <AnimatePresence mode="wait">
           <div key={currentPage}>
-            {currentPage === PAGES.HOME && <HomePage navigateTo={setCurrentPage} />}
+            {currentPage === PAGES.HOME && <HomePage navigateTo={navigateTo} />}
             {currentPage === PAGES.COMPANY && <CompanyPage />}
             {currentPage === PAGES.NEWS && <NewsPage />}
-            {currentPage === PAGES.CONTACT && <ContactPage />}
+            {currentPage === PAGES.CONTACT && <ContactPage initialType={contactType} onNavigate={navigateTo} />}
             {currentPage === PAGES.PRIVACY && <PrivacyPage />}
           </div>
         </AnimatePresence>
 
-        <Footer onNavigate={setCurrentPage} />
+        <Footer onNavigate={navigateTo} />
       </div>
+
+      {/* モバイル用の固定相談ボタン */}
+      {currentPage !== PAGES.CONTACT && (
+        <button
+          onClick={() => navigateTo(PAGES.CONTACT)}
+          className="md:hidden fixed bottom-4 left-4 right-4 z-30 bg-black text-white py-3.5 text-xs font-bold uppercase tracking-widest shadow-2xl inline-flex items-center justify-center gap-2"
+        >
+          相談・依頼する <ArrowRight size={14} />
+        </button>
+      )}
     </main>
   );
 }
