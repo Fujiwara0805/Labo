@@ -11,7 +11,7 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: '株式会社Nobody | 大切なものが後世も残り続けること',
-  description: '大分発のAIネイティブ企業。AI勉強会・研修、講演・登壇、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談を承ります。自社プロダクトを生成AIとともに開発してきた実践知で、企業・自治体・教育機関の皆さまに伴走します。',
+  description: '大分県を拠点に、ITとAIの力で地域の文化・産業・つながりを次世代へ届けるソーシャルビジネス。アプリケーション開発・AI実装支援に加え、AI勉強会・研修、講演、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談も承る、大分発のAIネイティブ企業です。自治体・教育機関・地域企業と連携し、持続可能な地域社会の実現に貢献します。',
   keywords: '株式会社Nobody, 大分大学発ベンチャー, 大分県, AIネイティブ企業, 大分 AI企業, AI勉強会, AI研修 大分, 生成AI 研修, 生成AI 講演, AI 講師 大分, AIコンサルティング 大分, AI活用 相談, DX 相談 大分, Webサイト 相談, Webアプリ 相談, FDE, ソーシャルビジネス, 地域課題解決, TALE, にけんめぷらす, ざせきくん, ばんけん, NEXT BUSINESS EXPO',
   icons: {
     icon: 'https://res.cloudinary.com/dz9trbwma/image/upload/v1770858047/Gemini_Generated_Image_h26lvkh26lvkh26l_p6fuop.png',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: '株式会社Nobody | 大切なものが後世も残り続けること',
-    description: '大分発のAIネイティブ企業。AI勉強会・研修、講演、AI活用コンサルティング、Webサイト・Webアプリ開発のご相談を承ります。',
+    description: '大分県を拠点に、ITとAIの力で地域の文化・産業・つながりを次世代へ届けるソーシャルビジネス。AI勉強会・研修、講演、AI活用コンサルティングのご相談も承る、大分発のAIネイティブ企業です。',
     type: 'website',
     images: [
       {

@@ -206,7 +206,7 @@ const faqs = [
 const companyDetails = [
   { icon: Building2, label: '会社名', value: '株式会社Nobody' },
   { icon: GraduationCap, label: '種別', value: '大分大学発ベンチャー' },
-  { icon: Briefcase, label: '事業内容', value: 'AI勉強会・研修／講演／AI活用コンサルティング／自社プロダクト開発' },
+  { icon: Briefcase, label: '事業内容', value: 'アプリケーション開発・AI実装支援・AI勉強会／講演／AI活用コンサルティング' },
   { icon: MapPin, label: '所在地', value: '大分県大分市大字旦野原700番地' },
   { icon: Calendar, label: '設立', value: '2025年8月5日' }
 ];
@@ -284,7 +284,7 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
               className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8"
             >
               <div className="h-[1px] w-6 sm:w-8 md:w-12 bg-black"></div>
-              <span className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase text-gray-500">AI Learning &amp; Consulting from Oita</span>
+              <span className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.15em] sm:tracking-[0.2em] md:tracking-[0.3em] uppercase text-gray-500">Social Business from Oita</span>
             </motion.div>
 
             <motion.h1
@@ -293,9 +293,9 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-serif font-medium text-black leading-[0.95] sm:leading-[0.9] tracking-tighter mb-4 sm:mb-6 md:mb-10"
             >
-              Let&apos;s Talk<br />
-              <span className="text-gray-400 italic">About</span><br />
-              AI.
+              Preserve<br />
+              <span className="text-gray-400 italic">What</span><br />
+              Matters.
             </motion.h1>
 
             <motion.p
@@ -304,10 +304,9 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-sm sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-xl leading-relaxed font-light mb-6 sm:mb-8 md:mb-12 border-l-2 sm:border-l border-gray-200 pl-3 sm:pl-4 md:pl-6"
             >
-              <span className="font-medium text-black">AIの「はじめの一歩」を、大分から。</span><br />
-              AI勉強会・講演・AI活用コンサルティングから、<br className="hidden md:block" />
-              現場に合ったWebサイト・Webアプリづくりのご相談まで。<br className="hidden md:block" />
-              生成AIとともにプロダクトを生み出してきた実践知で伴走します。
+              大切なものが後世も残り続けること。<br />
+              私たちはITとAIの力で、地域の文化・産業・つながりを<br className="hidden md:block" />
+              次の世代へ届けるソーシャルビジネスに取り組みます。
             </motion.p>
 
             <motion.div
@@ -320,13 +319,13 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
                 onClick={() => navigateTo(PAGES.CONTACT)}
                 className="bg-black text-white px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-xs font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center justify-center gap-2"
               >
-                まずは相談する <ArrowRight size={14} />
+                お問い合わせ <ArrowRight size={14} />
               </button>
               <button
-                onClick={() => navigateTo(PAGES.CONTACT, 'AI勉強会・研修のご依頼')}
+                onClick={() => navigateTo(PAGES.COMPANY)}
                 className="border border-gray-300 text-gray-700 px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-xs font-bold uppercase tracking-widest hover:border-black hover:text-black transition-all inline-flex items-center justify-center gap-2"
               >
-                勉強会・講演を依頼する
+                会社概要を見る
               </button>
             </motion.div>
           </div>
@@ -374,6 +373,205 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
               </div>
             </div>
           </motion.a>
+        </div>
+      </section>
+
+      {/* Vision Statement Band */}
+      <section className="py-10 sm:py-12 md:py-16 bg-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-3 sm:mb-4">Our Vision</p>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-medium text-black leading-relaxed tracking-tight">
+              大切なものが後世も残り続けること
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
+              地域に根ざしたソーシャルビジネスとして、<br className="hidden md:block" />
+              小さな社会課題をビジネスで解決する道を選びました。
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <SectionTitle
+            title={<>Our<br className="hidden sm:block" />Products</>}
+            subtitle="地域の課題解決に向けて開発・運営する私たちの主要プロダクト"
+          />
+          <div className="space-y-16 sm:space-y-20 md:space-y-28 lg:space-y-36">
+            {projects.map((project, index) => {
+              const ProjectIcon = project.icon;
+              return (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.8 }}
+                  className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 items-start md:items-center group`}
+                >
+                  <div className="w-full md:w-1/2 aspect-[4/3] overflow-hidden bg-gray-100 relative rounded-sm">
+                    <div className="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors z-10"></div>
+                    <motion.img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 space-y-3 sm:space-y-4 md:space-y-5">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <ProjectIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" strokeWidth={1.5} />
+                      <span className="text-[10px] sm:text-[10px] md:text-xs font-bold text-gray-400 tracking-[0.15em] sm:tracking-[0.2em] uppercase">0{index + 1} — {project.subtitle}</span>
+                    </div>
+                    <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium text-black leading-tight">{project.title}</h3>
+                    <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed font-light border-l-2 border-gray-200 pl-3 sm:pl-4 md:pl-6">
+                      {project.description}
+                    </p>
+
+                    <div className="pt-1 sm:pt-2 md:pt-3">
+                      <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-2 sm:mb-3">主な特徴</h4>
+                      <ul className="space-y-1.5 sm:space-y-2 md:space-y-2.5">
+                        {project.features.map((feature, i) => (
+                          <li key={i} className="text-gray-600 font-light text-xs sm:text-xs md:text-sm flex items-start gap-2">
+                            <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 mt-0.5 shrink-0" strokeWidth={1.5} />
+                            <span className="leading-relaxed">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="pt-1 sm:pt-2 md:pt-3">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {project.technologies.map((tech, i) => (
+                          <span key={i} className="px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 bg-gray-50 text-gray-500 text-[10px] sm:text-[10px] md:text-xs rounded-sm border border-gray-100">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-3 sm:pt-4 md:pt-5">
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:gap-3 sm:hover:gap-4 transition-all text-gray-900 border-b border-gray-900 pb-0.5 sm:pb-1"
+                      >
+                        View Project <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* News Section */}
+      <section id="news" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-gray-50 border-y border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-10 md:mb-14">
+            <SectionTitle
+              title="News"
+              subtitle="サービスリリースや主要アップデートに関するお知らせ"
+            />
+            <a
+              href="/news"
+              className="inline-flex items-center gap-2 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest text-gray-900 border-b border-gray-900 pb-1 w-fit hover:gap-4 transition-all"
+            >
+              すべてのお知らせを見る <ArrowRight size={14} />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border border-gray-200">
+            {newsItems.slice(0, 3).map((item, index) => (
+              <motion.article
+                key={`${item.date}-${item.title}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col min-h-[260px] hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center justify-between gap-3 mb-5 sm:mb-6">
+                  <time className="text-[10px] sm:text-xs font-bold tracking-[0.2em] text-gray-400">{item.date}</time>
+                  <span className="text-[10px] font-bold tracking-widest text-gray-500 border border-gray-200 px-2 py-1">
+                    {item.category}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-black leading-tight mb-3 sm:mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-light flex-1">
+                  {item.description}
+                </p>
+                {item.href && (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-900 hover:gap-3 transition-all w-fit"
+                  >
+                    関連ページ <ExternalLink size={12} />
+                  </a>
+                )}
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Social Business Philosophy Section */}
+      <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-black text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-10 sm:mb-12 md:mb-16"
+            >
+              <HandHeart className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mx-auto mb-4 sm:mb-6 md:mb-8 text-gray-500" strokeWidth={1} />
+              <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium mb-4 sm:mb-6 md:mb-8 leading-tight tracking-tight px-2 sm:px-4">
+                <span className="text-gray-500 italic">Social</span> Business.
+              </h2>
+              <p className="text-gray-400 font-light text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4 max-w-2xl mx-auto">
+                地域に寄り添い、<br className="hidden sm:block" />
+                社会課題を持続的に解決するソーシャルビジネスとして歩みます。
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-gray-800 border border-gray-800 mt-8 sm:mt-12">
+              {[
+                { icon: Heart, title: "地域に根ざす", desc: "スケールよりインパクト。地域の声に耳を傾け、本当に必要とされるサービスを創ります。" },
+                { icon: Shield, title: "信頼と透明性", desc: "自治体・公的機関との連携を視野に、セキュリティとコンプライアンスを重視した開発体制を整えています。" },
+                { icon: TrendingUp, title: "持続可能な成長", desc: "一過性のトレンドに依存せず、地域と共に長期的に成長するビジネスモデルを追求します。" }
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                  className="bg-black/80 p-5 sm:p-6 md:p-8 lg:p-10 text-center"
+                >
+                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 md:mb-5 text-gray-400" strokeWidth={1} />
+                  <h3 className="text-sm sm:text-base md:text-lg font-serif font-medium mb-2 sm:mb-3 text-white">{item.title}</h3>
+                  <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -534,205 +732,6 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white relative">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <SectionTitle
-            title={<>Our<br className="hidden sm:block" />Products</>}
-            subtitle="実践から生まれたプロダクト。生成AIとともに自社で企画・開発・運営し、地域の課題解決に取り組んでいます。"
-          />
-          <div className="space-y-16 sm:space-y-20 md:space-y-28 lg:space-y-36">
-            {projects.map((project, index) => {
-              const ProjectIcon = project.icon;
-              return (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.8 }}
-                  className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24 items-start md:items-center group`}
-                >
-                  <div className="w-full md:w-1/2 aspect-[4/3] overflow-hidden bg-gray-100 relative rounded-sm">
-                    <div className="absolute inset-0 bg-white/10 group-hover:bg-transparent transition-colors z-10"></div>
-                    <motion.img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-100 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="w-full md:w-1/2 space-y-3 sm:space-y-4 md:space-y-5">
-                    <div className="flex items-center gap-2 sm:gap-3">
-                      <ProjectIcon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" strokeWidth={1.5} />
-                      <span className="text-[10px] sm:text-[10px] md:text-xs font-bold text-gray-400 tracking-[0.15em] sm:tracking-[0.2em] uppercase">0{index + 1} — {project.subtitle}</span>
-                    </div>
-                    <h3 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium text-black leading-tight">{project.title}</h3>
-                    <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed font-light border-l-2 border-gray-200 pl-3 sm:pl-4 md:pl-6">
-                      {project.description}
-                    </p>
-
-                    <div className="pt-1 sm:pt-2 md:pt-3">
-                      <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-2 sm:mb-3">主な特徴</h4>
-                      <ul className="space-y-1.5 sm:space-y-2 md:space-y-2.5">
-                        {project.features.map((feature, i) => (
-                          <li key={i} className="text-gray-600 font-light text-xs sm:text-xs md:text-sm flex items-start gap-2">
-                            <CheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 mt-0.5 shrink-0" strokeWidth={1.5} />
-                            <span className="leading-relaxed">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="pt-1 sm:pt-2 md:pt-3">
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                        {project.technologies.map((tech, i) => (
-                          <span key={i} className="px-1.5 sm:px-2 md:px-3 py-0.5 sm:py-1 bg-gray-50 text-gray-500 text-[10px] sm:text-[10px] md:text-xs rounded-sm border border-gray-100">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-3 sm:pt-4 md:pt-5">
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:gap-3 sm:hover:gap-4 transition-all text-gray-900 border-b border-gray-900 pb-0.5 sm:pb-1"
-                      >
-                        View Project <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5 md:w-4 md:h-4" />
-                      </a>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* News Section */}
-      <section id="news" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-gray-50 border-y border-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-10 md:mb-14">
-            <SectionTitle
-              title="News"
-              subtitle="サービスリリースや主要アップデートに関するお知らせ"
-            />
-            <a
-              href="/news"
-              className="inline-flex items-center gap-2 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest text-gray-900 border-b border-gray-900 pb-1 w-fit hover:gap-4 transition-all"
-            >
-              すべてのお知らせを見る <ArrowRight size={14} />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-gray-200 border border-gray-200">
-            {newsItems.slice(0, 3).map((item, index) => (
-              <motion.article
-                key={`${item.date}-${item.title}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col min-h-[260px] hover:bg-gray-50 transition-colors"
-              >
-                <div className="flex items-center justify-between gap-3 mb-5 sm:mb-6">
-                  <time className="text-[10px] sm:text-xs font-bold tracking-[0.2em] text-gray-400">{item.date}</time>
-                  <span className="text-[10px] font-bold tracking-widest text-gray-500 border border-gray-200 px-2 py-1">
-                    {item.category}
-                  </span>
-                </div>
-                <h3 className="text-lg sm:text-xl md:text-2xl font-serif font-medium text-black leading-tight mb-3 sm:mb-4">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-light flex-1">
-                  {item.description}
-                </p>
-                {item.href && (
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-gray-900 hover:gap-3 transition-all w-fit"
-                  >
-                    関連ページ <ExternalLink size={12} />
-                  </a>
-                )}
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vision Statement Band */}
-      <section className="py-10 sm:py-12 md:py-16 bg-gray-50 border-y border-gray-100">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-3 sm:mb-4">Our Vision</p>
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-medium text-black leading-relaxed tracking-tight">
-              大切なものが後世も残り続けること
-            </h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
-              地域に根ざしたソーシャルビジネスとして、<br className="hidden md:block" />
-              小さな社会課題をビジネスで解決する道を選びました。
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Social Business Philosophy Section */}
-      <section className="py-12 sm:py-16 md:py-24 lg:py-32 bg-black text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-10 sm:mb-12 md:mb-16"
-            >
-              <HandHeart className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mx-auto mb-4 sm:mb-6 md:mb-8 text-gray-500" strokeWidth={1} />
-              <h2 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-serif font-medium mb-4 sm:mb-6 md:mb-8 leading-tight tracking-tight px-2 sm:px-4">
-                <span className="text-gray-500 italic">Social</span> Business.
-              </h2>
-              <p className="text-gray-400 font-light text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-4 max-w-2xl mx-auto">
-                地域に寄り添い、<br className="hidden sm:block" />
-                社会課題を持続的に解決するソーシャルビジネスとして歩みます。
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-gray-800 border border-gray-800 mt-8 sm:mt-12">
-              {[
-                { icon: Heart, title: "地域に根ざす", desc: "スケールよりインパクト。地域の声に耳を傾け、本当に必要とされるサービスを創ります。" },
-                { icon: Shield, title: "信頼と透明性", desc: "自治体・公的機関との連携を視野に、セキュリティとコンプライアンスを重視した開発体制を整えています。" },
-                { icon: TrendingUp, title: "持続可能な成長", desc: "一過性のトレンドに依存せず、地域と共に長期的に成長するビジネスモデルを追求します。" }
-              ].map((item, i) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="bg-black/80 p-5 sm:p-6 md:p-8 lg:p-10 text-center"
-                >
-                  <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 md:mb-5 text-gray-400" strokeWidth={1} />
-                  <h3 className="text-sm sm:text-base md:text-lg font-serif font-medium mb-2 sm:mb-3 text-white">{item.title}</h3>
-                  <p className="text-xs sm:text-xs md:text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section id="faq" className="py-12 sm:py-16 md:py-24 lg:py-32 bg-white">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
@@ -755,8 +754,8 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-black text-white">
+      {/* Trust / CTA Section */}
+      <section className="py-10 sm:py-12 md:py-16 lg:py-20 bg-gray-50 border-y border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -765,28 +764,21 @@ const HomePage = ({ navigateTo }: { navigateTo: NavigateFn }) => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-3 sm:mb-4">Contact</p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium leading-relaxed tracking-tight mb-3 sm:mb-4 md:mb-6">
-              まずは、お気軽に<br className="sm:hidden" />ご相談ください。
+            <p className="text-[10px] sm:text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-gray-400 mb-3 sm:mb-4">Partnership</p>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-medium text-black leading-relaxed tracking-tight mb-3 sm:mb-4 md:mb-6">
+              地域課題の解決に向けて、<br className="hidden sm:block" />ご一緒しませんか。
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-gray-400 font-light leading-relaxed mb-6 sm:mb-8">
-              AI勉強会・講演のご依頼、AI活用のご相談、Webサイト・Webアプリ開発のご相談など、<br className="hidden md:block" />
-              内容が固まっていなくても大丈夫です。フォームから種別を選んでお送りください。
+            <p className="text-xs sm:text-sm md:text-base text-gray-500 font-light leading-relaxed mb-6 sm:mb-8">
+              自治体・教育機関・地域企業の皆さまとの連携を通じ、<br className="hidden md:block" />
+              地域の持続可能な発展に貢献するプロダクトを開発しています。<br className="hidden md:block" />
+              アプリ開発やAI活用のご相談など、お気軽にお問い合わせください。
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <button
-                onClick={() => navigateTo(PAGES.CONTACT)}
-                className="bg-white text-black px-6 sm:px-8 md:px-10 py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-all inline-flex items-center justify-center gap-2"
-              >
-                問い合わせフォームへ <ArrowRight size={14} />
-              </button>
-              <button
-                onClick={() => navigateTo(PAGES.CONTACT, '講演・登壇のご依頼')}
-                className="border border-gray-600 text-gray-300 px-6 sm:px-8 md:px-10 py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:border-white hover:text-white transition-all inline-flex items-center justify-center gap-2"
-              >
-                講演を依頼する <Mic size={14} />
-              </button>
-            </div>
+            <button
+              onClick={() => navigateTo(PAGES.CONTACT)}
+              className="bg-black text-white px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 text-xs sm:text-xs md:text-sm font-bold uppercase tracking-widest hover:bg-gray-800 transition-all inline-flex items-center gap-2"
+            >
+              Contact Us <Mail size={14} />
+            </button>
           </motion.div>
         </div>
       </section>
@@ -944,7 +936,7 @@ const CompanyPage = () => {
             <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-center px-2 sm:px-4 md:px-0">
               インターネットを通じて地域のニーズとソリューションをつなぎ、
               社会課題をビジネスで解決していきます。
-              自社プロダクトの開発と、AIの学び・活用の支援によって人と情報の流れを活性化し、
+              アプリケーション開発とAI実装によって人と情報の流れを活性化し、
               持続可能で魅力あふれる地域社会の実現に貢献することを使命としています。
             </p>
           </motion.div>
@@ -961,7 +953,7 @@ const CompanyPage = () => {
               <Cpu className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 mx-auto mb-3 sm:mb-4 text-gray-300" strokeWidth={1} />
               <p className="text-[10px] sm:text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 sm:mb-3">AI-Native</p>
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-black tracking-tight">
-                AIネイティブな実践知を、地域へ
+                AIネイティブな開発体制
               </h3>
             </div>
             <p className="text-sm sm:text-sm md:text-base text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-center px-2 sm:px-4 md:px-0">
@@ -1337,7 +1329,7 @@ const Sidebar = ({ currentPage, onNavigate }: { currentPage: string, onNavigate:
 };
 
 const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
-  <footer className="bg-white pt-10 sm:pt-12 md:pt-16 lg:pt-24 pb-24 md:pb-8 border-t border-gray-100">
+  <footer className="bg-white pt-10 sm:pt-12 md:pt-16 lg:pt-24 pb-5 sm:pb-6 md:pb-8 border-t border-gray-100">
     <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 mb-8 sm:mb-12 md:mb-16 lg:mb-24">
         <div className="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
@@ -1347,7 +1339,7 @@ const Footer = ({ onNavigate }: { onNavigate: (id: string) => void }) => (
           </div>
           <p className="text-sm sm:text-sm md:text-base text-gray-500 font-light max-w-md leading-relaxed">
             大切なものが後世も残り続けること。<br className="hidden sm:block" />
-            AI勉強会・講演・AI活用コンサルティングを通じて、<br className="hidden sm:block" />
+            地域に根ざしたソーシャルビジネスとして、<br className="hidden sm:block" />
             持続可能な地域社会の実現に貢献します。
           </p>
         </div>
@@ -1412,15 +1404,6 @@ export default function App() {
         <Footer onNavigate={navigateTo} />
       </div>
 
-      {/* モバイル用の固定相談ボタン */}
-      {currentPage !== PAGES.CONTACT && (
-        <button
-          onClick={() => navigateTo(PAGES.CONTACT)}
-          className="md:hidden fixed bottom-4 left-4 right-4 z-30 bg-black text-white py-3.5 text-xs font-bold uppercase tracking-widest shadow-2xl inline-flex items-center justify-center gap-2"
-        >
-          相談・依頼する <ArrowRight size={14} />
-        </button>
-      )}
     </main>
   );
 }
